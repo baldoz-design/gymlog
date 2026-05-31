@@ -1,0 +1,182 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding: 0 16px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 4px 20px;
+}
+
+.appName {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+.headerDate {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.dayName { text-transform: capitalize; }
+.dayNum  { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+.monthName { text-transform: capitalize; }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Base block ── */
+.block {
+  border-radius: 20px;
+  padding: 22px 20px;
+  border: 1px solid var(--border);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.15s;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--bg-card);
+}
+
+.block:active { opacity: 0.82; }
+
+/* ── Workout — card nera dominante ── */
+.blockWorkout {
+  background: var(--bg-workout);
+  border-color: transparent;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  padding: 26px 24px 24px;
+  flex: 2;
+}
+
+.blockWorkout .blockIcon {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+
+.blockWorkout .blockTitle {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-workout);
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.blockWorkout .blockSub {
+  font-size: 14px;
+  color: var(--text-workout-sub);
+  font-weight: 500;
+}
+
+.blockWorkout .arrow {
+  display: none;
+}
+
+/* ── Blocchi secondari ── */
+.blockHalf {
+  flex: 1;
+  height: 100%;
+}
+
+.blockStats  { background: var(--bg-card); }
+.blockProgram { background: var(--bg-card); }
+
+.blockIcon { margin-bottom: 10px; }
+
+.blockTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.blockSub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+/* Colori icone secondarie */
+.blockStats .blockIcon  { color: var(--green); }
+.blockProgram .blockIcon { color: #6B3FA0; }
+
+/* ── Onboarding ── */
+.onboarding {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.onboardingIcon { font-size: 64px; }
+
+.onboardingTitle {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.onboardingText {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.onboardingBtn {
+  background: var(--text-primary);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  min-height: 54px;
+  padding: 0 32px;
+  margin-top: 8px;
+}
+
+.onboardingBtn:active { opacity: 0.85; }
+
+/* ── Banner domenica ── */
+.noSlotBanner {
+  background: #FFF8E6;
+  border: 1px solid #F0D080;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #856404;
+  text-align: center;
+}

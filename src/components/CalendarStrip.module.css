@@ -1,0 +1,103 @@
+.container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.monthLabel {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.navBtn {
+  font-size: 22px;
+  color: var(--text-secondary);
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.navBtn:active { background: var(--bg-card-alt); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dayName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  padding-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 0;
+  border-radius: 10px;
+  min-height: 44px;
+  cursor: default;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.day:not(:disabled):active {
+  background: var(--bg-card-alt);
+}
+
+.dayNum {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.today .dayNum {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.today {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+}
+
+.hasSession {
+  cursor: pointer;
+}
+
+.hasSession .dayNum {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  display: block;
+}
+
+.future .dayNum {
+  color: #333;
+}
