@@ -1,176 +1,243 @@
 .card {
-  background: var(--bg-card);
+  background: var(--surface);
   border-radius: 14px;
   padding: 14px 14px 12px;
-  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-left: 3px solid transparent;
+  margin-bottom: 8px;
+  transition: border-color 0.2s;
 }
 
-.cardReadonly { opacity: 0.6; }
+.cardSaved    { border-left-color: var(--accent); }
+.cardReadonly { opacity: 0.7; }
 
-/* Titolo */
+/* ── Top row ── */
 .topRow {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.label {
+.lbl {
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--muted);
+  min-width: 20px;
   flex-shrink: 0;
-  min-width: 26px;
 }
 
 .exName {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: -0.1px;
-  text-align: left;
-  padding: 0;
+  color: var(--text);
   flex: 1;
+  text-align: left;
   line-height: 1.2;
-  color: var(--text-primary);
 }
-
 .exName:active { opacity: 0.6; }
 
-.lastValue {
-  font-size: 12px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  margin-left: auto;
-  flex-shrink: 0;
-}
-
-.previewValue {
+.roValue {
   font-size: 13px;
-  color: var(--text-secondary);
+  font-weight: 700;
+  color: var(--text-2);
   white-space: nowrap;
-  margin-left: auto;
-  flex-shrink: 0;
 }
 
-.arrowSmall { color: var(--green); font-weight: 700; }
+/* Type pill */
+.typePill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  border-radius: 100px;
+  padding: 5px 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
-/* Controlli */
+.tSigla       { font-size: 10px; font-weight: 900; color: var(--text); letter-spacing: 0.5px; }
+.tSep         { font-size: 9px;  color: var(--muted-2); }
+.tLbl         { font-size: 11px; font-weight: 600; color: var(--text-2); }
+.tChev        { font-size: 8px;  color: var(--muted); }
+.tPlaceholder { font-size: 11px; font-weight: 600; color: var(--muted); }
+
+/* Type selector */
+.typeSelector {
+  display: flex;
+  gap: 6px;
+}
+
+.tSelBtn {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tSelActive {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+/* Ultima volta */
+.ultimaVolta {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+}
+
+.ultimaVal {
+  font-weight: 700;
+  color: var(--text-3);
+}
+
+/* ── Control row (stepper/elastic + FATTO button) ── */
 .controlRow {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 48px;
+  gap: 8px;
+  align-items: stretch;
+  height: 66px;
 }
 
-.iconGroup { display: flex; gap: 4px; flex-shrink: 0; }
+/* ── Stepper ── */
+.stepper {
+  display: flex;
+  align-items: center;
+  background: var(--surface-alt);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 66px;
+  flex: 1;
+  min-width: 0;
+}
 
-.iconBtn {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
+.stepBtn {
+  width: 56px;
+  height: 66px;
+  font-size: 30px;
+  font-weight: 200;
+  color: var(--text-2);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  transition: all 0.1s;
   flex-shrink: 0;
 }
+.stepBtn:active { background: var(--dim); }
 
-.iconBtn:active { transform: scale(0.9); }
-
-.iconActive {
-  background: var(--text-primary);
-  border-color: var(--text-primary);
-  color: #fff;
-}
-
-.divider {
-  width: 1px;
-  height: 30px;
-  background: var(--border);
-  flex-shrink: 0;
-}
-
-/* Peso */
-.valueArea {
+.stepCenter {
   flex: 1;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.weightBox {
-  display: flex;
-  align-items: center;
-  background: var(--bg-card-alt);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0 12px;
-  height: 48px;
+  align-items: baseline;
+  justify-content: center;
   gap: 4px;
-  min-width: 100px;
-  justify-content: flex-end;
-  cursor: text;
 }
 
-.weightInput {
-  font-size: 26px;
-  font-weight: 700;
-  width: 68px;
-  border: none;
+.stepValBtn {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
   background: transparent;
+}
+.stepValBtn:active { opacity: 0.6; }
+
+.stepVal {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+}
+
+.stepUnit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.stepInput {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+  background: transparent;
+  border: none;
   outline: none;
-  color: var(--text-primary);
-  text-align: right;
+  width: 100%;
+  text-align: center;
   -moz-appearance: textfield;
 }
+.stepInput::-webkit-outer-spin-button,
+.stepInput::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-.weightInput::-webkit-outer-spin-button,
-.weightInput::-webkit-inner-spin-button { -webkit-appearance: none; }
-
-.unit { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
-
-/* Elastico */
-.elasticBtns { display: flex; gap: 5px; }
-
-.elasticBtn {
-  height: 44px;
-  min-width: 48px;
-  border-radius: 10px;
+/* ── Done button ── */
+.doneBtn {
+  width: 66px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--surface-alt);
+  border: 1.5px solid var(--border-dark);
+  color: var(--muted);
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-  border: 1.5px solid transparent;
+  font-weight: 900;
+  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.1s;
-  background: var(--bg-card);
+}
+.doneBtn:active { opacity: 0.7; }
+
+.doneBtnSaved {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-size: 18px;
 }
 
-.elasticBtn:active { transform: scale(0.93); }
+/* ── Elastic ── */
+.elasticBtns {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
 
-.e_blue   { border-color: var(--blue-elastic);   color: var(--blue-elastic);   }
-.e_yellow { border-color: var(--yellow-elastic);  color: var(--yellow-elastic); }
-.e_orange { border-color: var(--orange-elastic);  color: var(--orange-elastic); }
+.elasticBtn {
+  flex: 1;
+  height: 66px;
+  border-radius: 12px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+.elasticBtn:active { transform: scale(0.95); }
 
-.elasticActive.e_blue   { background: var(--blue-elastic);   color: #fff; }
-.elasticActive.e_yellow { background: var(--yellow-elastic);  color: #fff; }
-.elasticActive.e_orange { background: var(--orange-elastic);  color: #fff; }
+/* ── BW label (left side of controlRow) ── */
+.bwLabel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0 4px;
+}
 
-.bwLabel   { font-size: 20px; font-weight: 700; color: var(--text-primary); }
-.noneLabel { font-size: 20px; font-weight: 700; color: var(--text-secondary); }
-.emptyHint { font-size: 13px; color: var(--border); font-style: italic; }
-
-.increaseRow {
-  font-size: 11px;
-  color: var(--green);
-  font-weight: 700;
-  letter-spacing: 0.3px;
+/* ── Saved flash ── */
+.savedFlash {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  text-align: right;
 }

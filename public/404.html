@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script>
+    // Reindirizza al root della SPA preservando il path
+    const seg = window.location.pathname.split('/').slice(0, 2).join('/');
+    window.location.replace(seg + '/?p=' + encodeURIComponent(window.location.pathname + window.location.search) + window.location.hash);
+  </script>
+</head>
+</html>

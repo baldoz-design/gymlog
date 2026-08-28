@@ -34,7 +34,7 @@ export function formatEntryValue(entry) {
   if (!entry) return null;
   if (entry.valueType === 'weight') return `${entry.weightKg} kg`;
   if (entry.valueType === 'elastic') {
-    const labels = { blue: 'BLU', yellow: 'GIA', orange: 'ARA' };
+    const labels = { blue: 'AZZ', yellow: 'GIA', orange: 'ARA' };
     return labels[entry.elasticColor] || entry.elasticColor;
   }
   if (entry.valueType === 'bodyweight') return 'BW';

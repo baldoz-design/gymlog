@@ -65,11 +65,11 @@
 
 .dayNum { font-size: 14px; color: var(--text-primary); line-height: 1; }
 
-.today { background: var(--bg-card-alt); }
-.today .dayNum { font-weight: 700; }
+.today { background: var(--surface-3); border: 1px solid var(--border-dark); }
+.today .dayNum { font-weight: 700; color: var(--text); }
 
-.selected { background: var(--text-primary); }
-.selected .dayNum { color: #fff; font-weight: 800; }
+.selected { background: var(--accent); }
+.selected .dayNum { color: var(--accent-ink); font-weight: 900; }
 
 .future .dayNum { color: var(--border); }
 

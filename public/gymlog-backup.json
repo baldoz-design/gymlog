@@ -1,0 +1,3260 @@
+{
+  "cycles": [
+    {
+      "id": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "name": "Small Class — Aprile/Maggio 2026",
+      "startDate": "2026-04-06",
+      "endDate": "2026-05-10",
+      "status": "archived",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4"
+              },
+              {
+                "position": 3,
+                "exerciseId": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526"
+              },
+              {
+                "position": 2,
+                "exerciseId": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "139c7c93-f431-488c-9918-fdba17220285"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca"
+              },
+              {
+                "position": 3,
+                "exerciseId": "aca1edab-aac3-452e-94b9-8765b2e07b5e"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "bd6f4820-b7c9-4f16-8891-97c0912a3cff"
+              },
+              {
+                "position": 3,
+                "exerciseId": "06a504b4-fed1-47f9-960d-b79dbb0d54d2"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab"
+              },
+              {
+                "position": 2,
+                "exerciseId": "fe4dfb09-16ff-47c5-836a-471d092e98ae"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "db695101-6605-4ce3-b78d-a4b02ffe6737"
+              },
+              {
+                "position": 2,
+                "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed"
+              },
+              {
+                "position": 3,
+                "exerciseId": "4e4f8f8a-bfb6-423b-a26b-39ba06b924d2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "42203417-9295-4770-b22a-8c928c6ac932",
+      "name": "Small Class — agosto 2026",
+      "startDate": "2026-05-11",
+      "endDate": "2026-06-13",
+      "status": "active",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a"
+              },
+              {
+                "position": 3,
+                "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5582550a-dac2-4e76-92f6-789069249300"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "405ddc80-30a7-48ab-9304-99f0a53e9685"
+              },
+              {
+                "position": 2,
+                "exerciseId": "bbe6c6e4-dec5-40a0-b534-7b8d0c34333d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "0f16297d-c4b6-4963-acc5-f5444a303257"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677"
+              },
+              {
+                "position": 3,
+                "exerciseId": "185eadeb-989b-4559-aa70-eb02fd8d0110"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "a223face-f091-4c92-bf7b-98ee993de0c5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "e9f20483-96ca-4287-874d-7775739bc43d"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "4bc94928-fcc8-47ab-acf0-60ba25d5896e"
+              },
+              {
+                "position": 2,
+                "exerciseId": "4d8d22c5-ac30-4245-90e0-a1f9f7a08499"
+              },
+              {
+                "position": 3,
+                "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d"
+              }
+            ]
+          }
+        ],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526"
+              },
+              {
+                "position": 3,
+                "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "704c521a-7447-475c-877b-0a731d0031c6"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7"
+              },
+              {
+                "position": 2,
+                "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "38b3aef0-54e4-471e-84fe-865ac7f9ecb2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "5c197fc4-3029-470c-bf2f-e156773024f1",
+      "name": "Small Class — Maggio/Giugno 2026",
+      "startDate": "2026-05-11",
+      "endDate": "2026-06-14",
+      "status": "archived",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a"
+              },
+              {
+                "position": 3,
+                "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5582550a-dac2-4e76-92f6-789069249300"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "405ddc80-30a7-48ab-9304-99f0a53e9685"
+              },
+              {
+                "position": 2,
+                "exerciseId": "bbe6c6e4-dec5-40a0-b534-7b8d0c34333d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "0f16297d-c4b6-4963-acc5-f5444a303257"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677"
+              },
+              {
+                "position": 3,
+                "exerciseId": "185eadeb-989b-4559-aa70-eb02fd8d0110"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "a223face-f091-4c92-bf7b-98ee993de0c5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "e9f20483-96ca-4287-874d-7775739bc43d"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "4bc94928-fcc8-47ab-acf0-60ba25d5896e"
+              },
+              {
+                "position": 2,
+                "exerciseId": "4d8d22c5-ac30-4245-90e0-a1f9f7a08499"
+              },
+              {
+                "position": 3,
+                "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d"
+              }
+            ]
+          }
+        ],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526"
+              },
+              {
+                "position": 3,
+                "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "704c521a-7447-475c-877b-0a731d0031c6"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7"
+              },
+              {
+                "position": 2,
+                "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "38b3aef0-54e4-471e-84fe-865ac7f9ecb2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "6faa257e-c21d-4624-9d4a-c795be51ad88",
+      "name": "Small Class — Luglio/Agosto 2026",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-23",
+      "status": "archived",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677"
+              },
+              {
+                "position": 3,
+                "exerciseId": "3de4b5b7-dd37-45da-aa44-1756035e945a"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "a2969df7-2815-4278-afde-a9f65a20355b"
+              },
+              {
+                "position": 2,
+                "exerciseId": "70bb379f-efa4-4265-ba09-63f9d036e7d8"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "8e50ab4c-3eed-4227-962c-d8eec51808b8"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca"
+              },
+              {
+                "position": 3,
+                "exerciseId": "64e3a5a8-5121-4554-9bfe-4f71087eac60"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e"
+              },
+              {
+                "position": 3,
+                "exerciseId": "185eadeb-989b-4559-aa70-eb02fd8d0110"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a"
+              },
+              {
+                "position": 2,
+                "exerciseId": "cbd7ff4a-3245-4bc6-bb40-3532af754985"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7"
+              },
+              {
+                "position": 2,
+                "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "54c8856d-8691-4afd-a114-d18a521c3095"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "name": "Small Class — Marzo 2026",
+      "startDate": "2026-03-02",
+      "endDate": "2026-04-05",
+      "status": "archived",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526"
+              },
+              {
+                "position": 3,
+                "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "3a4294ee-7f74-43a3-9707-0c61968b07e6"
+              },
+              {
+                "position": 2,
+                "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7"
+              },
+              {
+                "position": 2,
+                "exerciseId": "533ad9b0-ef41-4240-9d98-49a73eb4e630"
+              },
+              {
+                "position": 3,
+                "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677"
+              },
+              {
+                "position": 3,
+                "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a8732b49-0ef0-4dfc-8bbe-441055e81a32"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "a2969df7-2815-4278-afde-a9f65a20355b"
+              },
+              {
+                "position": 2,
+                "exerciseId": "49a9bb0e-6546-4140-915e-cd560782e632"
+              },
+              {
+                "position": 3,
+                "exerciseId": "38b3aef0-54e4-471e-84fe-865ac7f9ecb2"
+              }
+            ]
+          }
+        ],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a"
+              },
+              {
+                "position": 3,
+                "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "4266004d-5fdf-4e8f-8f18-2ad5b97a3a38"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "01629860-61e5-48e0-9371-4499569fb2bc"
+              },
+              {
+                "position": 2,
+                "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d"
+              },
+              {
+                "position": 3,
+                "exerciseId": "d45e67d2-61e9-45e0-a5aa-7a6ed0a87bc2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "name": "Small Class — Giugno/Luglio 2026",
+      "startDate": "2026-06-15",
+      "endDate": "2026-07-19",
+      "status": "archived",
+      "weeks": [
+        {
+          "weekNumber": 1,
+          "reps": 6
+        },
+        {
+          "weekNumber": 2,
+          "reps": 6
+        },
+        {
+          "weekNumber": 3,
+          "reps": 8
+        },
+        {
+          "weekNumber": 4,
+          "reps": 8
+        },
+        {
+          "weekNumber": 5,
+          "reps": 10
+        }
+      ],
+      "slots": {
+        "MON_TUE": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5"
+              },
+              {
+                "position": 2,
+                "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526"
+              },
+              {
+                "position": 3,
+                "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "23b5a536-9095-4460-a814-f94cf02ad209"
+              },
+              {
+                "position": 2,
+                "exerciseId": "da801274-cd12-46fa-bbbd-054c2fb6ab06"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "0f05f5ee-35e0-40b1-b76c-5dc84a0db610"
+              },
+              {
+                "position": 2,
+                "exerciseId": "7e60855a-d552-4519-b0e7-367abd9198f0"
+              },
+              {
+                "position": 3,
+                "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed"
+              }
+            ]
+          }
+        ],
+        "WED_THU": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "56c1764c-ad4b-48fa-9f38-f31418df811c"
+              },
+              {
+                "position": 2,
+                "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2"
+              },
+              {
+                "position": 3,
+                "exerciseId": "d1b50267-5402-4361-aac7-15b68dbd1ee3"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "794e6b31-57a4-4b44-9c1e-d3127506ba82"
+              },
+              {
+                "position": 2,
+                "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "2117ca9a-ba12-4ca7-841b-61ec4b747f78"
+              },
+              {
+                "position": 2,
+                "exerciseId": "66f8c838-f49a-42d9-803c-13a82f52ca77"
+              },
+              {
+                "position": 3,
+                "exerciseId": "952458ed-1226-4f5b-8076-60e79bb52fdf"
+              }
+            ]
+          }
+        ],
+        "FRI_SAT": [
+          {
+            "label": "A",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870"
+              },
+              {
+                "position": 2,
+                "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4"
+              },
+              {
+                "position": 3,
+                "exerciseId": "d04f1754-b01d-48fe-b53a-79ab1263270b"
+              }
+            ]
+          },
+          {
+            "label": "B",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab"
+              },
+              {
+                "position": 2,
+                "exerciseId": "a8cecb3a-dcb4-4299-bdd4-cfd75756bb23"
+              }
+            ]
+          },
+          {
+            "label": "C",
+            "exercises": [
+              {
+                "position": 1,
+                "exerciseId": "5d53b05a-1c33-40c0-8a8c-b7a7ccc19ab4"
+              },
+              {
+                "position": 2,
+                "exerciseId": "439c4d02-cf8a-4790-8828-802bc9482a45"
+              },
+              {
+                "position": 3,
+                "exerciseId": "d42452fd-7a14-45e2-b1ce-bc5d9c8e354e"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "exercises": [
+    {
+      "id": "01629860-61e5-48e0-9371-4499569fb2bc",
+      "canonicalName": "Staggered RDL",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "06a504b4-fed1-47f9-960d-b79dbb0d54d2",
+      "canonicalName": "Plank Over Disco",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc",
+      "canonicalName": "Mountain Climbers Pattine",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "0f05f5ee-35e0-40b1-b76c-5dc84a0db610",
+      "canonicalName": "Ponte Glutei Gamba",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "0f16297d-c4b6-4963-acc5-f5444a303257",
+      "canonicalName": "Plank Drag Anteriore",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "canonicalName": "Split Squat",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "139c7c93-f431-488c-9918-fdba17220285",
+      "canonicalName": "Single Leg RDL",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "185eadeb-989b-4559-aa70-eb02fd8d0110",
+      "canonicalName": "Body Saw",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "195ba624-937e-4670-97ae-641a84eb0c5d",
+      "canonicalName": "Pallof Rotation",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "canonicalName": "DL",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "2117ca9a-ba12-4ca7-841b-61ec4b747f78",
+      "canonicalName": "SLDL",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "23b5a536-9095-4460-a814-f94cf02ad209",
+      "canonicalName": "Spinte Panca 45°",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "canonicalName": "Push Up",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "38b3aef0-54e4-471e-84fe-865ac7f9ecb2",
+      "canonicalName": "Sit Up",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "3a4294ee-7f74-43a3-9707-0c61968b07e6",
+      "canonicalName": "Affondo Laterale Pattina",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "3de4b5b7-dd37-45da-aa44-1756035e945a",
+      "canonicalName": "Barchetta",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "405ddc80-30a7-48ab-9304-99f0a53e9685",
+      "canonicalName": "Affondo Laterale",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "4266004d-5fdf-4e8f-8f18-2ad5b97a3a38",
+      "canonicalName": "Split Squat Gamba Dietro",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "439c4d02-cf8a-4790-8828-802bc9482a45",
+      "canonicalName": "Plank 3 Appoggi",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "canonicalName": "Pushdown",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "49a9bb0e-6546-4140-915e-cd560782e632",
+      "canonicalName": "Hammer Curl in Piedi",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "4bc94928-fcc8-47ab-acf0-60ba25d5896e",
+      "canonicalName": "RDL Split Stance",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8",
+      "canonicalName": "Split Squat 150",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "4d8d22c5-ac30-4245-90e0-a1f9f7a08499",
+      "canonicalName": "1DB HK Bic. Curl + 6H Press",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "4e4f8f8a-bfb6-423b-a26b-39ba06b924d2",
+      "canonicalName": "1KB March",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "canonicalName": "Leg Curl Pattine",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "canonicalName": "Curl Manubri",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "533ad9b0-ef41-4240-9d98-49a73eb4e630",
+      "canonicalName": "TK Shoulder Press",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "54c8856d-8691-4afd-a114-d18a521c3095",
+      "canonicalName": "Plank Orsetto Tocco Spalla",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "5582550a-dac2-4e76-92f6-789069249300",
+      "canonicalName": "Spinte Panca Piana Mono",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "canonicalName": "Spinte Panca Piana",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "56c1764c-ad4b-48fa-9f38-f31418df811c",
+      "canonicalName": "Step Up",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab",
+      "canonicalName": "RDL",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "canonicalName": "Pull Up",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "5d53b05a-1c33-40c0-8a8c-b7a7ccc19ab4",
+      "canonicalName": "Affondo Post. con Pattina",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "64e3a5a8-5121-4554-9bfe-4f71087eac60",
+      "canonicalName": "Drag Plank Disco",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "canonicalName": "Squat",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "66f8c838-f49a-42d9-803c-13a82f52ca77",
+      "canonicalName": "HK Palloff Press",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "704c521a-7447-475c-877b-0a731d0031c6",
+      "canonicalName": "Affondo Anteriore",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "70bb379f-efa4-4265-ba09-63f9d036e7d8",
+      "canonicalName": "TRX Largo",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "794e6b31-57a4-4b44-9c1e-d3127506ba82",
+      "canonicalName": "Split Squat Gamba Davanti",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "7e60855a-d552-4519-b0e7-367abd9198f0",
+      "canonicalName": "Bear Plank Shoulder Tap",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "8e50ab4c-3eed-4227-962c-d8eec51808b8",
+      "canonicalName": "Split RDL",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "952458ed-1226-4f5b-8076-60e79bb52fdf",
+      "canonicalName": "French Press",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "a223face-f091-4c92-bf7b-98ee993de0c5",
+      "canonicalName": "Sedia Muro",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "a2969df7-2815-4278-afde-a9f65a20355b",
+      "canonicalName": "Sedia Muro Mono",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "a8732b49-0ef0-4dfc-8bbe-441055e81a32",
+      "canonicalName": "High Row al TRX",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "a8cecb3a-dcb4-4299-bdd4-cfd75756bb23",
+      "canonicalName": "Rematore Manubrio",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "canonicalName": "Floor Press",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "aca1edab-aac3-452e-94b9-8765b2e07b5e",
+      "canonicalName": "Side Plank con Rotazione",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "b1114753-0c25-4bf3-9bcd-07d091c250ca",
+      "canonicalName": "Shoulder Press",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "canonicalName": "Chin Up",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "bbe6c6e4-dec5-40a0-b534-7b8d0c34333d",
+      "canonicalName": "Curl Panca 60°",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "bd6f4820-b7c9-4f16-8891-97c0912a3cff",
+      "canonicalName": "Row Manubri",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "cbd7ff4a-3245-4bc6-bb40-3532af754985",
+      "canonicalName": "Squat Mono",
+      "createdAt": "2026-07-20"
+    },
+    {
+      "id": "d04f1754-b01d-48fe-b53a-79ab1263270b",
+      "canonicalName": "Plank Lat con Gamba",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "d1b50267-5402-4361-aac7-15b68dbd1ee3",
+      "canonicalName": "Plank con Spostamento Pattina Anteriore",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "d42452fd-7a14-45e2-b1ce-bc5d9c8e354e",
+      "canonicalName": "Alzata Lat + Frontale (Six Ways)",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "d45e67d2-61e9-45e0-a5aa-7a6ed0a87bc2",
+      "canonicalName": "Plank Drag con Disco",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "da801274-cd12-46fa-bbbd-054c2fb6ab06",
+      "canonicalName": "Bulgarian Split Squat",
+      "createdAt": "2026-06-15"
+    },
+    {
+      "id": "db244b27-b06d-4d5a-9051-13b0f081f677",
+      "canonicalName": "Spinte Panca 30°",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "db695101-6605-4ce3-b78d-a4b02ffe6737",
+      "canonicalName": "Squat Laterale",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "canonicalName": "Deadbug",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "e9f20483-96ca-4287-874d-7775739bc43d",
+      "canonicalName": "TRX Mono",
+      "createdAt": "2026-05-11"
+    },
+    {
+      "id": "efe97869-63dc-47ea-9e04-1e9f41fa2861",
+      "canonicalName": "Plank Reach",
+      "createdAt": "2026-03-02"
+    },
+    {
+      "id": "fe4dfb09-16ff-47c5-836a-471d092e98ae",
+      "canonicalName": "Panca 45°",
+      "createdAt": "2026-04-06"
+    },
+    {
+      "id": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "canonicalName": "Plank",
+      "createdAt": "2026-03-02"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "00a67618-51db-4189-a195-54e5596e2859",
+      "date": "2026-03-13",
+      "slot": "FRI_SAT",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 2,
+      "entries": []
+    },
+    {
+      "id": "037afddd-d842-46fb-a378-7bda6fdecbd5",
+      "date": "2026-07-21",
+      "slot": "MON_TUE",
+      "cycleId": "6faa257e-c21d-4624-9d4a-c795be51ad88",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "date": "2026-04-24",
+      "slot": "FRI_SAT",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 3,
+      "entries": []
+    },
+    {
+      "id": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "date": "2026-06-22",
+      "slot": "MON_TUE",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 2,
+      "entries": []
+    },
+    {
+      "id": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "date": "2026-03-17",
+      "slot": "MON_TUE",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 3,
+      "entries": []
+    },
+    {
+      "id": "11f00c26-b278-48fe-916c-0c09ed796c43",
+      "date": "2026-03-05",
+      "slot": "WED_THU",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "date": "2026-05-12",
+      "slot": "MON_TUE",
+      "cycleId": "5c197fc4-3029-470c-bf2f-e156773024f1",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "date": "2026-03-31",
+      "slot": "MON_TUE",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "date": "2026-04-21",
+      "slot": "MON_TUE",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 3,
+      "entries": []
+    },
+    {
+      "id": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "date": "2026-04-07",
+      "slot": "MON_TUE",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "30fddd41-ec37-4cca-a768-957315799e7f",
+      "date": "2026-08-28",
+      "slot": "FRI_SAT",
+      "cycleId": "42203417-9295-4770-b22a-8c928c6ac932",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "42e64e14-fc56-4565-8e2e-5b4d8219a40a",
+      "date": "2026-07-17",
+      "slot": "FRI_SAT",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "date": "2026-04-10",
+      "slot": "FRI_SAT",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "date": "2026-04-03",
+      "slot": "FRI_SAT",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "date": "2026-04-28",
+      "slot": "MON_TUE",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 4,
+      "entries": []
+    },
+    {
+      "id": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "date": "2026-05-15",
+      "slot": "FRI_SAT",
+      "cycleId": "5c197fc4-3029-470c-bf2f-e156773024f1",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "date": "2026-06-19",
+      "slot": "FRI_SAT",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "date": "2026-03-27",
+      "slot": "FRI_SAT",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 4,
+      "entries": []
+    },
+    {
+      "id": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "date": "2026-06-24",
+      "slot": "WED_THU",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 2,
+      "entries": []
+    },
+    {
+      "id": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "date": "2026-03-20",
+      "slot": "FRI_SAT",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 3,
+      "entries": []
+    },
+    {
+      "id": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "date": "2026-03-10",
+      "slot": "MON_TUE",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 2,
+      "entries": []
+    },
+    {
+      "id": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "date": "2026-05-22",
+      "slot": "FRI_SAT",
+      "cycleId": "5c197fc4-3029-470c-bf2f-e156773024f1",
+      "weekNumber": 2,
+      "entries": []
+    },
+    {
+      "id": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "date": "2026-06-10",
+      "slot": "WED_THU",
+      "cycleId": "5c197fc4-3029-470c-bf2f-e156773024f1",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "date": "2026-07-13",
+      "slot": "MON_TUE",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "date": "2026-03-03",
+      "slot": "MON_TUE",
+      "cycleId": "73e6f83c-d0d8-4121-90e8-de6d6c326726",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "date": "2026-07-25",
+      "slot": "FRI_SAT",
+      "cycleId": "6faa257e-c21d-4624-9d4a-c795be51ad88",
+      "weekNumber": 1,
+      "entries": []
+    },
+    {
+      "id": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "date": "2026-05-05",
+      "slot": "MON_TUE",
+      "cycleId": "1f7f7943-1cab-450f-9879-d33a2a7f86f8",
+      "weekNumber": 5,
+      "entries": []
+    },
+    {
+      "id": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "date": "2026-06-16",
+      "slot": "MON_TUE",
+      "cycleId": "e669e369-0ae5-4be1-8fe3-7f72ca241d0a",
+      "weekNumber": 1,
+      "entries": []
+    }
+  ],
+  "sessionEntries": [
+    {
+      "id": "0119fff9-e2d7-4325-a89b-ed7cc25135a9",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "0173f3d7-b78b-4fd6-836a-6f4c48f18999",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "01cbafec-f9e8-474b-b166-861954cdfdaf",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "06758924-203a-442e-b672-2ff67a7c7188",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "4bc94928-fcc8-47ab-acf0-60ba25d5896e",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "073f9588-55cd-4bd3-b901-ddcbbbaa1d35",
+      "sessionId": "00a67618-51db-4189-a195-54e5596e2859",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "0954ae5d-bb35-48d0-8a6b-e9d1b9855d3b",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue",
+      "isIncrease": false
+    },
+    {
+      "id": "0a63f72f-d6d5-407c-a8dd-14b7672707ac",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "0aa39997-85fc-4282-a64e-0d3ad0319cd1",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "139c7c93-f431-488c-9918-fdba17220285",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "0b2ca5c1-2cc2-434b-878f-8858f9c7179c",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null
+    },
+    {
+      "id": "0b8fcabc-fefb-46bd-8a97-c9b01e9f35e4",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "0bb39b0e-5b3d-4cb0-8760-62ad63c213b4",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "d04f1754-b01d-48fe-b53a-79ab1263270b",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "0bbfea01-f3ac-4702-8c24-34e10cbbd613",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "0cff2b30-ffe4-486c-8353-a9dcc4366745",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "0daa3cc3-bfb8-4d5b-8898-4740c2ac28a4",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "185eadeb-989b-4559-aa70-eb02fd8d0110",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "107e3a7a-36de-4239-96cc-2f3331d3a8ae",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 6,
+      "elasticColor": null
+    },
+    {
+      "id": "112b0871-2d53-4366-a2e8-d55bebde1a84",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "5582550a-dac2-4e76-92f6-789069249300",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "12f0754a-bd3e-4956-948c-958d26c885f0",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "bbe6c6e4-dec5-40a0-b534-7b8d0c34333d",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "15dac6c1-eedf-4214-9e9c-276130561124",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 85,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "15e4601e-14bb-496c-a4b2-5e0b7abf7a15",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "aca1edab-aac3-452e-94b9-8765b2e07b5e",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "1739e746-c923-4954-b1c9-1d39516c33b9",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "1745c2f9-12df-477f-980b-2b377843395c",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "17603e9f-d818-4eb9-bd0d-e66be31b6a0f",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "17c3aac6-548e-40fa-b986-707418cce184",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "17d903c4-c0b9-4761-8424-30cbb9f136b8",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "1a7e5af9-9c6b-4b44-986f-aa8a1a2445fa",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "1b0d88a4-6495-4db2-ae9b-b930a7c5cb85",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "1ec09760-c4f7-415c-9ac5-fab289d13b16",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow",
+      "isIncrease": true
+    },
+    {
+      "id": "1efebe75-1d3a-4e73-8127-865095d2147f",
+      "sessionId": "00a67618-51db-4189-a195-54e5596e2859",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 55,
+      "elasticColor": null
+    },
+    {
+      "id": "204f3fd3-48cb-4d33-a93a-98bdef41c40e",
+      "sessionId": "11f00c26-b278-48fe-916c-0c09ed796c43",
+      "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "2074fc2d-d5bd-4432-a3fe-d061bc829ae6",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "23b5a536-9095-4460-a814-f94cf02ad209",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "2275cb3c-64cb-49da-a99d-8600b6f2a4f5",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "23730422-7276-410b-be87-d7a8587e54d5",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "23bf1fd6-d125-4cc4-ad41-aa5670e93f0c",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "7e60855a-d552-4519-b0e7-367abd9198f0",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "2514c05e-9002-4dce-a127-87ff65aaf77a",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue",
+      "isIncrease": false
+    },
+    {
+      "id": "259abd74-48d5-46c7-8409-88623844c87d",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null
+    },
+    {
+      "id": "262f8ed8-0cd8-457c-a35e-9b3b834586e4",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "aca1edab-aac3-452e-94b9-8765b2e07b5e",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "2a518ccb-faa9-4aa8-94c0-62be13a273b8",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "da801274-cd12-46fa-bbbd-054c2fb6ab06",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "2c5eb840-5013-491c-b2fa-b09a02af9ba9",
+      "sessionId": "00a67618-51db-4189-a195-54e5596e2859",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue"
+    },
+    {
+      "id": "36ee4e4e-3489-4464-8713-c595aa319077",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "37f1df69-a090-4d0c-8ca8-d0fd795d2295",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "db695101-6605-4ce3-b78d-a4b02ffe6737",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null
+    },
+    {
+      "id": "38411aeb-05d3-43f0-b43d-39bc32b07c2c",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "d42452fd-7a14-45e2-b1ce-bc5d9c8e354e",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 6,
+      "elasticColor": null
+    },
+    {
+      "id": "39b317da-3912-443c-a69f-d46ca403b383",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow"
+    },
+    {
+      "id": "3ad48a7a-c630-4f2f-ada5-198df5ea3a4e",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "3b90f1e2-1436-4e7e-a867-87075aa69bc6",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "3f14418e-b3c6-4fbe-a59f-a078641822fb",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "704c521a-7447-475c-877b-0a731d0031c6",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "3f5a2ff2-65bb-48ac-8957-0dd0a53dd0d2",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "3ffb578e-6d2b-403f-9e7d-957c68677e08",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "44cd4490-7126-41cb-83ec-a8adbe4899c6",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "valueType": "weight",
+      "weightKg": 22.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "45b17951-9dc0-4709-9047-b02dd849e8c6",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "46b6cb73-4e44-4cc7-a663-8af752fa2cc8",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "7e60855a-d552-4519-b0e7-367abd9198f0",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "4959c167-ba71-4594-8564-276bc07bd84d",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "4a349243-94fb-4610-ba24-b55e23ba0d6e",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "23b5a536-9095-4460-a814-f94cf02ad209",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "4b20d3cb-e35e-4b65-a5a3-de69a6e4677d",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "4b9503c9-ec93-492f-88b2-969441277d74",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "4266004d-5fdf-4e8f-8f18-2ad5b97a3a38",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "4c7afee7-3212-4d4a-9081-d87e7752f984",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "bd6f4820-b7c9-4f16-8891-97c0912a3cff",
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "4e983cc2-ff7d-4e3a-8fda-f32008530694",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "56c1764c-ad4b-48fa-9f38-f31418df811c",
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "52c7f42b-fa7c-4752-b378-40c5cc21ef55",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "5325f867-cc23-47b9-b199-aff8b0e712ca",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 22.5,
+      "elasticColor": null
+    },
+    {
+      "id": "532d2228-0a69-488c-998e-2c5491e41b9b",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "53e07961-1199-4e16-8b2e-97808972cb21",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "56a5aedf-daa4-40e5-8e1f-41e30d5aa468",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "533ad9b0-ef41-4240-9d98-49a73eb4e630",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "5719af61-c25c-4294-bed4-b206724cf016",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 65,
+      "elasticColor": null
+    },
+    {
+      "id": "58b19cc9-300b-4447-93d0-8284376d3060",
+      "sessionId": "037afddd-d842-46fb-a378-7bda6fdecbd5",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 40,
+      "elasticColor": null
+    },
+    {
+      "id": "598ea641-fc5d-4bf1-b1f6-f721b29fa2be",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "5a0832f5-cafb-43a1-9986-d5c9e4e2e39d",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "139c7c93-f431-488c-9918-fdba17220285",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null
+    },
+    {
+      "id": "5a65b1af-5cfb-481b-9326-844dffa6d92c",
+      "sessionId": "037afddd-d842-46fb-a378-7bda6fdecbd5",
+      "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "5af43112-c839-4b3a-8453-ced088a61397",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "5b04e72a-206b-4955-9bef-5cdcd3d783a2",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "5ce9665d-c3de-48c8-ba0a-b6bf9596cdd9",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue",
+      "isIncrease": false
+    },
+    {
+      "id": "5fd836d3-0cde-4d45-8767-52584419b382",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue"
+    },
+    {
+      "id": "60287f86-28e1-4206-96f2-99adb3121f2f",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "606f96d7-39cd-40d4-bfbf-f7c5fbd8467d",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "4266004d-5fdf-4e8f-8f18-2ad5b97a3a38",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "62438e70-18a7-4e14-bf6b-ab6266e7df34",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "06a504b4-fed1-47f9-960d-b79dbb0d54d2",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "625705fc-051c-4ce9-80f3-88d70c2e4be8",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "0f16297d-c4b6-4963-acc5-f5444a303257",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 20,
+      "elasticColor": null
+    },
+    {
+      "id": "62958aee-4eeb-4876-a4df-8809292e4035",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "2117ca9a-ba12-4ca7-841b-61ec4b747f78",
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "63030364-4075-41c1-b752-8af309e1a6b4",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "6336215d-ba81-4d36-a689-fb16557d391c",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "64412786-c98c-4b95-b513-697a4bff23d5",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "65b470da-fe68-4826-b41b-937adfa77460",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow"
+    },
+    {
+      "id": "67a72213-4a1d-4d7d-8738-7c303de0259f",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "aca1edab-aac3-452e-94b9-8765b2e07b5e",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "6891d185-f080-46a2-9e36-11267e29e240",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "5d53b05a-1c33-40c0-8a8c-b7a7ccc19ab4",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "692ec3c1-5bd7-419f-af96-7b39d04a8dd6",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "6aacddb4-2b33-48fb-972d-f355d76079e9",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "3a4294ee-7f74-43a3-9707-0c61968b07e6",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "6ab0f330-76d1-4e7f-b7f5-5432e9d27f13",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "6ae0b8a5-2526-4eac-8cc1-bd8d73724ba2",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "6c718faa-6910-4781-b5d8-9d9eca08e404",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "6cd4c3f0-06e1-44ff-87cb-4f51ee5f3ff2",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "185eadeb-989b-4559-aa70-eb02fd8d0110",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "72fede79-d6f7-4ee2-9160-15861780f569",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "952458ed-1226-4f5b-8076-60e79bb52fdf",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 8,
+      "elasticColor": null
+    },
+    {
+      "id": "76db6444-01f4-4f4c-aa0c-4fc08f617e06",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "704c521a-7447-475c-877b-0a731d0031c6",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "7a196f11-f016-489c-b38a-d73b3fb15466",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "01629860-61e5-48e0-9371-4499569fb2bc",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "7cd776f2-ade2-4a03-aee1-4e9b90d55ec2",
+      "sessionId": "11f00c26-b278-48fe-916c-0c09ed796c43",
+      "exerciseId": "db244b27-b06d-4d5a-9051-13b0f081f677",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "7e0a8ca4-007a-46c1-84ed-eb14bc11ba15",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "valueType": "weight",
+      "weightKg": 9,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "7e4088b2-8630-4470-958c-2b5d4b5fe54f",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "3a4294ee-7f74-43a3-9707-0c61968b07e6",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "7ed5240e-b3c7-45d2-89fa-273ad30750a7",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "e9f20483-96ca-4287-874d-7775739bc43d",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "7f90a587-56ae-41c5-a76b-1077b2edb871",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null
+    },
+    {
+      "id": "8199869f-1cb3-47d8-bb6f-b4571889bc78",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "82efa42d-c07c-4255-85c2-ed7eac73cfef",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow",
+      "isIncrease": false
+    },
+    {
+      "id": "8439f475-4054-4c8a-9509-521928a284dd",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 90,
+      "elasticColor": null
+    },
+    {
+      "id": "856fbd63-f5c5-41b7-b055-50cc510486ea",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "d1b50267-5402-4361-aac7-15b68dbd1ee3",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "87dacb4c-f2fd-492f-9051-18d384a519df",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "01629860-61e5-48e0-9371-4499569fb2bc",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "885d326c-29e3-4551-b0be-638ed95a9e7e",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "d45e67d2-61e9-45e0-a5aa-7a6ed0a87bc2",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "894cb274-51c9-469b-8881-bc5f0b9df740",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null
+    },
+    {
+      "id": "89f3f065-8a3f-4e11-8572-93ddd8196ce9",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab",
+      "valueType": "weight",
+      "weightKg": 60,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "8a06b29c-9380-4444-8731-8d2f79a763df",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 65,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "8a6f7b50-507f-414e-9c65-a4b692c9f67e",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 6,
+      "elasticColor": null
+    },
+    {
+      "id": "8b40c5a3-c024-4759-a871-79b2ffcdc48f",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "da801274-cd12-46fa-bbbd-054c2fb6ab06",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "8c08a019-a47d-4b21-8cd0-850859e2bb0b",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "8d09c737-a424-4c64-80f9-9d82ab066bbf",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "8e7a4203-d8fe-4838-91e8-32a1f0926bbc",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "4e4f8f8a-bfb6-423b-a26b-39ba06b924d2",
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "8f1a4a29-3da8-4dda-adf9-df33667014f0",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 90,
+      "elasticColor": null
+    },
+    {
+      "id": "91e6e312-8330-44d1-bea2-953ad391e512",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "a223face-f091-4c92-bf7b-98ee993de0c5",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "92e38504-fd99-456f-a0c5-996707aeb8cb",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "0f05f5ee-35e0-40b1-b76c-5dc84a0db610",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "95119066-0162-4111-8fec-7152cfcc5f5e",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "533ad9b0-ef41-4240-9d98-49a73eb4e630",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "9530b603-6c4f-41f8-badc-7c3d8ca442b0",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue"
+    },
+    {
+      "id": "959a3999-69b4-4997-a176-d5af98b11633",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "4266004d-5fdf-4e8f-8f18-2ad5b97a3a38",
+      "valueType": "weight",
+      "weightKg": 10.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "95a6068d-3feb-4bf7-9b5e-7039b74b1077",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "3a4294ee-7f74-43a3-9707-0c61968b07e6",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "95dc0ac3-7c19-48b0-a4d1-dde985db213b",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "54c8856d-8691-4afd-a114-d18a521c3095",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "95f995e9-bbdf-49cb-87ee-a025f68cca23",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 90,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "96fccffe-cf79-4ed6-a695-a367b3be566f",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "978db9a8-ef8b-493a-b0b1-aa2d1c0ce500",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "794e6b31-57a4-4b44-9c1e-d3127506ba82",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "9ae914f6-7c39-4e37-906a-5f67eedb0fe7",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "274f6a82-b0f6-4fea-b93d-4c71026538e2",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "9b474d93-f893-4d81-88c9-db5b60654859",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "01629860-61e5-48e0-9371-4499569fb2bc",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "9b5bd950-76a1-4b7a-a261-dc3dbce7e789",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "139c7c93-f431-488c-9918-fdba17220285",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "9c18b669-0eab-4d57-9b2b-e1bcc510de73",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 9,
+      "elasticColor": null
+    },
+    {
+      "id": "9d15167d-d8dc-4d72-8292-aa6e7c6651e2",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "06a504b4-fed1-47f9-960d-b79dbb0d54d2",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "9d819beb-f04a-4982-928e-e0fe4e6996e0",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "9e9b0eba-d4c3-4c35-b247-0eaf6fa15253",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "a8cecb3a-dcb4-4299-bdd4-cfd75756bb23",
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "9ecab502-e65e-42c9-878a-5dd046dfc2b6",
+      "sessionId": "30fddd41-ec37-4cca-a768-957315799e7f",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 95,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "9fbdee15-b282-45e0-ab78-a78ba4d6469e",
+      "sessionId": "037afddd-d842-46fb-a378-7bda6fdecbd5",
+      "exerciseId": "3de4b5b7-dd37-45da-aa44-1756035e945a",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "9fc5e74d-25f0-4c14-9190-9c4688b5d944",
+      "sessionId": "9d8dd617-202e-44e1-a738-636206ed877c",
+      "exerciseId": "0f1badbb-e5f5-4695-a80c-ed1d74b388da",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "a461af7b-12d0-4029-bcc9-57ec25c2d300",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "a4a4f8fe-3704-44e5-a317-11f71f515870",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "fe4dfb09-16ff-47c5-836a-471d092e98ae",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "a70b8fc9-fb19-4d1f-ab05-cc2912c0ad8d",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "23b5a536-9095-4460-a814-f94cf02ad209",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "a779712c-75f6-47e9-a0a7-6e2073124c4b",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "a78e7401-0e11-45d3-bf80-9ab18ee989c9",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8",
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "a9d5bcf3-a8c4-4f01-a4c2-51029b8cfd06",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "52cf8e27-a62b-4f2a-aa4f-80dbfa8cc4ed",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "ab081ea7-04e0-4fc3-99e1-8fff4c8972ba",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "ab361049-d094-48d8-9ee5-5927159f8454",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow"
+    },
+    {
+      "id": "ab893a46-93e2-4436-b935-2383555f1358",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "aca1edab-aac3-452e-94b9-8765b2e07b5e",
+      "valueType": "weight",
+      "weightKg": 4,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "ab95cff4-aaa8-4da2-bcbf-b3bee5db22ca",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 90,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "ad227036-7faf-4760-ad43-a6fb00580baa",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "fe4dfb09-16ff-47c5-836a-471d092e98ae",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "afa82b9e-c11c-4147-a033-2184f8a939fa",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "b00f14a6-051f-4e0f-aafc-6a2f016b0741",
+      "sessionId": "11f00c26-b278-48fe-916c-0c09ed796c43",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null
+    },
+    {
+      "id": "b0c22345-3732-456d-9a37-b93cd2b8796c",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "bd6f4820-b7c9-4f16-8891-97c0912a3cff",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "b13cdd3c-2a41-4c69-a752-a62b5717e53a",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 55,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "b15a88b4-cb0d-4fd1-8e25-beb66dc21979",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "139c7c93-f431-488c-9918-fdba17220285",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "b20d70b1-b557-4da5-ac88-ad3710644d12",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "valueType": "weight",
+      "weightKg": 85,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "b295fbbf-96e7-4581-abb1-a0269398eb9e",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null
+    },
+    {
+      "id": "b4e31640-afa6-40e9-b199-6a75f56698aa",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "b627efe7-c7ab-4c64-ac70-4345be9dee50",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "4e4f8f8a-bfb6-423b-a26b-39ba06b924d2",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null
+    },
+    {
+      "id": "b64fa4cd-0f4c-42e7-83bb-8a5eea0f8914",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 95,
+      "elasticColor": null
+    },
+    {
+      "id": "b76266b1-731c-46d6-bf73-ea65e4ebea17",
+      "sessionId": "0932709b-93d1-4ede-8bf9-db75ad8ae596",
+      "exerciseId": "5b664ec3-f737-4bfe-bcd8-9a26c5e5abab",
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "b763af90-7e4d-44a3-9688-0042c9c44af6",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "babdd694-1d35-4601-8390-d0fe5d21d03f",
+      "sessionId": "55c976c6-70e2-4521-9690-9994b8d3db2b",
+      "exerciseId": "db695101-6605-4ce3-b78d-a4b02ffe6737",
+      "valueType": "weight",
+      "weightKg": 16,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "bbe98ca4-3ee2-4980-9893-16e8e64b5d08",
+      "sessionId": "ba8305ed-f3f6-4ef3-8bf3-f42f3d678944",
+      "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "blue"
+    },
+    {
+      "id": "c20cf989-ed34-41a6-800d-4a90bf0f7727",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": true,
+      "valueType": "weight",
+      "weightKg": 85,
+      "elasticColor": null
+    },
+    {
+      "id": "c2128b0b-e248-4990-a010-21a8e58aaa0c",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "dbff98b4-3fe3-436b-ba3e-3a3e5804f54d",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "c37e818e-9cf1-4700-942c-16af3bf678f4",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 22.5,
+      "elasticColor": null
+    },
+    {
+      "id": "c415a493-4ee4-4704-8169-f58c26081484",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "da801274-cd12-46fa-bbbd-054c2fb6ab06",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "c47bb4b2-de63-46b0-b2a1-b69ba0736b4f",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "c5358f4c-43ae-4906-afd0-a3acfff6fb21",
+      "sessionId": "6f526c4b-8140-4b38-a039-f98a7ab75c88",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "c5d165ae-a583-4d2c-9035-9c17e6937594",
+      "sessionId": "fce801c7-4553-4694-9641-9f4fd1b3c56d",
+      "exerciseId": "0f05f5ee-35e0-40b1-b76c-5dc84a0db610",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null
+    },
+    {
+      "id": "c6f11945-b236-4ace-b0d6-a769780c3bb0",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow",
+      "isIncrease": false
+    },
+    {
+      "id": "c6f926d5-a11b-447f-8e5d-bc610e497760",
+      "sessionId": "0aef3abe-37de-4aed-9c0b-ad4ffb6aa45f",
+      "exerciseId": "7e60855a-d552-4519-b0e7-367abd9198f0",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "c88ad4d6-f3f4-4e8e-b57c-da365126fe0d",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "b1114753-0c25-4bf3-9bcd-07d091c250ca",
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "c92efff7-9f71-421f-861f-41c60c1e385c",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "533ad9b0-ef41-4240-9d98-49a73eb4e630",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "cf9ddf76-03c2-4759-8d0c-09ac32ca345b",
+      "sessionId": "6dcef925-03f9-4b30-a5c6-288be2b0e055",
+      "exerciseId": "d45e67d2-61e9-45e0-a5aa-7a6ed0a87bc2",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "d0125b77-de89-448b-8bdb-584bc633057b",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "4c3a8b3b-7383-42e7-bb51-c024f047cbe8",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "d02fd08c-0705-491f-92ed-d341faf6dace",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "405ddc80-30a7-48ab-9304-99f0a53e9685",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 20,
+      "elasticColor": null
+    },
+    {
+      "id": "d1d25831-bb9c-49a8-a4e3-2200361079e7",
+      "sessionId": "9b9159d3-4254-4b1c-8b93-19eeefc6e922",
+      "exerciseId": "d45e67d2-61e9-45e0-a5aa-7a6ed0a87bc2",
+      "valueType": "weight",
+      "weightKg": 5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "d76206ca-6021-4dc0-ab75-69c277437020",
+      "sessionId": "c91a41ff-1be2-498a-a93e-ab8b1236f6a7",
+      "exerciseId": "cbd7ff4a-3245-4bc6-bb40-3532af754985",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 12.5,
+      "elasticColor": null
+    },
+    {
+      "id": "d8363c95-50c9-4c3d-9214-15730254b924",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "efe97869-63dc-47ea-9e04-1e9f41fa2861",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "dd10a025-c5d5-446d-b4db-5b0c5963f82f",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "196b2a85-23ae-4cef-8eae-82bd71c483a5",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 85,
+      "elasticColor": null
+    },
+    {
+      "id": "df62296a-80bf-46a6-8ca6-cd7fd3f3e8bd",
+      "sessionId": "97f465f7-7b7b-451d-894e-283646583c0f",
+      "exerciseId": "66f8c838-f49a-42d9-803c-13a82f52ca77",
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "df8767cc-018b-4704-bf31-2105ef2b2d44",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "38b3aef0-54e4-471e-84fe-865ac7f9ecb2",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "df96f3b2-96eb-4e8c-b4e2-375d7b35b923",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "65cd21e3-1d19-499d-8ab4-945057763870",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 22.5,
+      "elasticColor": null
+    },
+    {
+      "id": "e1b26060-6856-4397-8141-105e3e13c7c0",
+      "sessionId": "a8a601eb-d39f-46cb-8e82-41242accbda0",
+      "exerciseId": "a9d7bf6c-548d-4e16-b291-659e708b742e",
+      "valueType": "weight",
+      "weightKg": 20,
+      "elasticColor": null,
+      "isIncrease": true
+    },
+    {
+      "id": "e288f6f0-c9ac-46cf-9649-03293af1664b",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "3a4294ee-7f74-43a3-9707-0c61968b07e6",
+      "valueType": "weight",
+      "weightKg": 15,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "e3f18126-2118-47a2-8959-8ae4eb99dd6f",
+      "sessionId": "e49e3047-e515-431c-a9c0-81ade10f4d21",
+      "exerciseId": "078a42e6-a3ea-4819-b3e2-7f17bf60fbfc",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "e4cf494f-6804-47a2-bfbd-afeefd63f079",
+      "sessionId": "154e1dcd-d251-4d6a-8dfb-06c283f1df39",
+      "exerciseId": "5ca3aa8a-e5c1-401c-b4bb-856b4facc14a",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "e50bb3c6-02eb-4845-8d82-fea7f536f0a3",
+      "sessionId": "b67869d0-6f52-4ba8-9aa9-bf7c5ac4b021",
+      "exerciseId": "0f05f5ee-35e0-40b1-b76c-5dc84a0db610",
+      "valueType": "weight",
+      "weightKg": 10,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "e62c281e-92c9-431b-a7f5-91d1babedcca",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "486ac590-312b-4e8d-8790-0267152ffc3d",
+      "isIncrease": false,
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "yellow"
+    },
+    {
+      "id": "e6e04eea-b7a7-4bd7-b813-9e09f820bb3d",
+      "sessionId": "0bc79c1f-f7f2-4362-9232-d30752b4368d",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "eb35b433-8a28-46e6-9e14-7b8d43bb9fce",
+      "sessionId": "77f793fb-f29a-4ad1-bea5-418e8d0a2bd3",
+      "exerciseId": "439c4d02-cf8a-4790-8828-802bc9482a45",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "ec0aa8f2-c414-4e1c-b6c2-bf5f8c585888",
+      "sessionId": "1ba84ec5-4aa7-4c09-a09d-81683465c59e",
+      "exerciseId": "b67228ac-56ff-4a7f-81b4-1bd8ff3b3526",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "ee40bd10-519b-4465-9767-9658b2c1174e",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "195ba624-937e-4670-97ae-641a84eb0c5d",
+      "valueType": "elastic",
+      "weightKg": null,
+      "elasticColor": "orange",
+      "isIncrease": true
+    },
+    {
+      "id": "ef608ff8-c691-4bb1-ac79-d4bb4daad3b4",
+      "sessionId": "b1652a21-f575-4097-b311-88d6f43ebc61",
+      "exerciseId": "4d8d22c5-ac30-4245-90e0-a1f9f7a08499",
+      "isIncrease": false,
+      "valueType": "weight",
+      "weightKg": 6,
+      "elasticColor": null
+    },
+    {
+      "id": "f0f00748-8bf6-4e25-9631-fbafee4bd772",
+      "sessionId": "6f6ef884-c4b7-44d5-ab53-15d809253126",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "f9c40fc0-8f92-4baa-a5dc-4559454cc4dd",
+      "sessionId": "2afd7b25-7c6f-46a4-b501-25001e26c830",
+      "exerciseId": "56b54453-57cd-44a9-8c5d-c68f57054ce4",
+      "valueType": "weight",
+      "weightKg": 17.5,
+      "elasticColor": null,
+      "isIncrease": false
+    },
+    {
+      "id": "fa7a4a3f-6020-4ab8-9bc2-8536ab63bf04",
+      "sessionId": "165e80f4-2a63-48b7-99db-d1fe9d16f7a6",
+      "exerciseId": "50f32d9f-08b2-4e87-9962-95bc3c793bf7",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    },
+    {
+      "id": "fdeca148-cb60-450b-944e-dbb603900ac7",
+      "sessionId": "8864a8c3-e053-4e52-866e-2faf4ff3bbf6",
+      "exerciseId": "ff8bc1e6-6194-408e-aedd-01757be90230",
+      "isIncrease": false,
+      "valueType": "bodyweight",
+      "weightKg": null,
+      "elasticColor": null
+    }
+  ]
+}

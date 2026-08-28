@@ -72,13 +72,12 @@
 }
 
 .today .dayNum {
-  color: var(--text-primary);
-  font-weight: 700;
+  color: var(--accent-ink);
+  font-weight: 900;
 }
 
 .today {
-  background: var(--bg-card-alt);
-  border: 1px solid var(--border);
+  background: var(--accent);
 }
 
 .hasSession {
@@ -99,5 +98,5 @@
 }
 
 .future .dayNum {
-  color: #333;
+  color: var(--muted-2);
 }

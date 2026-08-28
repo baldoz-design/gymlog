@@ -1,8 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   getSessionByDateAndSlot, saveSession, deleteSession, getEntriesBySession,
-  saveSessionEntry, getAllExercises, getLastEntryForExercise,
+  saveSessionEntry, deleteSessionEntry, getAllExercises, getLastEntryForExercise, getCycleById,
 } from '../db';
 import {
   getSlotFromDate, getWeekNumberInCycle, calculateIsIncrease,
@@ -13,68 +13,97 @@ import ExerciseHistory from '../components/ExerciseHistory';
 import CalendarPicker from '../components/CalendarPicker';
 import styles from './Session.module.css';
 
-const SLOTS = ['MON_TUE', 'WED_THU', 'FRI_SAT'];
+const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const DAYS_S   = ['dom','lun','mar','mer','gio','ven','sab'];
+const SLOTS    = ['MON_TUE', 'WED_THU', 'FRI_SAT'];
+
+function compactDate(iso) {
+  const d = new Date(iso + 'T00:00:00');
+  return `${DAYS_S[d.getDay()].toUpperCase()} ${d.getDate()} ${MONTHS_S[d.getMonth()].toUpperCase()}`;
+}
 
 export default function Session({ params, onBack }) {
-  const [date, setDate] = useState(params?.date || todayISO());
-  const [slot, setSlot] = useState(params?.slot || getSlotFromDate(new Date()));
-  const [cycle] = useState(params?.cycle);
-  const [session, setSession] = useState(null);
-  const [entries, setEntries] = useState({});
-  const [lastEntries, setLastEntries] = useState({});
-  const [exercises, setExercises] = useState({});
-  const [historyExercise, setHistoryExercise] = useState(null);
-  const [showSlotPicker, setShowSlotPicker] = useState(false);
-  // Se domenica (slot=null), apri subito il calendario
-  const [showCalendar, setShowCalendar] = useState(!params?.slot);
-  // "recording" = l'utente ha esplicitamente avviato la registrazione
-  const [recording, setRecording] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [date,  setDate]  = useState(params?.date || todayISO());
+  const [slot,  setSlot]  = useState(params?.slot || getSlotFromDate(new Date()));
+  const [cycle, setCycle] = useState(params?.cycle);
 
-  const today = todayISO();
+  const [session,       setSession]       = useState(null);
+  const [entries,       setEntries]       = useState({});
+  const [lastEntries,   setLastEntries]   = useState({});
+  const [exercises,     setExercises]     = useState({});
+  const [historyEx,     setHistoryEx]     = useState(null);
+  const [showCalendar,  setShowCalendar]  = useState(!params?.slot);
+  const [showSlotPick,  setShowSlotPick]  = useState(false);
+  const [recording,     setRecording]     = useState(false);
+  const [showDelConf,   setShowDelConf]   = useState(false);
+  const [activeBlock,   setActiveBlock]   = useState(0);
+
+  const blockRefs = useRef([]);
+  const snapRef   = useRef(null);
+
+  const today        = todayISO();
   const isHistorical = date < today;
-  // Si entra in edit quando: c'è già una sessione registrata (recording=true),
-  // oppure l'utente ha premuto "Inizia"
-  const isEditing = recording;
-
-  const weekNumber = cycle ? getWeekNumberInCycle(date, cycle.startDate) : 1;
-  const reps = cycle ? (cycle.weeks[weekNumber - 1]?.reps ?? '?') : '?';
-  const blocks = (slot && cycle) ? (cycle.slots[slot] || []) : [];
-  const allBlockExercises = blocks.flatMap(b => b.exercises);
+  const weekNumber   = cycle ? getWeekNumberInCycle(date, cycle.startDate) : 1;
+  const reps         = cycle ? (cycle.weeks[weekNumber - 1]?.reps ?? '?') : '?';
+  const blocks       = (slot && cycle) ? (cycle.slots[slot] || []) : [];
+  const allBlockExs  = blocks.flatMap(b => b.exercises);
 
   const loadSession = useCallback(async () => {
-    if (!slot || !cycle) return;
-
-    // Cerca sessione esistente senza crearne una nuova automaticamente
+    if (!slot) return;
     const existing = await getSessionByDateAndSlot(date, slot);
     if (existing) {
       setSession(existing);
-      setRecording(true); // c'è già una sessione → entra subito in modalità edit
-      const savedEntries = await getEntriesBySession(existing.id);
-      const entriesMap = {};
-      for (const e of savedEntries) entriesMap[e.exerciseId] = e;
-      setEntries(entriesMap);
+      // Don't auto-start recording — user taps button
+      const saved = await getEntriesBySession(existing.id);
+      const map = {};
+      for (const e of saved) map[e.exerciseId] = e;
+      setEntries(map);
+      // Load cycle from session if not already provided
+      if (existing.cycleId && (!cycle || cycle.id !== existing.cycleId)) {
+        const orig = await getCycleById(existing.cycleId);
+        if (orig) { setCycle(orig); return; } // will re-run after cycle is set
+      }
     } else {
       setSession(null);
       setRecording(false);
     }
-
+    if (!cycle) return; // wait for cycle to load
     const lastMap = {};
-    for (const be of allBlockExercises) {
+    for (const be of allBlockExs) {
       lastMap[be.exerciseId] = await getLastEntryForExercise(be.exerciseId, date);
     }
     setLastEntries(lastMap);
-
     const exMap = {};
     for (const ex of await getAllExercises()) exMap[ex.id] = ex;
     setExercises(exMap);
-  }, [date, slot, cycle, weekNumber]);
+  }, [date, slot, cycle, weekNumber]); // eslint-disable-line
 
   useEffect(() => { loadSession(); }, [loadSession]);
 
-  // Chiamato solo quando l'utente preme "Inizia" / "Registra"
+  // Snap-block IntersectionObserver: tracks which block is in focus
+  useEffect(() => {
+    if (!recording || !snapRef.current) return;
+    const container = snapRef.current;
+    const observers = blocks.map((_, i) => {
+      const el = blockRefs.current[i];
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveBlock(i); },
+        { root: container, threshold: 0.6 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach(o => o?.disconnect());
+  }, [recording]); // eslint-disable-line
+
   async function handleStartSession() {
-    const sess = { id: uuidv4(), date, slot, cycleId: cycle.id, weekNumber, entries: [] };
+    if (session) {
+      // Session already exists — just enter recording mode
+      setRecording(true);
+      return;
+    }
+    const sess = { id: uuidv4(), date, slot, cycleId: cycle?.id, weekNumber, entries: [] };
     await saveSession(sess);
     setSession(sess);
     setRecording(true);
@@ -84,6 +113,17 @@ export default function Session({ params, onBack }) {
     if (!session) return;
     await deleteSession(session.id);
     onBack();
+  }
+
+  async function handleDeleteEntry(exerciseId) {
+    const entry = entries[exerciseId];
+    if (!entry) return;
+    await deleteSessionEntry(entry.id);
+    setEntries(prev => {
+      const next = { ...prev };
+      delete next[exerciseId];
+      return next;
+    });
   }
 
   async function handleSaveEntry(exerciseId, entryData) {
@@ -102,31 +142,27 @@ export default function Session({ params, onBack }) {
 
   function handleDateSelect(newDate) {
     setDate(newDate);
-    const d = new Date(newDate + 'T00:00:00');
-    const autoSlot = getSlotFromDate(d);
+    const autoSlot = getSlotFromDate(new Date(newDate + 'T00:00:00'));
     if (autoSlot) setSlot(autoSlot);
-    else setShowSlotPicker(true);
+    else setShowSlotPick(true);
   }
 
-  const dateLabel = new Date(date + 'T00:00:00').toLocaleDateString('it-IT', {
-    weekday: 'short', day: 'numeric', month: 'short',
-  });
-
+  const dateLabel  = compactDate(date);
   const savedCount = Object.keys(entries).length;
-  const totalCount = allBlockExercises.length;
+  const totalCount = allBlockExs.length;
 
-  // Slot picker manuale (solo se richiesto esplicitamente dall'utente)
-  if (showSlotPicker) {
+  // ── Slot picker ─────────────────────────────────────────────
+  if (showSlotPick) {
     return (
       <div className={styles.container}>
-        <header className={styles.header}>
-          <button className={styles.backBtn} onClick={onBack}>←</button>
-          <span className={styles.headerTitle}>Scegli lo slot</span>
+        <header className={styles.compactHeader}>
+          <button className={styles.backBtn} onClick={() => setShowSlotPick(false)}>←</button>
+          <span className={styles.compactTitle}>Scegli slot</span>
         </header>
         <div className={styles.slotPicker}>
-          <p className={styles.slotPickerHint}>Scegli il programma manualmente</p>
           {SLOTS.map(s => (
-            <button key={s} className={styles.slotBtn} onClick={() => { setSlot(s); setShowSlotPicker(false); }}>
+            <button key={s} className={styles.slotBtn}
+              onClick={() => { setSlot(s); setShowSlotPick(false); }}>
               {slotLabel(s)}
             </button>
           ))}
@@ -135,119 +171,174 @@ export default function Session({ params, onBack }) {
     );
   }
 
+  // ── Recording mode ───────────────────────────────────────────
+  if (recording && session) {
+    const progress = totalCount > 0 ? savedCount / totalCount : 0;
+
+    return (
+      <div className={styles.container}>
+        <header className={styles.recHeader}>
+          <div className={styles.recHeaderLeft}>
+            <button className={styles.backBtn} onClick={onBack}>←</button>
+            <div className={styles.recHeaderInfo}>
+              <button className={styles.recDateBtn} onClick={() => setShowCalendar(true)}>
+                {dateLabel} · {slotLabel(slot)}
+              </button>
+              <span className={styles.recWeek}>SETT. {weekNumber} · ×{reps}</span>
+            </div>
+          </div>
+          <span className={styles.recCount}>{savedCount}/{totalCount}</span>
+        </header>
+
+        <div className={styles.progressBar}>
+          <div className={styles.progressFill} style={{ width: `${progress * 100}%` }} />
+        </div>
+
+        {savedCount > 0 && (
+          <div className={styles.savedRow}>
+            <span className={styles.savedDot} />
+            <span className={styles.savedLabel}>SALVATO</span>
+          </div>
+        )}
+
+        <div ref={snapRef} className={styles.recBody}>
+          {blocks.map((block, i) => (
+            <div
+              key={block.label}
+              ref={el => { blockRefs.current[i] = el; }}
+              className={`${styles.block} ${blocks.length > 1 && i !== activeBlock ? styles.blockDim : ''}`}
+            >
+              {/* Block header: label + dot indicator */}
+              <div className={styles.blockTopRow}>
+                <div className={styles.blockLabel}>BLOCCO {block.label}</div>
+                {blocks.length > 1 && (
+                  <div className={styles.blockDots}>
+                    {blocks.map((_, di) => (
+                      <span key={di} className={`${styles.blockDot} ${di === activeBlock ? styles.blockDotActive : ''}`} />
+                    ))}
+                  </div>
+                )}
+              </div>
+              {block.exercises.map(be => {
+                const ex = exercises[be.exerciseId];
+                if (!ex) return null;
+                return (
+                  <ExerciseCard
+                    key={be.exerciseId}
+                    label={`${block.label}${be.position}`}
+                    exercise={ex}
+                    currentEntry={entries[be.exerciseId] || null}
+                    lastEntry={lastEntries[be.exerciseId] || null}
+                    isHistorical={isHistorical}
+                    readonly={false}
+                    onSave={data => handleSaveEntry(be.exerciseId, data)}
+                    onNameTap={() => setHistoryEx(ex)}
+                  />
+                );
+              })}
+              {/* Bottom actions solo nell'ultimo blocco */}
+              {i === blocks.length - 1 && (
+                <div className={styles.bottomBar}>
+                  <button className={styles.delBtn} onClick={() => setShowDelConf(true)}>× Elimina</button>
+                  <button className={styles.saveCloseBtn} onClick={() => setRecording(false)}>SALVA E CHIUDI</button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {showDelConf && (
+          <div className={styles.overlay} onClick={() => setShowDelConf(false)}>
+            <div className={styles.sheet} onClick={e => e.stopPropagation()}>
+              <p className={styles.sheetTitle}>Eliminare questa sessione?</p>
+              <p className={styles.sheetSub}>Tutti i valori registrati verranno persi definitivamente.</p>
+              <div className={styles.sheetBtns}>
+                <button className={styles.sheetDel} onClick={handleDeleteSession}>Elimina</button>
+                <button className={styles.sheetCancel} onClick={() => setShowDelConf(false)}>Annulla</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showCalendar && (
+          <CalendarPicker selectedDate={date} onSelect={handleDateSelect} onClose={() => setShowCalendar(false)} />
+        )}
+        {historyEx && (
+          <ExerciseHistory
+            exercise={historyEx}
+            onClose={() => setHistoryEx(null)}
+            onRenamed={upd => { setExercises(p => ({ ...p, [upd.id]: upd })); setHistoryEx(null); }}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // ── View mode ────────────────────────────────────────────────
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
+      <header className={styles.viewHeader}>
         <button className={styles.backBtn} onClick={onBack}>←</button>
-        <div className={styles.headerCenter}>
-          <button className={styles.dateBtn} onClick={() => setShowCalendar(true)}>
-            <span className={styles.dateBtnText}>{dateLabel}</span>
-            {isHistorical && <span className={styles.historicalBadge}>storico</span>}
-          </button>
-          <button className={styles.slotBadge} onClick={() => setShowSlotPicker(true)}>
-            {slotLabel(slot)}
-          </button>
-        </div>
-        <div className={styles.headerRight}>
-          <span className={styles.weekBadge}>
-            Sett.{weekNumber} ×{reps}
-            {isEditing && totalCount > 0 && (
-              <span className={savedCount === totalCount ? styles.savedCountDone : styles.savedCount}>
-                {' '}· {savedCount}/{totalCount}
-              </span>
-            )}
-          </span>
-          {isEditing && session && (
-            <button className={styles.deleteBtn} onClick={() => setShowDeleteConfirm(true)} title="Elimina sessione">
-              🗑
-            </button>
-          )}
-        </div>
+        <button className={styles.viewDateBtn} onClick={() => setShowCalendar(true)}>
+          {dateLabel}
+        </button>
       </header>
 
-      <div className={styles.body}>
+      <div className={styles.viewBody}>
+        <div className={styles.viewTitleRow}>
+          <h1 className={styles.viewSlot}>{slotLabel(slot)}</h1>
+          <span className={styles.viewMeta}>SETT.{weekNumber} · ×{reps}</span>
+        </div>
+
+        <div className={styles.viewSep} />
+
         {blocks.map(block => (
-          <div key={block.label} className={styles.block}>
-            <div className={styles.blockLabel}>Blocco {block.label}</div>
+          <div key={block.label} className={styles.viewBlock}>
+            <div className={styles.viewBlockLabel}>BLOCCO {block.label}</div>
             {block.exercises.map(be => {
-              const ex = exercises[be.exerciseId];
+              const ex      = exercises[be.exerciseId];
+              const current = entries[be.exerciseId];
+              const entry   = current || lastEntries[be.exerciseId];
               if (!ex) return null;
+              const EL_MAP = { blue: 'var(--azzurro)', yellow: 'var(--giallo)', orange: 'var(--arancione)' };
+              const valNode = entry?.valueType === 'elastic'
+                ? <span style={{ color: EL_MAP[entry.elasticColor], fontSize: 18, lineHeight: 1 }}>●</span>
+                : (entry ? formatEntryValue(entry) : '—');
               return (
-                <ExerciseCard
-                  key={be.exerciseId}
-                  label={`${block.label}${be.position}`}
-                  exercise={ex}
-                  currentEntry={entries[be.exerciseId] || null}
-                  lastEntry={lastEntries[be.exerciseId] || null}
-                  isHistorical={isHistorical}
-                  readonly={!isEditing}
-                  onSave={entryData => handleSaveEntry(be.exerciseId, entryData)}
-                  onNameTap={() => setHistoryExercise(ex)}
-                />
+                <div key={be.exerciseId} className={styles.viewExRow}>
+                  <span className={styles.viewExLabel}>{block.label}{be.position}</span>
+                  <span className={styles.viewExName}>{ex.canonicalName}</span>
+                  <span className={`${styles.viewExValue} ${!current ? styles.viewExValuePrev : ''}`}>
+                    {valNode}
+                  </span>
+                  {current && (
+                    <button
+                      className={styles.viewExDel}
+                      onClick={() => handleDeleteEntry(be.exerciseId)}
+                      aria-label="Elimina valore"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
               );
             })}
           </div>
         ))}
 
         {blocks.length === 0 && (
-          <div className={styles.empty}>Nessun esercizio per questo slot</div>
+          <p className={styles.empty}>Nessun esercizio per questo slot</p>
         )}
       </div>
 
-      {/* Banner avvio — oggi o date passate non ancora registrate */}
-      {!isEditing && (
-        <div className={styles.startBanner}>
-          <div className={styles.startBannerText}>
-            <span className={styles.startBannerTitle}>
-              {isHistorical ? 'Sessione non registrata' : 'Pronti?'}
-            </span>
-            <span className={styles.startBannerSub}>
-              {isHistorical
-                ? 'Registra questa sessione inserendo i valori manualmente'
-                : 'Tocca per iniziare a registrare questa sessione'}
-            </span>
-          </div>
-          <button className={styles.startBtn} onClick={handleStartSession}>
-            {isHistorical ? 'Registra' : 'Inizia'}
-          </button>
-        </div>
-      )}
-
-      {/* Conferma elimina */}
-      {showDeleteConfirm && (
-        <div className={styles.deleteOverlay} onClick={() => setShowDeleteConfirm(false)}>
-          <div className={styles.deleteSheet} onClick={e => e.stopPropagation()}>
-            <p className={styles.deleteTitle}>Eliminare questa sessione?</p>
-            <p className={styles.deleteSub}>Tutti i valori registrati verranno persi definitivamente.</p>
-            <div className={styles.deleteBtns}>
-              <button className={styles.deleteConfirmBtn} onClick={handleDeleteSession}>
-                Elimina
-              </button>
-              <button className={styles.deleteCancelBtn} onClick={() => setShowDeleteConfirm(false)}>
-                Annulla
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className={styles.viewBottom}>
+        <button className={styles.startBtn} onClick={handleStartSession}>
+          {session ? 'CONTINUA SESSIONE' : isHistorical ? 'REGISTRA SESSIONE' : 'INIZIA SESSIONE'}
+        </button>
+      </div>
 
       {showCalendar && (
-        <CalendarPicker
-          selectedDate={date}
-          onSelect={handleDateSelect}
-          onClose={() => setShowCalendar(false)}
-        />
-      )}
-
-      {historyExercise && (
-        <ExerciseHistory
-          exercise={historyExercise}
-          onClose={() => setHistoryExercise(null)}
-          onRenamed={updated => {
-            setExercises(prev => ({ ...prev, [updated.id]: updated }));
-            setHistoryExercise(null);
-          }}
-        />
+        <CalendarPicker selectedDate={date} onSelect={handleDateSelect} onClose={() => setShowCalendar(false)} />
       )}
     </div>
   );

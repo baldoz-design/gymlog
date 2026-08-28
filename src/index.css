@@ -5,27 +5,53 @@
 }
 
 :root {
-  /* Light mode palette */
-  --bg-primary: #F7F6F2;
-  --bg-card: #FFFFFF;
-  --bg-card-alt: #F0EFE9;
-  --text-primary: #0A0A0A;
-  --text-secondary: #7A7672;
-  --border: #E2E0DA;
+  /* ─── Lavagna dark design system ─────────────────────── */
+  --bg:           #121110;
+  --surface:      #1B1917;
+  --surface-alt:  #232120;
+  --surface-3:    #2A2724;
+  --border-dark:  #332F2B;
+  --hairline:     #232120;
+  --hairline-strong: #2A2724;
+  --text:         #F5F2EA;
+  --text-2:       #D6D0C6;
+  --text-3:       #B6AFA4;
+  --muted:        #8E877C;
+  --muted-2:      #6E6862;
+  --dim:          #3A3733;
+  --accent:       #D9F24B;
+  --accent-ink:   #121110;
+  --accent-soft:  rgba(217,242,75,.45);
+  --accent-bg:    #1C1D14;
+  --danger-dark:  #C4553B;
+  --danger-border:#4A2E28;
 
-  /* Workout card — sezione nera a contrasto */
-  --bg-workout: #0A0A0A;
-  --text-workout: #FFFFFF;
-  --text-workout-sub: rgba(255,255,255,0.55);
+  /* Elastici Lavagna */
+  --azzurro:  #4FA8DB;
+  --giallo:   #E8C33D;
+  --arancione:#E0762C;
 
-  /* Colori funzionali */
-  --green: #1E6B1E;
-  --green-bg: #EBF5EB;
-  --blue-elastic: #1565C0;
-  --yellow-elastic: #C17700;
-  --orange-elastic: #B83C00;
-  --danger: #C0392B;
-  --danger-bg: #FDECEA;
+  /* ─── Token legacy → rimappati al dark (tutte le schermate) ─ */
+  --bg-primary:   #121110;
+  --bg-card:      #1B1917;
+  --bg-card-alt:  #232120;
+  --text-primary: #F5F2EA;
+  --text-secondary: #8E877C;
+  --border: #332F2B;
+
+  /* Workout card → accento lime */
+  --bg-workout: var(--accent);
+  --text-workout: var(--accent-ink);
+  --text-workout-sub: rgba(18,17,16,0.55);
+
+  /* Colori funzionali → varianti dark/accent */
+  --green: var(--accent);
+  --green-bg: var(--accent-bg);
+  --blue-elastic:   var(--azzurro);
+  --yellow-elastic: var(--giallo);
+  --orange-elastic: var(--arancione);
+  --danger: var(--danger-dark);
+  --danger-bg: var(--danger-border);
 
   font-size: 16px;
 }

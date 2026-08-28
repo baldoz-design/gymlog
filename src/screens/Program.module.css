@@ -1,55 +1,220 @@
-.container { display: flex; flex-direction: column; min-height: 100dvh; max-width: 480px; margin: 0 auto; width: 100%; background: var(--bg-primary); }
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
 
-.header { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-primary); z-index: 10; }
+.header {
+  display: flex;
+  align-items: center;
+  padding: 12px 8px 0;
+  flex-shrink: 0;
+}
 
-.backBtn { font-size: 20px; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; color: var(--text-primary); }
+.backBtn {
+  font-size: 20px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
 
-.title { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+.pageTitle {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--text);
+  padding: 2px 20px 14px;
+  line-height: 1;
+}
 
-.body { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.body {
+  flex: 1;
+  padding: 0 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
 
-.importBtn { background: var(--text-primary); color: #fff; border-radius: 12px; font-size: 15px; font-weight: 700; min-height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+/* ── Active cycle card ── */
+.activeCycle {
+  background: var(--surface);
+  border-radius: 20px;
+  border: 2px solid var(--accent);
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
 
+.cycleTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.activeBadge {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-radius: 6px;
+  padding: 4px 10px;
+  letter-spacing: 1px;
+}
+
+.cycleWeek {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.cycleName {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.cycleDates {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Slots */
+.slotsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.slotGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.slotSep {
+  height: 1px;
+  background: var(--hairline);
+  margin: 12px 0 10px;
+}
+
+.slotTitle {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.slotEmpty {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.blockRow {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.blockLbl {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted-2);
+  min-width: 12px;
+  padding-top: 1px;
+}
+
+.blockExs {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* ── CTA ── */
+.importBtn {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 14px;
+  height: 56px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  width: 100%;
+}
 .importBtn:active { opacity: 0.85; }
 
-.empty { color: var(--text-secondary); font-size: 15px; text-align: center; padding: 40px 16px; }
+/* ── Dev section ── */
+.devSection {
+  border: 1px dashed var(--border-dark);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-.cycleCard { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.devNote {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-.cycleCard.active { border-color: var(--green); }
-
-.cycleHeader { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-
-.cycleName { font-size: 15px; font-weight: 700; color: var(--text-primary); }
-
-.statusBadge { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 6px; padding: 3px 8px; }
-
-.statusActive { background: var(--green-bg); color: var(--green); }
-
-.statusArchived { background: var(--bg-card-alt); color: var(--text-secondary); }
-
-.cycleDates { font-size: 12px; color: var(--text-secondary); }
-
-.slotList { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border); padding-top: 10px; }
-
-.slotSection { display: flex; flex-direction: column; gap: 2px; }
-
-.slotTitle { font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-
-.blockRow { display: flex; gap: 8px; align-items: center; font-size: 12px; padding-left: 4px; }
-
-.blockLabelSmall { font-weight: 700; color: var(--text-primary); min-width: 12px; }
-
-.blockExercises { color: var(--text-secondary); }
-
-.devSection { margin-top: 8px; padding: 16px; border: 1px dashed var(--border); border-radius: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-
-.devNote { font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
-
-.seedBtn { background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-size: 14px; font-weight: 600; color: var(--text-primary); min-height: 44px; width: 100%; }
-
+.seedBtn {
+  height: 44px;
+  border-radius: 10px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
 .seedBtn:disabled { opacity: 0.4; }
 
-.seedBtn:not(:disabled):active { background: var(--border); }
+/* ── Archive ── */
+.archiveLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
 
-.seedHint { font-size: 11px; color: var(--text-secondary); text-align: center; line-height: 1.5; }
+.archiveRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.archiveName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.archiveDates {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.empty {
+  font-size: 15px;
+  color: var(--muted);
+  text-align: center;
+  padding: 32px 0;
+}

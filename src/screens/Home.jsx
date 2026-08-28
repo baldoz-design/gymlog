@@ -1,92 +1,96 @@
 import { useEffect, useState } from 'react';
-import { getActiveCycle, getCycleById } from '../db';
-import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel } from '../logic';
+import { getActiveCycle, getAllSessions, getAllExercises, getLastEntryForExercise } from '../db';
+import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
 import styles from './Home.module.css';
 
-function IconDumbbell() {
-  return (
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 4v16M18 4v16"/>
-      <rect x="2" y="7" width="4" height="10" rx="1"/>
-      <rect x="18" y="7" width="4" height="10" rx="1"/>
-      <line x1="6" y1="12" x2="18" y2="12"/>
-    </svg>
-  );
-}
-
-function IconChart() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="18" y1="20" x2="18" y2="10"/>
-      <line x1="12" y1="20" x2="12" y2="4"/>
-      <line x1="6" y1="20" x2="6" y2="14"/>
-    </svg>
-  );
-}
-
-function IconClipboard() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="8" y="2" width="8" height="4" rx="1"/>
-      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-      <line x1="9" y1="12" x2="15" y2="12"/>
-      <line x1="9" y1="16" x2="13" y2="16"/>
-    </svg>
-  );
-}
-
-const DAY_NAMES = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
+const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const DAYS_S   = ['dom','lun','mar','mer','gio','ven','sab'];
 
 export default function Home({ onNavigate }) {
-  const [cycle, setCycle] = useState(undefined);
-  const today = todayISO();
+  const [cycle,        setCycle]        = useState(undefined);
+  const [preview,      setPreview]      = useState([]);
+  const [weekBars,     setWeekBars]     = useState([0,0,0,0,0,0]);
+  const [sessionCount, setSessionCount] = useState(0);
+  const [expanded,     setExpanded]     = useState(false);
+
+  const today   = todayISO();
+  const now     = new Date();
+  const slot    = getSlotFromDate(now);
+  const weekNum = cycle ? getWeekNumberInCycle(today, cycle.startDate) : 0;
+  const reps    = cycle && weekNum ? (cycle.weeks[weekNum - 1]?.reps ?? '?') : '?';
 
   useEffect(() => {
     getActiveCycle(today).then(c => setCycle(c || null));
   }, [today]);
 
-  const now = new Date();
-  const slot = getSlotFromDate(now);
-  const weekNum = cycle ? getWeekNumberInCycle(today, cycle.startDate) : null;
-  const reps = cycle && weekNum ? cycle.weeks[weekNum - 1]?.reps : null;
+  useEffect(() => {
+    if (cycle === undefined) return;
 
-  const hasCycle = !!cycle;
+    // Bar chart: last 6 Mon-based calendar weeks
+    getAllSessions().then(sessions => {
+      setSessionCount(sessions.length);
+      const bars = [];
+      for (let i = 5; i >= 0; i--) {
+        const d = new Date(now);
+        const dow = (d.getDay() + 6) % 7;
+        d.setDate(d.getDate() - dow - i * 7);
+        d.setHours(0, 0, 0, 0);
+        const end = new Date(d);
+        end.setDate(d.getDate() + 7);
+        bars.push(sessions.filter(s => {
+          const sd = new Date(s.date + 'T00:00:00');
+          return sd >= d && sd < end;
+        }).length);
+      }
+      setWeekBars(bars);
+    });
 
-  let workoutSub = 'Carica prima un programma';
-  if (hasCycle && slot) workoutSub = `${slotLabel(slot)} · Sett. ${weekNum} · ×${reps} reps`;
-  else if (hasCycle && !slot) workoutSub = 'Domenica · scegli lo slot';
+    if (!cycle || !slot) return;
+    const slotBlocks = cycle.slots[slot] || [];
+    // Load ALL exercises for the slot (all blocks)
+    const allBEs = slotBlocks.flatMap(b => b.exercises.map(be => ({ ...be, blockLabel: b.label })));
+
+    getAllExercises().then(exercises => {
+      const exMap = Object.fromEntries(exercises.map(e => [e.id, e]));
+      Promise.all(
+        allBEs.map(be =>
+          getLastEntryForExercise(be.exerciseId, today).then(last => ({
+            label: `${be.blockLabel}${be.position}`,
+            name:  exMap[be.exerciseId]?.canonicalName || '?',
+            value: last ? formatEntryValue(last) : '—',
+          }))
+        )
+      ).then(setPreview);
+    });
+  }, [cycle, slot, today]); // eslint-disable-line
+
+  const dayLabel   = `${DAYS_S[now.getDay()].toUpperCase()} ${now.getDate()} ${MONTHS_S[now.getMonth()].toUpperCase()}`;
+  const maxBar     = Math.max(...weekBars, 1);
+  const shownPrev  = expanded ? preview : preview.slice(0, 3);
+  const remaining  = preview.length - 3;
 
   function handleWorkoutTap() {
-    if (!hasCycle) { onNavigate('program'); return; }
-    // Domenica: apri direttamente la sessione senza slot — mostrerà il calendario
+    if (!cycle) { onNavigate('program'); return; }
     onNavigate('session', { date: today, slot, cycle });
   }
 
-  async function handleCalendarDayTap(session) {
-    // Recupera il ciclo associato alla sessione per passarlo alla schermata
-    const sessionCycle = await getCycleById(session.cycleId);
-    onNavigate('session', {
-      date: session.date,
-      slot: session.slot,
-      cycle: sessionCycle,
-    });
+  // Program subtitle: take last segment after "—" or "/"
+  function cycleSub(name) {
+    const parts = name.split(/[—–\/]/).map(p => p.trim()).filter(Boolean);
+    return parts.slice(1).join(' / ') || name;
   }
 
   if (cycle === undefined) return <div className={styles.container} />;
 
-  // Onboarding: nessun ciclo mai caricato
   if (cycle === null) {
     return (
       <div className={styles.container}>
         <header className={styles.header}>
-          <div className={styles.appName}>GymLog</div>
+          <span className={styles.appName}>GYMLOG</span>
         </header>
         <div className={styles.onboarding}>
-          <div className={styles.onboardingIcon}>🏋️</div>
-          <h2 className={styles.onboardingTitle}>Benvenuto in GymLog</h2>
-          <p className={styles.onboardingText}>
-            Inizia caricando il programma della tua palestra. Basta scattare una foto alla lavagna.
-          </p>
+          <p className={styles.onboardingTitle}>Benvenuto in GymLog</p>
+          <p className={styles.onboardingText}>Inizia caricando il programma della tua palestra.</p>
           <button className={styles.onboardingBtn} onClick={() => onNavigate('program')}>
             Carica programma
           </button>
@@ -98,50 +102,83 @@ export default function Home({ onNavigate }) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.appName}>GymLog</div>
-        <div className={styles.headerDate}>
-          <span className={styles.dayName}>{DAY_NAMES[now.getDay()]}</span>
-          <span className={styles.dayNum}>{now.getDate()}</span>
-          <span className={styles.monthName}>
-            {now.toLocaleDateString('it-IT', { month: 'short' })}
-          </span>
-        </div>
+        <span className={styles.appName}>GYMLOG</span>
+        <span className={styles.headerDate}>{dayLabel}</span>
       </header>
 
       <main className={styles.main}>
-        {/* Avviso ciclo non attivo per la data odierna */}
-        {!slot && hasCycle && (
-          <div className={styles.noSlotBanner}>
-            Oggi è domenica. Torna domani o apri una sessione manualmente.
+        {/* ── Hero card (lime) ── */}
+        <div className={styles.heroCard}>
+          <div className={styles.heroMeta}>
+            <span className={styles.heroSlot}>OGGI · {slot ? slotLabel(slot) : '—'}</span>
+            <span className={styles.heroWeek}>SETT. {weekNum} / 5</span>
           </div>
-        )}
 
-        {/* Blocco primario Allenamento */}
-        <button
-          className={`${styles.block} ${styles.blockWorkout}`}
-          onClick={handleWorkoutTap}
-        >
-          <div className={styles.blockIcon}><IconDumbbell /></div>
-          <div className={styles.blockText}>
-            <span className={styles.blockTitle}>Allenamento</span>
-            <span className={styles.blockSub}>{workoutSub}</span>
+          <div className={styles.tacche}>
+            {[1,2,3,4,5].map(w => (
+              <div key={w} className={[
+                styles.tacca,
+                w < weekNum  ? styles.taccaDone    : '',
+                w === weekNum ? styles.taccaCurrent : '',
+              ].join(' ')} />
+            ))}
           </div>
-          <span className={styles.arrow}>›</span>
+
+          <h1 className={styles.heroTitle}>Allenamento</h1>
+          <div className={styles.repsPill}>×{reps} reps</div>
+          <div className={styles.heroSep} />
+
+          <div className={styles.exPreview}>
+            {shownPrev.map(item => (
+              <div key={item.label} className={styles.previewRow}>
+                <span className={styles.previewLabel}>{item.label}</span>
+                <span className={styles.previewName}>{item.name}</span>
+                <span className={styles.previewValue}>{item.value}</span>
+              </div>
+            ))}
+            {!expanded && remaining > 0 && (
+              <button className={styles.previewMore} onClick={() => setExpanded(true)}>
+                + altri {remaining}
+              </button>
+            )}
+            {expanded && (
+              <button className={styles.previewMore} onClick={() => setExpanded(false)}>
+                ↑ nascondi
+              </button>
+            )}
+          </div>
+
+          <button className={styles.heroBtn} onClick={handleWorkoutTap}>INIZIA →</button>
+        </div>
+
+        {/* ── Stats card ── */}
+        <button className={styles.statsCard} onClick={() => onNavigate('stats')}>
+          <div className={styles.statsTop}>
+            <div>
+              <span className={styles.statsTitle}>Statistiche</span>
+              <span className={styles.statsSub}>Sessioni per settimana</span>
+            </div>
+            <span className={styles.statsMeta}>{sessionCount} SESSIONI</span>
+          </div>
+          <div className={styles.barsWrap}>
+            {weekBars.map((v, i) => (
+              <div key={i}
+                className={[styles.bar, i === 5 ? styles.barCurrent : ''].join(' ')}
+                style={{ height: `${Math.max(10, (v / maxBar) * 100)}%` }}
+              />
+            ))}
+          </div>
         </button>
 
+        {/* ── Bottom row ── */}
         <div className={styles.row}>
-          {/* Statistiche */}
-          <button className={`${styles.block} ${styles.blockHalf} ${styles.blockStats}`} onClick={() => onNavigate('stats')}>
-            <div className={styles.blockIcon}><IconChart /></div>
-            <span className={styles.blockTitle}>Statistiche</span>
-            <span className={styles.blockSub}>Storico esercizi</span>
+          <button className={styles.halfCard} onClick={() => onNavigate('calendar')}>
+            <span className={styles.halfTitle}>Calendario</span>
+            <span className={styles.halfSub}>Sessioni passate</span>
           </button>
-
-          {/* Programma */}
-          <button className={`${styles.block} ${styles.blockHalf} ${styles.blockProgram}`} onClick={() => onNavigate('program')}>
-            <div className={styles.blockIcon}><IconClipboard /></div>
-            <span className={styles.blockTitle}>Programma</span>
-            <span className={styles.blockSub}>{hasCycle ? cycle.name : 'Nessun ciclo'}</span>
+          <button className={styles.halfCard} onClick={() => onNavigate('program')}>
+            <span className={styles.halfTitle}>Programma</span>
+            <span className={styles.halfSub}>{cycleSub(cycle.name)}</span>
           </button>
         </div>
       </main>

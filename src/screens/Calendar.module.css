@@ -1,0 +1,205 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 12px 8px 0;
+  flex-shrink: 0;
+}
+
+.backBtn {
+  font-size: 20px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+/* ── Month title row ── */
+.monthRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 20px 0;
+}
+
+.monthTitleWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.monthName {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: var(--text);
+  line-height: 1;
+}
+
+.monthYear {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.navBtns {
+  display: flex;
+  gap: 4px;
+}
+
+.navBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navBtn:active { background: var(--surface-3); }
+
+.monthSub {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 4px 20px 12px;
+}
+
+/* ── Calendar grid ── */
+.calWrap {
+  padding: 0 14px;
+}
+
+.gridHeaders {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.gridHdr {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 4px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.empty {
+  aspect-ratio: 1;
+}
+
+.day {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  position: relative;
+}
+
+.dayNum {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted-2);
+  line-height: 1;
+}
+
+/* Day with session */
+.dayHas {
+  background: var(--surface);
+}
+.dayHas .dayNum {
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* Today */
+.dayToday {
+  background: var(--accent);
+}
+.dayToday .dayNum {
+  font-weight: 900;
+  color: var(--accent-ink);
+}
+
+/* Future */
+.dayFuture .dayNum { color: var(--dim); }
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Session list ── */
+.listWrap {
+  flex: 1;
+  padding: 20px 20px 32px;
+}
+
+.listLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.sessRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  width: 100%;
+  text-align: left;
+}
+.sessRow:active { opacity: 0.7; }
+
+.sessInfo {
+  flex: 1;
+}
+
+.sessDate {
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+.sessMeta {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.sessArrow {
+  font-size: 16px;
+  color: var(--muted);
+}

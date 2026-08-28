@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics=""><meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}a{color:#2a78d6}a:hover{color:#1a5aa8}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}.ph{width:375px;height:812px;border-radius:38px;overflow:hidden;position:relative;box-shadow:0 2px 4px rgba(0,0,0,.06),0 18px 40px rgba(0,0,0,.12)}.pair{display:flex;gap:18px}</style></helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Direzione <a class="dv-oid" href="#1a">1a</a> Lavagna — set completo, 8 schermate</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2g">
+<div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a>Home</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif;color:#F5F2EA"><span>12:57</span><span style="letter-spacing:.06em">▮▮▮ ᯤ ▰</span></div>
+<div style="padding:26px 22px 0;display:flex;justify-content:space-between;align-items:baseline">
+<span style="font:800 15px/1 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase">Gymlog</span>
+<span style="font:500 12px/1 Archivo,sans-serif;letter-spacing:.1em;color:#8E877C;text-transform:uppercase">Ven 28 Ago</span>
+</div>
+<div style="margin:20px 16px 0;background:#D9F24B;border-radius:26px;padding:22px 22px 20px;color:#121110">
+<div style="display:flex;justify-content:space-between;align-items:center;font:600 11px/1 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase"><span>Oggi · Ven/Sab</span><span>Sett. 5 / 5</span></div>
+<div style="display:flex;gap:5px;margin-top:12px">
+<div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:rgba(18,17,16,.25)"></div>
+</div>
+<div style="font: 800 52px/.92 Archivo,sans-serif; letter-spacing: -.03em; margin: 18px 0 0; font-size: 49px">Allenamento</div>
+<div style="display:flex;gap:8px;margin-top:16px">
+
+
+<span style="font:600 12px/1 Archivo,sans-serif;padding:7px 11px;border:1.5px solid #121110;border-radius:99px">×10 reps</span>
+</div>
+<div style="margin-top:18px;padding-top:16px;border-top:1.5px solid rgba(18,17,16,.2);display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif"><span>A1 Split Squat</span><span style="font-weight:700">12.5 kg</span></div>
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif"><span>A2 Floor Press</span><span style="font-weight:700">15 kg</span></div>
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif"><span>A3 Body Saw</span><span style="font-weight:700">Corpo libero</span></div>
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif;color:rgba(18,17,16,.5)"><span>+ altri 5</span><span>—</span></div>
+</div>
+<div style="margin-top:20px;background:#121110;color:#D9F24B;border-radius:16px;height:56px;display:flex;align-items:center;justify-content:center;font:800 19px/1 Archivo,sans-serif;letter-spacing:.02em">INIZIA →</div>
+</div>
+<div style="margin:14px 16px 0;background:#1B1917;border-radius:22px;padding:18px 20px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 17px/1 Archivo,sans-serif">Statistiche</span><span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.12em;color:#8E877C;text-transform:uppercase">6 sessioni</span></div>
+<div style="display:flex;align-items:flex-end;gap:6px;height:52px;margin-top:14px">
+<div style="flex:1;height:38%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:38%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:62%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:78%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:100%;background:#D9F24B;border-radius:3px"></div><div style="flex:1;height:70%;background:#3A3733;border-radius:3px"></div>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin:12px 16px 0">
+<div style="flex:1;background:#1B1917;border-radius:22px;padding:18px 18px 20px"><div style="font:700 16px/1 Archivo,sans-serif">Calendario</div><div style="font:500 12px/1.3 Archivo,sans-serif;color:#8E877C;margin-top:6px">Sessioni passate</div></div>
+<div style="flex:1;background:#1B1917;border-radius:22px;padding:18px 18px 20px"><div style="font:700 16px/1 Archivo,sans-serif">Programma</div><div style="font:500 12px/1.3 Archivo,sans-serif;color:#8E877C;margin-top:6px">Lug/Ago 2026</div></div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2h">
+<div class="dv-olabel"><a class="dv-oid" href="#2h">2h</a>Sessione — visualizzazione</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span style="letter-spacing:.06em">▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px 18px;border-bottom:1px solid #2A2724">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 20px/1 Archivo,sans-serif;color:#8E877C">←</span><span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C;text-transform:uppercase">Ven 28 Ago</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;margin-top:14px"><span style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.02em">VEN/SAB</span><span style="font:600 13px/1 Archivo,sans-serif;color:#D9F24B;letter-spacing:.08em">SETT.5 · ×10</span></div>
+</div>
+<div style="padding:0 22px">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:20px 0 4px">Blocco A</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Split Squat</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">12.5<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Floor Press</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">15<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A3</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Body Saw</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">CORPO LIBERO</span></div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:22px 0 4px">Blocco B</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">B1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Pull Up</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">CORPO LIBERO</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">B2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Squat Mono</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">12.5<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:22px 0 4px">Blocco C</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Leg Curl Pattine</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Pushdown</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C3</span><span style="font:700 20px/1.1 Archivo,sans-serif;letter-spacing:-.01em;max-width:200px">Plank Orsetto Tocco Spalla</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 26px;background:linear-gradient(180deg,rgba(18,17,16,0),#121110 32%)">
+<div style="background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 19px/1 Archivo,sans-serif">INIZIA SESSIONE</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Sessione — registrazione. <b style="color:#14130F">Interattiva: −/+ sui kg, tap su corpo libero, scelta elastico.</b></div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:18px 20px 14px;border-bottom:1px solid #2A2724">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C;white-space:nowrap">← VEN 28 AGO · VEN/SAB</span>
+<span style="font:700 15px/1 Archivo,sans-serif;color:#D9F24B;white-space:nowrap">{{ filledLabel }}</span>
+</div>
+<div style="height:6px;border-radius:3px;background:#2A2724;margin-top:12px;overflow:hidden"><div style="height:100%;background:#D9F24B;border-radius:3px;transition:width .25s ease;width:{{ barW }}"></div></div>
+<div style="display:flex;align-items:center;gap:6px;margin-top:9px"><span style="width:5px;height:5px;border-radius:50%;background:#D9F24B;flex:none"></span><span style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862;white-space:nowrap">SALVATO</span></div>
+</div>
+<div style="padding:4px 16px 100px;height:676px;box-sizing:border-box;overflow:auto">
+<sc-for list="{{ editBlocks }}" as="b" hint-placeholder-count="3">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:16px 4px 10px">Blocco {{ b.id }}</div>
+<sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+<div style="{{ it.cardStyle }}">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0">
+<span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">{{ it.code }}</span>
+<span style="font:700 19px/1 Archivo,sans-serif;letter-spacing:-.01em">{{ it.name }}</span>
+</span>
+<div onClick="{{ it.toggleMenu }}" style="{{ it.typeBtnStyle }}">
+<span style="width:26px;height:26px;border-radius:8px;background:#2A2724;color:#D9F24B;display:flex;align-items:center;justify-content:center;font:700 10px/1 'JetBrains Mono',monospace;flex:none">{{ it.typeIcon }}</span>
+<span style="font:600 12px/1 Archivo,sans-serif;color:#B6AFA4;white-space:nowrap">{{ it.typeLabel }}</span>
+<span style="font:500 9px/1 Archivo,sans-serif;color:#6E6862">▾</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:9px">
+<span style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.14em;color:#6E6862">ULTIMA VOLTA</span>
+<span style="font:700 13px/1 Archivo,sans-serif;color:#B6AFA4">{{ it.last }}</span>
+<span style="{{ it.presetStyle }}">{{ it.presetLabel }}</span>
+</div>
+<sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px;margin-top:10px;padding:6px;background:#121110;border-radius:15px">
+<sc-for list="{{ it.kinds }}" as="k" hint-placeholder-count="3">
+<div onClick="{{ k.pick }}" style="{{ k.style }}"><span style="font:700 9px/1 'JetBrains Mono',monospace;opacity:.75">{{ k.icon }}</span>{{ k.label }}</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ it.isWeight }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+<div onClick="{{ it.dec }}" style="width:52px;height:52px;border-radius:14px;border:1.5px solid #332F2B;display:flex;align-items:center;justify-content:center;font:600 24px/1 Archivo,sans-serif;color:#B6AFA4;cursor:pointer">−</div>
+<div style="flex:1;height:52px;border-radius:14px;background:#121110;display:flex;align-items:center;justify-content:center;gap:5px"><span style="font:800 26px/1 Archivo,sans-serif;color:#D9F24B">{{ it.value }}</span><span style="font:600 13px/1 Archivo,sans-serif;color:#6E6862">kg</span></div>
+<div onClick="{{ it.inc }}" style="width:52px;height:52px;border-radius:14px;border:1.5px solid #332F2B;display:flex;align-items:center;justify-content:center;font:600 24px/1 Archivo,sans-serif;color:#B6AFA4;cursor:pointer">+</div>
+</div>
+</sc-if>
+<sc-if value="{{ it.isBw }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ it.toggleBw }}" style="{{ it.bwStyle }}">{{ it.bwLabel }}</div>
+</sc-if>
+<sc-if value="{{ it.isBand }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:8px;margin-top:12px">
+<sc-for list="{{ it.bands }}" as="bd" hint-placeholder-count="3">
+<div style="{{ bd.style }}"><span style="{{ bd.dotStyle }}"></span>{{ bd.id }}</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 26px;background:linear-gradient(180deg,rgba(18,17,16,0),#121110 32%);display:flex;gap:10px">
+<div style="height:58px;padding:0 18px;border-radius:16px;border:1.5px solid #4A2E28;color:#C4553B;display:flex;align-items:center;justify-content:center;gap:8px;font:700 15px/1 Archivo,sans-serif;cursor:pointer;white-space:nowrap"><span style="font-size:17px">✕</span>Elimina</div>
+<div style="flex:1;background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 17px/1 Archivo,sans-serif;cursor:pointer">SALVA E CHIUDI</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2i">
+<div class="dv-olabel"><a class="dv-oid" href="#2i">2i</a>Registrazione — seguito dello scroll: blocchi B e C, con elastico</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:18px 20px 14px;border-bottom:1px solid #2A2724">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C;white-space:nowrap">← VEN 28 AGO · VEN/SAB</span>
+<span style="font:700 15px/1 Archivo,sans-serif;color:#D9F24B;white-space:nowrap">{{ filledLabel }}</span>
+</div>
+<div style="height:6px;border-radius:3px;background:#2A2724;margin-top:12px;overflow:hidden"><div style="height:100%;background:#D9F24B;border-radius:3px;transition:width .25s ease;width:{{ barW }}"></div></div>
+<div style="display:flex;align-items:center;gap:6px;margin-top:9px"><span style="width:5px;height:5px;border-radius:50%;background:#D9F24B;flex:none"></span><span style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862;white-space:nowrap">SALVATO</span></div>
+</div>
+<div style="padding:4px 16px 100px;height:676px;box-sizing:border-box;overflow:auto">
+<sc-for list="{{ editBlocksBC }}" as="b" hint-placeholder-count="2">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:16px 4px 10px">Blocco {{ b.id }}</div>
+<sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+<div style="{{ it.cardStyle }}">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+<span style="display:flex;align-items:baseline;gap:10px;min-width:0">
+<span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">{{ it.code }}</span>
+<span style="font:700 19px/1 Archivo,sans-serif;letter-spacing:-.01em">{{ it.name }}</span>
+</span>
+<div onClick="{{ it.toggleMenu }}" style="{{ it.typeBtnStyle }}">
+<span style="width:26px;height:26px;border-radius:8px;background:#2A2724;color:#D9F24B;display:flex;align-items:center;justify-content:center;font:700 10px/1 'JetBrains Mono',monospace;flex:none">{{ it.typeIcon }}</span>
+<span style="font:600 12px/1 Archivo,sans-serif;color:#B6AFA4;white-space:nowrap">{{ it.typeLabel }}</span>
+<span style="font:500 9px/1 Archivo,sans-serif;color:#6E6862">▾</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:9px">
+<span style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.14em;color:#6E6862">ULTIMA VOLTA</span>
+<span style="font:700 13px/1 Archivo,sans-serif;color:#B6AFA4">{{ it.last }}</span>
+<span style="{{ it.presetStyle }}">{{ it.presetLabel }}</span>
+</div>
+<sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px;margin-top:10px;padding:6px;background:#121110;border-radius:15px">
+<sc-for list="{{ it.kinds }}" as="k" hint-placeholder-count="3">
+<div onClick="{{ k.pick }}" style="{{ k.style }}"><span style="font:700 9px/1 'JetBrains Mono',monospace;opacity:.75">{{ k.icon }}</span>{{ k.label }}</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ it.isWeight }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+<div onClick="{{ it.dec }}" style="width:52px;height:52px;border-radius:14px;border:1.5px solid #332F2B;display:flex;align-items:center;justify-content:center;font:600 24px/1 Archivo,sans-serif;color:#B6AFA4;cursor:pointer">−</div>
+<div style="flex:1;height:52px;border-radius:14px;background:#121110;display:flex;align-items:center;justify-content:center;gap:5px"><span style="font:800 26px/1 Archivo,sans-serif;color:#D9F24B">{{ it.value }}</span><span style="font:600 13px/1 Archivo,sans-serif;color:#6E6862">kg</span></div>
+<div onClick="{{ it.inc }}" style="width:52px;height:52px;border-radius:14px;border:1.5px solid #332F2B;display:flex;align-items:center;justify-content:center;font:600 24px/1 Archivo,sans-serif;color:#B6AFA4;cursor:pointer">+</div>
+</div>
+</sc-if>
+<sc-if value="{{ it.isBw }}" hint-placeholder-val="{{ true }}">
+<div onClick="{{ it.toggleBw }}" style="{{ it.bwStyle }}">{{ it.bwLabel }}</div>
+</sc-if>
+<sc-if value="{{ it.isBand }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:8px;margin-top:12px">
+<sc-for list="{{ it.bands }}" as="bd" hint-placeholder-count="3">
+<div style="{{ bd.style }}"><span style="{{ bd.dotStyle }}"></span>{{ bd.id }}</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 26px;background:linear-gradient(180deg,rgba(18,17,16,0),#121110 32%);display:flex;gap:10px">
+<div style="height:58px;padding:0 18px;border-radius:16px;border:1.5px solid #4A2E28;color:#C4553B;display:flex;align-items:center;justify-content:center;gap:8px;font:700 15px/1 Archivo,sans-serif;cursor:pointer;white-space:nowrap"><span style="font-size:17px">✕</span>Elimina</div>
+<div style="flex:1;background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 17px/1 Archivo,sans-serif;cursor:pointer">SALVA E CHIUDI</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Statistiche — lista esercizi con colonne di progressione</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px 16px;border-bottom:1px solid #2A2724">
+<div style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C">←</div>
+<div style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.02em;margin-top:12px">Statistiche</div>
+<div style="display:flex;gap:8px;margin-top:14px;overflow:auto;padding-bottom:2px">
+<span style="font:600 12px/1 Archivo,sans-serif;padding:8px 12px;border-radius:99px;background:#D9F24B;color:#121110;white-space:nowrap;flex:none">Ultimi <span style="opacity:.55">8</span></span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:8px 12px;border-radius:99px;border:1.5px solid #332F2B;color:#B6AFA4;white-space:nowrap;flex:none">Con peso</span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:8px 12px;border-radius:99px;border:1.5px solid #332F2B;color:#B6AFA4;white-space:nowrap;flex:none">Con elastico</span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:8px 12px;border-radius:99px;border:1.5px solid #332F2B;color:#B6AFA4;white-space:nowrap;flex:none">Corpo libero</span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:8px 12px;border-radius:99px;border:1.5px solid #332F2B;color:#B6AFA4;white-space:nowrap;flex:none">Tutti</span>
+</div>
+</div>
+<div style="padding:6px 16px">
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Split Squat</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">6 SESSIONI · MAX 15 KG</span></span>
+<span style="display:flex;align-items:flex-end;gap:3px;height:34px;width:76px">
+<span style="flex:1;height:50%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:50%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:76%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:100%;background:#D9F24B;border-radius:2px"></span><span style="flex:1;height:50%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:50%;background:#3A3733;border-radius:2px"></span>
+</span>
+<span style="font:700 16px/1 Archivo,sans-serif;width:56px;text-align:right">12.5<span style="font-size:11px;color:#6E6862"> kg</span></span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Floor Press</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">6 SESSIONI · MAX 15 KG</span></span>
+<span style="display:flex;align-items:flex-end;gap:3px;height:34px;width:76px">
+<span style="flex:1;height:44%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:56%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:64%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:80%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:88%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:100%;background:#D9F24B;border-radius:2px"></span>
+</span>
+<span style="font:700 16px/1 Archivo,sans-serif;width:56px;text-align:right">15<span style="font-size:11px;color:#6E6862"> kg</span></span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Squat Mono</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">5 SESSIONI · MAX 12.5 KG</span></span>
+<span style="display:flex;align-items:flex-end;gap:3px;height:34px;width:76px">
+<span style="flex:1;height:40%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:40%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:70%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:70%;background:#3A3733;border-radius:2px"></span><span style="flex:1;height:100%;background:#D9F24B;border-radius:2px"></span><span style="flex:1;height:0;background:#3A3733;border-radius:2px"></span>
+</span>
+<span style="font:700 16px/1 Archivo,sans-serif;width:56px;text-align:right">12.5<span style="font-size:11px;color:#6E6862"> kg</span></span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Pushdown</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">4 SESSIONI · ELASTICO</span></span>
+<span style="display:flex;align-items:center;gap:5px;height:34px;width:76px">
+<span style="width:11px;height:11px;border-radius:50%;background:#4FA8DB"></span><span style="width:11px;height:11px;border-radius:50%;background:#4FA8DB"></span><span style="width:11px;height:11px;border-radius:50%;background:#E8C33D"></span><span style="width:11px;height:11px;border-radius:50%;background:#E0762C"></span>
+</span>
+<span style="font:600 12px/1 Archivo,sans-serif;width:56px;text-align:right;color:#E0762C">Arancione</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Pull Up</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">6 SESSIONI · 4 BW → 2 ELASTICO</span></span>
+<span style="display:flex;align-items:center;gap:4px;height:34px;width:76px">
+<span style="width:10px;height:3px;background:#3A3733;border-radius:2px"></span><span style="width:10px;height:3px;background:#3A3733;border-radius:2px"></span><span style="width:10px;height:3px;background:#3A3733;border-radius:2px"></span><span style="width:10px;height:3px;background:#3A3733;border-radius:2px"></span><span style="width:11px;height:11px;border-radius:50%;background:#E0762C"></span><span style="width:11px;height:11px;border-radius:50%;background:#E0762C"></span>
+</span>
+<span style="font:600 12px/1 Archivo,sans-serif;width:56px;text-align:right;color:#E0762C">Arancione</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid #232120">
+<span style="flex:1"><span style="display:block;font:700 19px/1 Archivo,sans-serif">Body Saw</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:7px">6 SESSIONI · CORPO LIBERO</span></span>
+<span style="display:flex;align-items:flex-end;gap:3px;height:34px;width:76px">
+<span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span><span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span><span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span><span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span><span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span><span style="flex:1;height:100%;background:#2A2724;border-radius:2px"></span>
+</span>
+<span style="font:600 12px/1 Archivo,sans-serif;width:56px;text-align:right;color:#B6AFA4">BW</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Dettaglio esercizio — sheet sopra la lista</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif;opacity:.35"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px;opacity:.28">
+<div style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.02em">Statistiche</div>
+<div style="font:700 19px/1 Archivo,sans-serif;margin-top:28px">Split Squat</div>
+<div style="font:700 19px/1 Archivo,sans-serif;margin-top:32px">Floor Press</div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;top:150px;background:#1B1917;border-radius:28px 28px 0 0;padding:22px 22px 0">
+<div style="display:flex;justify-content:space-between;align-items:flex-start">
+<span><span style="display:block;font:800 28px/1 Archivo,sans-serif;letter-spacing:-.02em">Split Squat</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.12em;color:#8E877C;margin-top:9px">6 SESSIONI · DA MAR 2026</span></span>
+<span style="width:36px;height:36px;border-radius:50%;background:#2A2724;display:flex;align-items:center;justify-content:center;font:500 16px/1 Archivo,sans-serif;color:#B6AFA4">×</span>
+</div>
+<div style="display:flex;gap:10px;margin-top:20px">
+<div style="flex:1;background:#121110;border-radius:16px;padding:14px"><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.12em;color:#6E6862">ATTUALE</div><div style="font:800 24px/1 Archivo,sans-serif;margin-top:8px">12.5<span style="font-size:12px;color:#6E6862"> kg</span></div></div>
+<div style="flex:1;background:#121110;border-radius:16px;padding:14px"><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.12em;color:#6E6862">MASSIMO</div><div style="font:800 24px/1 Archivo,sans-serif;margin-top:8px;color:#D9F24B">15<span style="font-size:12px;color:#6E6862"> kg</span></div></div>
+<div style="flex:1;background:#121110;border-radius:16px;padding:14px"><div style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.12em;color:#6E6862">DELTA</div><div style="font:800 24px/1 Archivo,sans-serif;margin-top:8px">0<span style="font-size:12px;color:#6E6862"> kg</span></div></div>
+</div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:118px;margin-top:22px">
+<sc-for list="{{ chartBars }}" as="bar" hint-placeholder-count="6">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px"><span style="{{ bar.labelStyle }}">{{ bar.label }}</span><div style="{{ bar.barStyle }}"></div></div>
+</sc-for>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0 14px;border-bottom:1px solid #2A2724">
+<span style="font:500 10px/1 Archivo,sans-serif;letter-spacing:.14em;color:#6E6862">{{ chartRange }}</span>
+<span style="display:flex;align-items:center;gap:6px">
+<sc-for list="{{ chartDots }}" as="d" hint-placeholder-count="2">
+<span onClick="{{ d.pick }}" style="{{ d.style }}"></span>
+</sc-for>
+</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="font:500 15px/1 Archivo,sans-serif;color:#B6AFA4">Sab 25 Lug</span><span style="font:700 16px/1 Archivo,sans-serif">12.5 kg</span></div>
+<div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="font:500 15px/1 Archivo,sans-serif;color:#B6AFA4">Mar 12 Mag</span><span style="font:700 16px/1 Archivo,sans-serif">12.5 kg</span></div>
+<div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="font:500 15px/1 Archivo,sans-serif;color:#B6AFA4">Mar 31 Mar</span><span style="font:700 16px/1 Archivo,sans-serif;color:#D9F24B">15 kg ↑</span></div>
+<div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="font:500 15px/1 Archivo,sans-serif;color:#B6AFA4">Mar 17 Mar</span><span style="font:700 16px/1 Archivo,sans-serif;color:#D9F24B">14 kg ↑</span></div>
+<div style="display:flex;justify-content:space-between;padding:14px 0"><span style="font:500 15px/1 Archivo,sans-serif;color:#B6AFA4">Mar 10 Mar</span><span style="font:700 16px/1 Archivo,sans-serif">12.5 kg</span></div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2d">
+<div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Programma — ciclo attivo per giorno, archivio in coda</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:59</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px 16px">
+<div style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C">←</div>
+<div style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.02em;margin-top:12px">Programma</div>
+</div>
+<div style="margin:0 16px;background:#1B1917;border:1px solid rgba(217,242,75,.4);border-radius:24px;padding:20px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.16em;color:#121110;background:#D9F24B;padding:6px 9px;border-radius:6px">ATTIVO</span>
+<span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.1em;color:#8E877C">SETT. 5 / 5</span>
+</div>
+<div style="font:800 24px/1.1 Archivo,sans-serif;letter-spacing:-.02em;margin-top:14px">Small Class<br>Luglio / Agosto 2026</div>
+<div style="font:500 12px/1 Archivo,sans-serif;color:#8E877C;margin-top:10px">20 lug 2026 → 23 ago 2026</div>
+<div style="margin-top:16px;padding-top:14px;border-top:1px solid #2A2724">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.16em;color:#D9F24B">LUN/MAR</div>
+<div style="display:flex;gap:9px;margin-top:10px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">A</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Squat · Spinte Panca 30° · Barchetta</span></div>
+<div style="display:flex;gap:9px;margin-top:7px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">B</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Sedia Muro Mono · TRX Largo</span></div>
+<div style="display:flex;gap:9px;margin-top:7px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">C</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Split RDL · Shoulder Press · Drag Plank Disco</span></div>
+</div>
+<div style="margin-top:14px;padding-top:14px;border-top:1px solid #2A2724">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.16em;color:#D9F24B">MER/GIO</div>
+<div style="font:500 13px/1.35 Archivo,sans-serif;color:#6E6862;margin-top:10px">Nessun esercizio importato</div>
+</div>
+<div style="margin-top:14px;padding-top:14px;border-top:1px solid #2A2724">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.16em;color:#D9F24B">VEN/SAB</div>
+<div style="display:flex;gap:9px;margin-top:10px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">A</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Split Squat · Floor Press · Body Saw</span></div>
+<div style="display:flex;gap:9px;margin-top:7px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">B</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Pull Up · Squat Mono</span></div>
+<div style="display:flex;gap:9px;margin-top:7px"><span style="font:700 10px/1.35 'JetBrains Mono',monospace;color:#6E6862;width:12px;flex:none">C</span><span style="font:500 13px/1.35 Archivo,sans-serif;color:#D6D0C6">Leg Curl Pattine · Pushdown · Plank Orsetto Tocco Spalla</span></div>
+</div>
+</div>
+<div style="margin:14px 16px 0;background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 17px/1 Archivo,sans-serif">FOTOGRAFA LA LAVAGNA</div>
+<div style="padding:18px 22px 0">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#6E6862">ARCHIVIO</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #232120"><span><span style="display:block;font:600 15px/1 Archivo,sans-serif;color:#D6D0C6">Small Class — Mag/Giu 2026</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;color:#6E6862;margin-top:5px">18 mag → 21 giu · 24 sessioni</span></span><span style="color:#6E6862">→</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:13px 0"><span><span style="display:block;font:600 15px/1 Archivo,sans-serif;color:#D6D0C6">Small Class — Mar/Apr 2026</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;color:#6E6862;margin-top:5px">2 mar → 5 apr · 22 sessioni</span></span><span style="color:#6E6862">→</span></div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2e">
+<div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Import — step 2, revisione di quello che l'analisi ha letto</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:58</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:18px 22px 16px;border-bottom:1px solid #2A2724">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="flex:1;height:4px;border-radius:2px;background:#D9F24B"></span><span style="flex:1;height:4px;border-radius:2px;background:#D9F24B"></span><span style="flex:1;height:4px;border-radius:2px;background:#2A2724"></span>
+</div>
+<div style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C;margin-top:14px">PASSO 2 DI 3</div>
+<div style="font:800 30px/1.05 Archivo,sans-serif;letter-spacing:-.02em;margin-top:10px">Controlla<br>quello che ho letto</div>
+</div>
+<div style="padding:16px 16px 0">
+<div style="background:#1B1917;border-radius:20px;padding:16px;display:flex;gap:14px;align-items:center">
+<div style="width:64px;height:64px;border-radius:12px;background:repeating-linear-gradient(135deg,#2A2724,#2A2724 6px,#232120 6px,#232120 12px);flex:none"></div>
+<div><div style="font:600 13px/1 Archivo,sans-serif">foto-lavagna.jpg</div><div style="font:500 11px/1.4 'JetBrains Mono',monospace;color:#6E6862;margin-top:7px">8 esercizi · 3 blocchi<br>confidenza alta</div></div>
+</div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;padding:20px 4px 8px">BLOCCO A</div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#1B1917;border:1px solid #2A2724;border-radius:14px;margin-bottom:8px"><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">A1</span><span style="flex:1;font:600 17px/1 Archivo,sans-serif">Split Squat</span><span style="font:500 13px/1 Archivo,sans-serif;color:#6E6862">✎</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#1B1917;border:1px solid #2A2724;border-radius:14px;margin-bottom:8px"><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">A2</span><span style="flex:1;font:600 17px/1 Archivo,sans-serif">Floor Press</span><span style="font:500 13px/1 Archivo,sans-serif;color:#6E6862">✎</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#1C1D14;border:1px solid rgba(217,242,75,.45);border-radius:14px;margin-bottom:8px"><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#D9F24B">A3</span><span style="flex:1;font:600 17px/1 Archivo,sans-serif">Body Saw</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#D9F24B">DA VERIFICARE</span></div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;padding:14px 4px 8px">BLOCCO B</div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#1B1917;border:1px solid #2A2724;border-radius:14px;margin-bottom:8px"><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">B1</span><span style="flex:1;font:600 17px/1 Archivo,sans-serif">Pull Up</span><span style="font:500 13px/1 Archivo,sans-serif;color:#6E6862">✎</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#1B1917;border:1px solid #2A2724;border-radius:14px"><span style="font:600 11px/1 'JetBrains Mono',monospace;color:#6E6862">B2</span><span style="flex:1;font:600 17px/1 Archivo,sans-serif">Squat Mono</span><span style="font:500 13px/1 Archivo,sans-serif;color:#6E6862">✎</span></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 26px;background:linear-gradient(180deg,rgba(18,17,16,0),#121110 32%);display:flex;gap:10px">
+<div style="width:110px;height:58px;border-radius:16px;border:1.5px solid #332F2B;display:flex;align-items:center;justify-content:center;font:700 15px/1 Archivo,sans-serif;color:#B6AFA4">Indietro</div>
+<div style="flex:1;background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 17px/1 Archivo,sans-serif">CONFERMA</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="2f">
+<div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Calendario — mese con densità delle sessioni</div>
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px 8px">
+<div style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C">←</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:12px">
+<span style="font:800 32px/1 Archivo,sans-serif;letter-spacing:-.02em">Agosto <span style="color:#6E6862">2026</span></span>
+<span style="display:flex;gap:16px;font:500 20px/1 Archivo,sans-serif;color:#8E877C"><span>‹</span><span>›</span></span>
+</div>
+<div style="font:500 12px/1 Archivo,sans-serif;color:#8E877C;margin-top:10px">9 sessioni questo mese</div>
+</div>
+<div style="padding:12px 18px 0;display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center">
+<span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862;padding-bottom:6px">L</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">M</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">M</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">G</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">V</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">S</span><span style="font:600 10px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">D</span>
+<span></span><span></span><span></span><span></span><span></span>
+<span style="height:44px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif;color:#6E6862">1</span>
+<span style="height:44px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif;color:#6E6862">2</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">3<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">4<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">5</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">6<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">7<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">8</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">9</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">10<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">11<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">12</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">13<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">14</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">15</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">16</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">17<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">18<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">19</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">20</span>
+<span style="height:44px;border-radius:12px;background:#1B1917;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font:600 15px/1 Archivo,sans-serif">21<span style="width:5px;height:5px;border-radius:50%;background:#D9F24B"></span></span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">22</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">23</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">24</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">25</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">26</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#6E6862">27</span>
+<span style="height:44px;border-radius:12px;background:#D9F24B;color:#121110;display:flex;align-items:center;justify-content:center;font:800 15px/1 Archivo,sans-serif">28</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#3A3733">29</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#3A3733">30</span>
+<span style="height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font:600 15px/1 Archivo,sans-serif;color:#3A3733">31</span>
+</div>
+<div style="padding:18px 22px 0">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#6E6862">ULTIME SESSIONI</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #232120"><span><span style="display:block;font:700 16px/1 Archivo,sans-serif">Ven 21 Ago</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:6px">VEN/SAB · SETT.4 · 8/8</span></span><span style="color:#6E6862">→</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0"><span><span style="display:block;font:700 16px/1 Archivo,sans-serif">Mar 18 Ago</span><span style="display:block;font:500 11px/1 Archivo,sans-serif;letter-spacing:.08em;color:#6E6862;margin-top:6px">LUN/MAR · SETT.4 · 8/8</span></span><span style="color:#6E6862">→</span></div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Prova a dire: "in <a class="dv-oid" href="#2a">2a</a> voglio un tastierino numerico invece dei −/+" · "il calendario <a class="dv-oid" href="#2f">2f</a> con intensità per numero di esercizi" · "riporta il tutto in versione chiara"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">GymLog — tre direzioni per Home + Sessione (visualizzazione)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Lavagna — fondo scuro, accento gesso, tipografia Archivo. Massima leggibilità da lontano.</div>
+<div class="pair">
+
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif;color:#F5F2EA"><span>12:57</span><span style="letter-spacing:.06em">▮▮▮ ᯤ ▰</span></div>
+<div style="padding:26px 22px 0;display:flex;justify-content:space-between;align-items:baseline">
+<span style="font:800 15px/1 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase">Gymlog</span>
+<span style="font:500 12px/1 Archivo,sans-serif;letter-spacing:.1em;color:#8E877C;text-transform:uppercase">Ven 28 Ago</span>
+</div>
+<div style="margin:20px 16px 0;background:#D9F24B;border-radius:26px;padding:22px 22px 20px;color:#121110">
+<div style="display:flex;justify-content:space-between;align-items:center;font:600 11px/1 Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase"><span>Oggi · Ven/Sab</span><span>Sett. 5 / 5</span></div>
+<div style="display:flex;gap:5px;margin-top:12px">
+<div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:#121110"></div><div style="flex:1;height:4px;border-radius:2px;background:rgba(18,17,16,.25)"></div>
+</div>
+<div style="font:800 52px/.92 Archivo,sans-serif;letter-spacing:-.03em;margin:18px 0 0">Allena—<br>mento</div>
+<div style="display:flex;gap:8px;margin-top:16px">
+<span style="font:600 12px/1 Archivo,sans-serif;padding:7px 11px;border:1.5px solid #121110;border-radius:99px">3 blocchi</span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:7px 11px;border:1.5px solid #121110;border-radius:99px">8 esercizi</span>
+<span style="font:600 12px/1 Archivo,sans-serif;padding:7px 11px;border:1.5px solid #121110;border-radius:99px">×10 reps</span>
+</div>
+<div style="margin-top:18px;padding-top:16px;border-top:1.5px solid rgba(18,17,16,.2);display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif"><span>A1 Split Squat</span><span style="font-weight:700">12.5 kg</span></div>
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif"><span>A2 Floor Press</span><span style="font-weight:700">15 kg</span></div>
+<div style="display:flex;justify-content:space-between;font:500 14px/1 Archivo,sans-serif;color:rgba(18,17,16,.5)"><span>+ altri 6</span><span>—</span></div>
+</div>
+<div style="margin-top:20px;background:#121110;color:#D9F24B;border-radius:16px;height:56px;display:flex;align-items:center;justify-content:center;font:800 19px/1 Archivo,sans-serif;letter-spacing:.02em">INIZIA →</div>
+</div>
+<div style="margin:14px 16px 0;background:#1B1917;border-radius:22px;padding:18px 20px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 17px/1 Archivo,sans-serif">Statistiche</span><span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.12em;color:#8E877C;text-transform:uppercase">6 sessioni</span></div>
+<div style="display:flex;align-items:flex-end;gap:6px;height:52px;margin-top:14px">
+<div style="flex:1;height:38%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:38%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:62%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:78%;background:#3A3733;border-radius:3px"></div><div style="flex:1;height:100%;background:#D9F24B;border-radius:3px"></div><div style="flex:1;height:70%;background:#3A3733;border-radius:3px"></div>
+</div>
+</div>
+<div style="display:flex;gap:12px;margin:12px 16px 0">
+<div style="flex:1;background:#1B1917;border-radius:22px;padding:18px 18px 20px"><div style="font:700 16px/1 Archivo,sans-serif">Calendario</div><div style="font:500 12px/1.3 Archivo,sans-serif;color:#8E877C;margin-top:6px">Sessioni passate</div></div>
+<div style="flex:1;background:#1B1917;border-radius:22px;padding:18px 18px 20px"><div style="font:700 16px/1 Archivo,sans-serif">Programma</div><div style="font:500 12px/1.3 Archivo,sans-serif;color:#8E877C;margin-top:6px">Lug/Ago 2026</div></div>
+</div>
+</div>
+
+<div class="ph" style="background:#121110;font-family:Archivo,sans-serif;color:#F5F2EA">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 Archivo,sans-serif"><span>12:57</span><span style="letter-spacing:.06em">▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 22px 18px;border-bottom:1px solid #2A2724">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 20px/1 Archivo,sans-serif;color:#8E877C">←</span><span style="font:500 11px/1 Archivo,sans-serif;letter-spacing:.14em;color:#8E877C;text-transform:uppercase">Ven 28 Ago</span></div>
+<div style="display:flex;align-items:baseline;gap:12px;margin-top:14px"><span style="font:800 34px/1 Archivo,sans-serif;letter-spacing:-.02em">VEN/SAB</span><span style="font:600 13px/1 Archivo,sans-serif;color:#D9F24B;letter-spacing:.08em">SETT.5 · ×10</span></div>
+</div>
+<div style="padding:0 22px">
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:20px 0 4px">Blocco A</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Split Squat</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">12.5<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Floor Press</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">15<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">A3</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Body Saw</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">CORPO LIBERO</span></div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:22px 0 4px">Blocco B</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">B1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Pull Up</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">CORPO LIBERO</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">B2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Squat Mono</span></span><span style="font:600 17px/1 Archivo,sans-serif;color:#B6AFA4">12.5<span style="font-size:12px;color:#6E6862"> kg</span></span></div>
+<div style="font:700 11px/1 Archivo,sans-serif;letter-spacing:.18em;color:#D9F24B;text-transform:uppercase;padding:22px 0 4px">Blocco C</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C1</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Leg Curl Pattine</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid #232120"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C2</span><span style="font:700 22px/1 Archivo,sans-serif;letter-spacing:-.01em">Pushdown</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;padding:14px 0"><span style="display:flex;align-items:baseline;gap:12px"><span style="font:600 12px/1 'JetBrains Mono',monospace;color:#6E6862">C3</span><span style="font:700 20px/1.1 Archivo,sans-serif;letter-spacing:-.01em;max-width:200px">Plank Orsetto Tocco Spalla</span></span><span style="font:600 13px/1 Archivo,sans-serif;letter-spacing:.1em;color:#6E6862">BW</span></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 16px 26px;background:linear-gradient(180deg,rgba(18,17,16,0),#121110 32%)">
+<div style="background:#D9F24B;color:#121110;border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 19px/1 Archivo,sans-serif">INIZIA SESSIONE</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Quaderno — carta calda, display serif, righe con leader punteggiato. Densa e ariosa insieme.</div>
+<div class="pair">
+
+<div class="ph" style="background:#F5F3ED;font-family:'IBM Plex Sans',sans-serif;color:#14130F">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:600 12px/1 'IBM Plex Mono',monospace"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:24px 24px 0;display:flex;justify-content:space-between;align-items:baseline">
+<span style="font:400 30px/1 'Instrument Serif',serif">GymLog</span>
+<span style="font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#7A7672">VEN 28 AGO</span>
+</div>
+<div style="margin:20px 18px 0;background:#14130F;color:#F5F3ED;border-radius:20px;padding:24px 22px">
+<div style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#9A948A">OGGI — VEN/SAB · SETT. 5 DI 5</div>
+<div style="font:italic 400 46px/1 'Instrument Serif',serif;margin-top:10px">Allenamento</div>
+<div style="margin-top:18px;border-top:1px solid rgba(245,243,237,.18);padding-top:14px;display:flex;flex-direction:column;gap:9px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 14px/1 'IBM Plex Sans',sans-serif">Blocco A · 3 esercizi</span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#9A948A">12.5 / 15 / BW</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 14px/1 'IBM Plex Sans',sans-serif">Blocco B · 2 esercizi</span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#9A948A">BW / 12.5</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 14px/1 'IBM Plex Sans',sans-serif">Blocco C · 3 esercizi</span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#9A948A">BW / BW / BW</span></div>
+</div>
+<div style="margin-top:20px;background:#F5F3ED;color:#14130F;border-radius:12px;height:52px;display:flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 'IBM Plex Sans',sans-serif">Inizia la sessione<span style="font-family:'IBM Plex Mono',monospace">→</span></div>
+</div>
+<div style="margin:18px 24px 0;padding-top:16px;border-top:1px solid #DFDBD0">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 22px/1 'Instrument Serif',serif">Statistiche</span><span style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#7A7672">SPLIT SQUAT</span></div>
+<div style="display:flex;align-items:flex-end;gap:8px;height:60px;margin-top:16px">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:34px;background:#DDD9CE"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#9A948A">3M</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:34px;background:#DDD9CE"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#9A948A">10M</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:40px;background:#B9C9B4"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#9A948A">17M</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:46px;background:#1E6B1E"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#14130F">31M</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:34px;background:#DDD9CE"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#9A948A">12M</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:100%;height:34px;background:#DDD9CE"></div><span style="font:500 9px/1 'IBM Plex Mono',monospace;color:#9A948A">25L</span></div>
+</div>
+</div>
+<div style="margin:20px 24px 0;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-top:1px solid #DFDBD0"><span style="font:400 22px/1 'Instrument Serif',serif">Calendario</span><span style="font:400 12px/1 'IBM Plex Sans',sans-serif;color:#7A7672">Sessioni passate →</span></div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-top:1px solid #DFDBD0"><span style="font:400 22px/1 'Instrument Serif',serif">Programma</span><span style="font:400 12px/1 'IBM Plex Sans',sans-serif;color:#7A7672">Lug/Ago 2026 →</span></div>
+</div>
+</div>
+
+<div class="ph" style="background:#F5F3ED;font-family:'IBM Plex Sans',sans-serif;color:#14130F">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:600 12px/1 'IBM Plex Mono',monospace"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:20px 24px 16px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:400 18px/1 'IBM Plex Mono',monospace;color:#7A7672">←</span><span style="font:500 10px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#7A7672">SETT.5 · ×10 REPS</span></div>
+<div style="font:400 38px/1 'Instrument Serif',serif;margin-top:14px">Ven/Sab</div>
+<div style="font:400 13px/1 'IBM Plex Sans',sans-serif;color:#7A7672;margin-top:8px">Venerdì 28 agosto 2026 · 8 esercizi</div>
+</div>
+<div style="padding:0 24px">
+<div style="display:flex;align-items:baseline;gap:10px;padding:14px 0 8px;border-top:1.5px solid #14130F"><span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.16em">BLOCCO A</span><span style="flex:1"></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A">03</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">A1</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Split Squat</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:600 15px/1 'IBM Plex Mono',monospace">12.5<span style="font-size:11px;color:#7A7672">kg</span></span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">A2</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Floor Press</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:600 15px/1 'IBM Plex Mono',monospace">15<span style="font-size:11px;color:#7A7672">kg</span></span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">A3</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Body Saw</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#7A7672">BW</span></div>
+<div style="display:flex;align-items:baseline;gap:10px;padding:16px 0 8px;border-top:1.5px solid #14130F;margin-top:10px"><span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.16em">BLOCCO B</span><span style="flex:1"></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A">02</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">B1</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Pull Up</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#7A7672">BW</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">B2</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Squat Mono</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:600 15px/1 'IBM Plex Mono',monospace">12.5<span style="font-size:11px;color:#7A7672">kg</span></span></div>
+<div style="display:flex;align-items:baseline;gap:10px;padding:16px 0 8px;border-top:1.5px solid #14130F;margin-top:10px"><span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.16em">BLOCCO C</span><span style="flex:1"></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A">03</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">C1</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Leg Curl Pattine</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#7A7672">BW</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">C2</span><span style="font:400 21px/1.1 'Instrument Serif',serif">Pushdown</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#7A7672">BW</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;padding:11px 0"><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#9A948A;width:22px">C3</span><span style="font:400 19px/1.1 'Instrument Serif',serif;max-width:190px">Plank Orsetto Tocco Spalla</span><span style="flex:1;border-bottom:1px dotted #C9C4B7;transform:translateY(-4px)"></span><span style="font:500 12px/1 'IBM Plex Mono',monospace;color:#7A7672">BW</span></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:14px 18px 26px;background:linear-gradient(180deg,rgba(245,243,237,0),#F5F3ED 30%)">
+<div style="background:#14130F;color:#F5F3ED;border-radius:12px;height:54px;display:flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 'IBM Plex Sans',sans-serif">Inizia<span style="font-family:'IBM Plex Mono',monospace">→</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Blocchi a colori — A/B/C codificati, progressione a pallini, righe che si spuntano. <b style="color:#14130F">Tocca gli esercizi.</b></div>
+<div class="pair">
+
+<div class="ph" style="background:#FAF9F6;font-family:'Space Grotesk',sans-serif;color:#101010">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 'Space Grotesk',sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:24px 20px 0;display:flex;justify-content:space-between;align-items:center">
+<span style="font:700 22px/1 'Space Grotesk',sans-serif;letter-spacing:-.02em">GymLog</span>
+<span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6F6C67">VEN 28 AGO</span>
+</div>
+<div style="margin:18px 16px 0;background:#FFFFFF;border:1px solid #E9E6DF;border-radius:24px;padding:20px;box-shadow:0 6px 20px rgba(16,16,16,.04)">
+<div style="display:flex;gap:16px;align-items:center">
+<div style="width:74px;height:74px;border-radius:50%;background:conic-gradient(#101010 {{ ringDeg }},#EDEAE3 0);display:flex;align-items:center;justify-content:center;flex:none">
+<div style="width:58px;height:58px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font:700 18px/1 'Space Grotesk',sans-serif">{{ doneCount }}/8</span><span style="font:500 9px/1 'JetBrains Mono',monospace;color:#8C8880;margin-top:3px">FATTI</span></div>
+</div>
+<div style="flex:1">
+<div style="font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:#8C8880">OGGI · VEN/SAB</div>
+<div style="font:700 27px/1.05 'Space Grotesk',sans-serif;letter-spacing:-.03em;margin-top:6px">Allenamento</div>
+<div style="display:flex;gap:6px;margin-top:10px">
+<span style="font:700 10px/1 'JetBrains Mono',monospace;color:#fff;background:#FF5B2E;padding:5px 8px;border-radius:6px">A·3</span>
+<span style="font:700 10px/1 'JetBrains Mono',monospace;color:#fff;background:#1F6FEB;padding:5px 8px;border-radius:6px">B·2</span>
+<span style="font:700 10px/1 'JetBrains Mono',monospace;color:#fff;background:#0FA958;padding:5px 8px;border-radius:6px">C·3</span>
+</div>
+</div>
+</div>
+<div style="margin-top:18px;background:#101010;color:#fff;border-radius:16px;height:54px;display:flex;align-items:center;justify-content:center;font:700 17px/1 'Space Grotesk',sans-serif">Continua la sessione</div>
+</div>
+<div style="margin:14px 16px 0;background:#fff;border:1px solid #E9E6DF;border-radius:24px;padding:20px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 17px/1 'Space Grotesk',sans-serif">Statistiche</span><span style="font:500 11px/1 'JetBrains Mono',monospace;color:#8C8880">SPLIT SQUAT</span></div>
+<div style="position:relative;height:64px;margin-top:14px">
+<div style="position:absolute;left:0;right:0;top:50%;border-top:1px dashed #E3DFD7"></div>
+<div style="position:absolute;left:0;bottom:12px;width:12px;height:12px;border-radius:50%;background:#CFCAC1"></div>
+<div style="position:absolute;left:20%;bottom:12px;width:12px;height:12px;border-radius:50%;background:#CFCAC1"></div>
+<div style="position:absolute;left:40%;bottom:30px;width:12px;height:12px;border-radius:50%;background:#8FD9AF"></div>
+<div style="position:absolute;left:60%;bottom:44px;width:12px;height:12px;border-radius:50%;background:#0FA958"></div>
+<div style="position:absolute;left:80%;bottom:12px;width:12px;height:12px;border-radius:50%;background:#CFCAC1"></div>
+<div style="position:absolute;right:0;bottom:12px;width:12px;height:12px;border-radius:50%;background:#101010"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font:500 11px/1 'JetBrains Mono',monospace;color:#8C8880"><span>12.5 kg</span><span>max 15 kg</span><span style="color:#101010">12.5 kg</span></div>
+</div>
+<div style="display:flex;gap:12px;margin:12px 16px 0">
+<div style="flex:1;background:#fff;border:1px solid #E9E6DF;border-radius:20px;padding:16px"><div style="width:26px;height:26px;border-radius:8px;background:#1F6FEB"></div><div style="font:700 15px/1 'Space Grotesk',sans-serif;margin-top:12px">Calendario</div><div style="font:400 11px/1.3 'Space Grotesk',sans-serif;color:#8C8880;margin-top:4px">Sessioni passate</div></div>
+<div style="flex:1;background:#fff;border:1px solid #E9E6DF;border-radius:20px;padding:16px"><div style="width:26px;height:26px;border-radius:8px;background:#7A4FD6"></div><div style="font:700 15px/1 'Space Grotesk',sans-serif;margin-top:12px">Programma</div><div style="font:400 11px/1.3 'Space Grotesk',sans-serif;color:#8C8880;margin-top:4px">Sett. 5 di 5</div></div>
+</div>
+</div>
+
+<div class="ph" style="background:#FAF9F6;font-family:'Space Grotesk',sans-serif;color:#101010">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px 0;font:500 12px/1 'Space Grotesk',sans-serif"><span>12:57</span><span>▮▮▮ ᯤ ▰</span></div>
+<div style="padding:18px 20px 14px;background:#FAF9F6;border-bottom:1px solid #E9E6DF">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6F6C67">← VEN 28 AGO</span>
+<span style="font:500 12px/1 'JetBrains Mono',monospace;color:#6F6C67">SETT.5 · ×10</span>
+</div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:12px">
+<span style="font:700 30px/1 'Space Grotesk',sans-serif;letter-spacing:-.03em">Ven/Sab</span>
+<span style="font:700 20px/1 'JetBrains Mono',monospace">{{ doneCount }}<span style="color:#B6B1A8">/8</span></span>
+</div>
+<div style="display:flex;gap:4px;margin-top:12px">
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg1 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg2 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg3 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg4 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg5 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg6 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg7 }}"></div>
+<div style="flex:1;height:6px;border-radius:3px;background:{{ seg8 }}"></div>
+</div>
+</div>
+<div style="padding:6px 16px 100px">
+<sc-for list="{{ blocks }}" as="b" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:8px;padding:16px 4px 8px">
+<span style="width:8px;height:8px;border-radius:2px;background:{{ b.color }}"></span>
+<span style="font:700 11px/1 'JetBrains Mono',monospace;letter-spacing:.16em">BLOCCO {{ b.id }}</span>
+</div>
+<sc-for list="{{ b.items }}" as="it" hint-placeholder-count="3">
+<div onClick="{{ it.toggle }}" style="{{ it.rowStyle }}">
+<span style="width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;font:700 11px/1 'JetBrains Mono',monospace;background:{{ it.badgeBg }};color:{{ it.badgeFg }}">{{ it.check }}</span>
+<span style="{{ it.nameStyle }}">{{ it.name }}</span>
+<span style="font:500 14px/1 'JetBrains Mono',monospace;color:#8C8880">{{ it.val }}</span>
+</div>
+</sc-for>
+</sc-for>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:12px 16px 24px;background:linear-gradient(180deg,rgba(250,249,246,0),#FAF9F6 30%)">
+<div style="background:{{ ctaBg }};color:#fff;border-radius:16px;height:56px;display:flex;align-items:center;justify-content:center;font:700 17px/1 'Space Grotesk',sans-serif">{{ ctaLabel }}</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Prova a dire: "porta la gerarchia di <a class="dv-oid" href="#1a">1a</a> sulla palette chiara di <a class="dv-oid" href="#1c">1c</a>" · "mostrami <a class="dv-oid" href="#1b">1b</a> anche in modalità edit con gli input peso" · "nuove direzioni per la home"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:1000}}">
+const DATA = [
+  { id: "A", color: "#FF5B2E", items: [
+    { code: "A1", name: "Split Squat", val: "12.5 kg" },
+    { code: "A2", name: "Floor Press", val: "15 kg" },
+    { code: "A3", name: "Body Saw", val: "BW" } ] },
+  { id: "B", color: "#1F6FEB", items: [
+    { code: "B1", name: "Pull Up", val: "BW" },
+    { code: "B2", name: "Squat Mono", val: "12.5 kg" } ] },
+  { id: "C", color: "#0FA958", items: [
+    { code: "C1", name: "Leg Curl Pattine", val: "BW" },
+    { code: "C2", name: "Pushdown", val: "BW" },
+    { code: "C3", name: "Plank Orsetto", val: "BW" } ] }
+];
+
+const EDIT = [
+  { id: "A", items: [
+    { code: "A1", name: "Split Squat", kind: "weight", last: "12.5 kg", lastVal: 12.5 },
+    { code: "A2", name: "Floor Press", kind: "weight", last: "15 kg", lastVal: 15 },
+    { code: "A3", name: "Body Saw", kind: "bw", last: "Corpo libero", lastVal: 10 } ] },
+  { id: "B", items: [
+    { code: "B1", name: "Pull Up", kind: "bw", last: "Corpo libero", lastVal: 5 },
+    { code: "B2", name: "Squat Mono", kind: "weight", last: "12.5 kg", lastVal: 12.5 } ] },
+  { id: "C", items: [
+    { code: "C1", name: "Leg Curl Pattine", kind: "bw", last: "Corpo libero", lastVal: 5 },
+    { code: "C2", name: "Pushdown", kind: "band", last: "Elastico giallo", lastVal: 5, lastBand: "giallo" },
+    { code: "C3", name: "Plank Orsetto", kind: "bw", last: "Corpo libero", lastVal: 5 } ] }
+];
+const KINDS = [ { id: "weight", label: "Peso" }, { id: "band", label: "Elastico" }, { id: "bw", label: "Corpo libero" } ];
+const BANDS = [ { id: "azzurro", hex: "#4FA8DB" }, { id: "giallo", hex: "#E8C33D" }, { id: "arancione", hex: "#E0762C" } ];
+
+class Component extends DCLogic {
+  state = {
+    done: {},
+    vals: { A1: 12.5, A2: 15, A3: 10, B1: 5, B2: 12.5, C1: 5, C2: 5, C3: 5 },
+    bw: {}, band: { C2: "giallo" }, kinds: {}
+  };
+  setKind(code, kind) {
+    this.setState(s => { const k = Object.assign({}, s.kinds); k[code] = kind; return { kinds: k, openKind: null }; });
+  }
+  setChartPage(i) { this.setState({ chartPage: i }); }
+  toggleKindMenu(code) {
+    this.setState(s => ({ openKind: s.openKind === code ? null : code }));
+  }
+  bump(code, d) {
+    this.setState(s => {
+      const v = Object.assign({}, s.vals);
+      v[code] = Math.max(0, Math.round((v[code] + d) * 2) / 2);
+      return { vals: v };
+    });
+  }
+  toggleBw(code) {
+    this.setState(s => { const b = Object.assign({}, s.bw); b[code] = !b[code]; return { bw: b }; });
+  }
+  pickBand(code, id) {
+    this.setState(s => { const b = Object.assign({}, s.band); b[code] = id; return { band: b }; });
+  }
+  toggle(code) {
+    this.setState(s => {
+      const d = Object.assign({}, s.done);
+      if (d[code]) { delete d[code]; } else { d[code] = true; }
+      return { done: d };
+    });
+  }
+  renderVals() {
+    const done = this.state.done;
+    const flat = [];
+    const blocks = DATA.map(b => ({
+      id: b.id, color: b.color,
+      items: b.items.map(it => {
+        const isDone = !!done[it.code];
+        flat.push(isDone);
+        return {
+          name: it.name, val: it.val,
+          check: isDone ? "✓" : it.code,
+          badgeBg: isDone ? b.color : "#EDEAE3",
+          badgeFg: isDone ? "#ffffff" : "#6F6C67",
+          nameColor: isDone ? "#A5A099" : "#101010",
+          nameStyle: "flex:1;font:600 18px/1.15 'Space Grotesk',sans-serif;letter-spacing:-.01em;color:" +
+            (isDone ? "#A5A099" : "#101010") + ";text-decoration:" + (isDone ? "line-through" : "none"),
+          rowStyle: "display:flex;align-items:center;gap:12px;padding:11px 14px;margin-bottom:8px;border-radius:16px;cursor:pointer;background:" +
+            (isDone ? "#F2F0EA" : "#ffffff") + ";border:1px solid #E9E6DF;transition:background .18s ease",
+          toggle: () => this.toggle(it.code)
+        };
+      })
+    }));
+    const n = flat.filter(Boolean).length;
+    const segs = {};
+    for (let i = 0; i < 8; i++) segs["seg" + (i + 1)] = flat[i] ? "#101010" : "#E4E0D8";
+    const V = this.state.vals, BW = this.state.bw, BA = this.state.band;
+    let filled = 0;
+    const editBlocks = EDIT.map(b => ({
+      id: b.id,
+      items: b.items.map(it => {
+        const kind = this.state.kinds[it.code] || it.kind;
+        const isW = kind === "weight", isBand = kind === "band";
+        const changed = kind !== it.kind;
+        const compiled = isW ? true : (isBand ? !!BA[it.code] : !!BW[it.code]);
+        if (compiled) filled++;
+        return {
+          code: it.code, name: it.name, last: it.last,
+          isWeight: isW, isBw: kind === "bw", isBand: isBand,
+          presetLabel: changed ? "tipo cambiato" : "",
+          presetStyle: changed
+            ? "font:600 9px/1 Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#121110;background:#D9F24B;padding:4px 6px;border-radius:5px"
+            : "display:none",
+          open: this.state.openKind === it.code,
+          toggleMenu: () => this.toggleKindMenu(it.code),
+          typeIcon: isW ? "KG" : (isBand ? "EL" : "BW"),
+          typeLabel: isW ? "Peso" : (isBand ? "Elastico" : "Corpo libero"),
+          typeBtnStyle: "display:flex;align-items:center;gap:7px;padding:5px 9px 5px 5px;border-radius:11px;cursor:pointer;background:" +
+            (this.state.openKind === it.code ? "#2A2724" : "#121110") + ";border:1px solid #2A2724",
+          kinds: KINDS.map(k => ({
+            label: k.label,
+            icon: k.id === "weight" ? "KG" : (k.id === "band" ? "EL" : "BW"),
+            style: "flex:1;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font:600 12px/1 Archivo,sans-serif;background:" +
+              (kind === k.id ? "#F5F2EA" : "transparent") + ";color:" + (kind === k.id ? "#121110" : "#8E877C") +
+              ";border:1px solid " + (kind === k.id ? "#F5F2EA" : "#332F2B"),
+            pick: () => this.setKind(it.code, k.id)
+          })),
+          value: isW ? String(V[it.code]) : "",
+          cardStyle: "border:1px solid " + (compiled ? "rgba(217,242,75,.45)" : "#2A2724") +
+            ";background:" + (compiled ? "#1C1D14" : "#1B1917") +
+            ";border-radius:20px;padding:14px 16px 12px;margin-bottom:9px",
+          dec: () => this.bump(it.code, -0.5),
+          inc: () => this.bump(it.code, 0.5),
+          bwLabel: BW[it.code] ? "✓ Fatto a corpo libero" : "Segna come fatto",
+          bwStyle: "margin-top:12px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;font:700 15px/1 Archivo,sans-serif;background:" +
+            (BW[it.code] ? "#D9F24B" : "transparent") + ";color:" + (BW[it.code] ? "#121110" : "#B6AFA4") +
+            ";border:1.5px solid " + (BW[it.code] ? "#D9F24B" : "#332F2B"),
+          toggleBw: () => this.toggleBw(it.code),
+          bands: BANDS.map(x => ({
+            id: x.id,
+            style: "flex:1;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font:600 13px/1 Archivo,sans-serif;text-transform:capitalize;background:" +
+              (BA[it.code] === x.id ? x.hex : "transparent") + ";color:" + (BA[it.code] === x.id ? "#fff" : "#B6AFA4") +
+              ";border:1.5px solid " + (BA[it.code] === x.id ? x.hex : "#332F2B"),
+            dotStyle: "width:10px;height:10px;border-radius:50%;background:" + (BA[it.code] === x.id ? "#fff" : x.hex)
+          }))
+        };
+      })
+    }));
+    const PAGES = [
+      { range: "MAR — APR 2026", vals: [10, 10, 12.5, 12.5, 12.5, 14] },
+      { range: "MAG — LUG 2026", vals: [12.5, 12.5, 14, 15, 12.5, 12.5] }
+    ];
+    const cp = this.state.chartPage == null ? 1 : this.state.chartPage;
+    const pv = PAGES[cp].vals, pmax = Math.max.apply(null, pv);
+    const chartBars = pv.map(v => ({
+      label: String(v),
+      labelStyle: "font:600 11px/1 'JetBrains Mono',monospace;color:" + (v === pmax ? "#D9F24B" : "#6E6862"),
+      barStyle: "width:100%;border-radius:6px 6px 0 0;background:" + (v === pmax ? "#D9F24B" : "#2A2724") +
+        ";height:" + Math.round(34 + (v / pmax) * 46) + "px"
+    }));
+    const chartDots = PAGES.map((p, i) => ({
+      style: "width:" + (i === cp ? "18px" : "6px") + ";height:6px;border-radius:3px;cursor:pointer;transition:width .2s ease;background:" +
+        (i === cp ? "#D9F24B" : "#3A3733"),
+      pick: () => this.setChartPage(i)
+    }));
+    return Object.assign({
+      chartBars, chartDots, chartRange: PAGES[cp].range,
+      editBlocks, editBlocksBC: editBlocks.slice(1), filled, filledLabel: filled + "/8",
+      saveStyle: "background:" + (filled === 8 ? "#D9F24B" : "#2A2724") + ";color:" + (filled === 8 ? "#121110" : "#8E877C") +
+        ";border-radius:16px;height:58px;display:flex;align-items:center;justify-content:center;font:800 18px/1 Archivo,sans-serif",
+      saveLabel: filled === 8 ? "SALVA SESSIONE" : "SALVA · " + (8 - filled) + " DA COMPILARE",
+      barW: (filled / 8) * 100 + "%",
+      blocks, doneCount: n,
+      ringDeg: (n / 8) * 360 + "deg",
+      ctaBg: n === 8 ? "#0FA958" : "#101010",
+      ctaLabel: n === 8 ? "Sessione completata 🎉" : (n === 0 ? "Inizia sessione" : "Continua · " + (8 - n) + " rimasti")
+    }, segs);
+  }
+}
+</script>
+</body>
+</html>
