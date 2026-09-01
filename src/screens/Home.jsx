@@ -82,73 +82,72 @@ export default function Home({ onNavigate }) {
 
   if (cycle === undefined) return <div className={styles.container} />;
 
-  if (cycle === null) {
-    return (
-      <div className={styles.container}>
-        <header className={styles.header}>
-          <span className={styles.appName}>GYMLOG</span>
-        </header>
-        <div className={styles.onboarding}>
-          <p className={styles.onboardingTitle}>Benvenuto in GymLog</p>
-          <p className={styles.onboardingText}>Inizia caricando il programma della tua palestra.</p>
-          <button className={styles.onboardingBtn} onClick={() => onNavigate('program')}>
-            Carica programma
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const noCycle = cycle === null;
 
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <span className={styles.appName}>GYMLOG</span>
-        <span className={styles.headerDate}>{dayLabel}</span>
+        {!noCycle && <span className={styles.headerDate}>{dayLabel}</span>}
       </header>
 
       <main className={styles.main}>
-        {/* ── Hero card (lime) ── */}
+        {/* ── Hero card ── */}
         <div className={styles.heroCard}>
-          <div className={styles.heroMeta}>
-            <span className={styles.heroSlot}>OGGI · {slot ? slotLabel(slot) : '—'}</span>
-            <span className={styles.heroWeek}>SETT. {weekNum} / 5</span>
-          </div>
-
-          <div className={styles.tacche}>
-            {[1,2,3,4,5].map(w => (
-              <div key={w} className={[
-                styles.tacca,
-                w < weekNum  ? styles.taccaDone    : '',
-                w === weekNum ? styles.taccaCurrent : '',
-              ].join(' ')} />
-            ))}
-          </div>
-
-          <h1 className={styles.heroTitle}>Allenamento</h1>
-          <div className={styles.repsPill}>×{reps} reps</div>
-          <div className={styles.heroSep} />
-
-          <div className={styles.exPreview}>
-            {shownPrev.map(item => (
-              <div key={item.label} className={styles.previewRow}>
-                <span className={styles.previewLabel}>{item.label}</span>
-                <span className={styles.previewName}>{item.name}</span>
-                <span className={styles.previewValue}>{item.value}</span>
+          {noCycle ? (
+            /* Nessun programma: CTA inline */
+            <div className={styles.noProgramBox}>
+              <p className={styles.noProgramTitle}>Nessun programma</p>
+              <p className={styles.noProgramSub}>Carica il programma della tua palestra per iniziare.</p>
+              <button className={styles.heroBtn} onClick={() => onNavigate('program')}>
+                CARICA PROGRAMMA →
+              </button>
+            </div>
+          ) : (
+            /* Programma attivo: vista normale */
+            <>
+              <div className={styles.heroMeta}>
+                <span className={styles.heroSlot}>OGGI · {slot ? slotLabel(slot) : '—'}</span>
+                <span className={styles.heroWeek}>SETT. {weekNum} / 5</span>
               </div>
-            ))}
-            {!expanded && remaining > 0 && (
-              <button className={styles.previewMore} onClick={() => setExpanded(true)}>
-                + altri {remaining}
-              </button>
-            )}
-            {expanded && (
-              <button className={styles.previewMore} onClick={() => setExpanded(false)}>
-                ↑ nascondi
-              </button>
-            )}
-          </div>
 
-          <button className={styles.heroBtn} onClick={handleWorkoutTap}>INIZIA →</button>
+              <div className={styles.tacche}>
+                {[1,2,3,4,5].map(w => (
+                  <div key={w} className={[
+                    styles.tacca,
+                    w < weekNum   ? styles.taccaDone    : '',
+                    w === weekNum ? styles.taccaCurrent : '',
+                  ].join(' ')} />
+                ))}
+              </div>
+
+              <h1 className={styles.heroTitle}>Allenamento</h1>
+              <div className={styles.repsPill}>×{reps} reps</div>
+              <div className={styles.heroSep} />
+
+              <div className={styles.exPreview}>
+                {shownPrev.map(item => (
+                  <div key={item.label} className={styles.previewRow}>
+                    <span className={styles.previewLabel}>{item.label}</span>
+                    <span className={styles.previewName}>{item.name}</span>
+                    <span className={styles.previewValue}>{item.value}</span>
+                  </div>
+                ))}
+                {!expanded && remaining > 0 && (
+                  <button className={styles.previewMore} onClick={() => setExpanded(true)}>
+                    + altri {remaining}
+                  </button>
+                )}
+                {expanded && (
+                  <button className={styles.previewMore} onClick={() => setExpanded(false)}>
+                    ↑ nascondi
+                  </button>
+                )}
+              </div>
+
+              <button className={styles.heroBtn} onClick={handleWorkoutTap}>INIZIA →</button>
+            </>
+          )}
         </div>
 
         {/* ── Stats card ── */}
@@ -178,7 +177,7 @@ export default function Home({ onNavigate }) {
           </button>
           <button className={styles.halfCard} onClick={() => onNavigate('program')}>
             <span className={styles.halfTitle}>Programma</span>
-            <span className={styles.halfSub}>{cycleSub(cycle.name)}</span>
+            <span className={styles.halfSub}>{noCycle ? 'Nessuno attivo' : cycleSub(cycle.name)}</span>
           </button>
         </div>
       </main>
