@@ -88,7 +88,14 @@ export default function Home({ onNavigate }) {
     <div className={styles.container}>
       <header className={styles.header}>
         <span className={styles.appName}>GYMLOG</span>
-        {!noCycle && <span className={styles.headerDate}>{dayLabel}</span>}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {!noCycle && <span className={styles.headerDate}>{dayLabel}</span>}
+          <button
+            className={styles.settingsBtn}
+            onClick={() => onNavigate('settings')}
+            aria-label="Impostazioni"
+          >⚙</button>
+        </div>
       </header>
 
       <main className={styles.main}>

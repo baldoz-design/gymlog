@@ -5,6 +5,7 @@ import Stats from './screens/Stats';
 import Program from './screens/Program';
 import Calendar from './screens/Calendar';
 import Splash from './screens/Splash';
+import Settings from './screens/Settings';
 
 const NAV_KEY = 'gymlog_nav';
 
@@ -243,6 +244,15 @@ export default function App() {
       <Calendar
         onBack={goHome}
         onNavigate={navigate}
+      />
+    );
+  }
+  if (screen === 'settings') {
+    return (
+      <Settings
+        onBack={goHome}
+        exportAllData={exportAllData}
+        importAllData={importAllData}
       />
     );
   }
