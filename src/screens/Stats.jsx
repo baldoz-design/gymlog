@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllExercises, getExerciseHistory, getAllSessions, getEntriesBySession } from '../db';
+import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
 import { formatEntryValue } from '../logic';
 import ExerciseHistory from '../components/ExerciseHistory';
 import styles from './Stats.module.css';
@@ -71,23 +71,43 @@ export default function Stats({ onBack }) {
 
   useEffect(() => {
     async function load() {
-      // Find the most recent session that has at least one entry
-      const sessions = await getAllSessions();
-      sessions.sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
-      for (const sess of sessions) {
-        const entries = await getEntriesBySession(sess.id);
+      // 3 query parallele invece di N*2: molto più veloce su Firestore
+      const [exs, sessions, allEntries] = await Promise.all([
+        getAllExercises(),
+        getAllSessions(),
+        getAllSessionEntries(),
+      ]);
+
+      // Mappa sessionId → date
+      const sessionMap = Object.fromEntries(sessions.map(s => [s.id, s]));
+
+      // Trova l'ultima sessione con almeno un entry
+      const sortedSessions = [...sessions].sort(
+        (a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id)
+      );
+      for (const sess of sortedSessions) {
+        const entries = allEntries.filter(e => e.sessionId === sess.id);
         if (entries.length > 0) {
           setLastSessionIds(new Set(entries.map(e => e.exerciseId)));
           break;
         }
       }
 
-      const exs = await getAllExercises();
+      // Raggruppa entries per exerciseId
+      const entriesByEx = {};
+      for (const entry of allEntries) {
+        const sess = sessionMap[entry.sessionId];
+        if (!sess) continue;
+        if (!entriesByEx[entry.exerciseId]) entriesByEx[entry.exerciseId] = [];
+        entriesByEx[entry.exerciseId].push({ ...entry, date: sess.date });
+      }
+
       exs.sort((a, b) => a.canonicalName.localeCompare(b.canonicalName));
       setExercises(exs);
+
       const map = {};
       for (const ex of exs) {
-        const h = await getExerciseHistory(ex.id); // newest first
+        const h = (entriesByEx[ex.id] || []).sort((a, b) => b.date.localeCompare(a.date)); // newest first
         map[ex.id] = {
           count:   h.length,
           last:    h[0] || null,

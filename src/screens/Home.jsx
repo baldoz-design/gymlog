@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getActiveCycle, getAllSessions, getAllExercises, getLastEntryForExercise } from '../db';
+import { getActiveCycle, getAllSessions, getAllExercises, getLastEntriesMap } from '../db';
 import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
 import styles from './Home.module.css';
 
@@ -50,17 +50,17 @@ export default function Home({ onNavigate }) {
     // Load ALL exercises for the slot (all blocks)
     const allBEs = slotBlocks.flatMap(b => b.exercises.map(be => ({ ...be, blockLabel: b.label })));
 
-    getAllExercises().then(exercises => {
+    const exerciseIds = allBEs.map(be => be.exerciseId);
+    Promise.all([
+      getAllExercises(),
+      getLastEntriesMap(exerciseIds, today),
+    ]).then(([exercises, lastMap]) => {
       const exMap = Object.fromEntries(exercises.map(e => [e.id, e]));
-      Promise.all(
-        allBEs.map(be =>
-          getLastEntryForExercise(be.exerciseId, today).then(last => ({
-            label: `${be.blockLabel}${be.position}`,
-            name:  exMap[be.exerciseId]?.canonicalName || '?',
-            value: last ? formatEntryValue(last) : '—',
-          }))
-        )
-      ).then(setPreview);
+      setPreview(allBEs.map(be => ({
+        label: `${be.blockLabel}${be.position}`,
+        name:  exMap[be.exerciseId]?.canonicalName || '?',
+        value: lastMap[be.exerciseId] ? formatEntryValue(lastMap[be.exerciseId]) : '—',
+      })));
     });
   }, [cycle, slot, today]); // eslint-disable-line
 

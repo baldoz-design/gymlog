@@ -174,6 +174,28 @@ export async function getExerciseHistory(exerciseId) {
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
+// ── Bulk helper per Home (evita N chiamate a getAllSessions) ───────────────────
+// Restituisce una mappa exerciseId → entry più recente prima di beforeDateISO.
+export async function getLastEntriesMap(exerciseIds, beforeDateISO) {
+  const [allSessions, allEntries] = await Promise.all([
+    getAllSessions(),
+    getAllSessionEntries(),
+  ]);
+  const sessionMap = Object.fromEntries(allSessions.map(s => [s.id, s]));
+  const result = {};
+  for (const exerciseId of exerciseIds) {
+    const relevant = allEntries
+      .filter(e => e.exerciseId === exerciseId && sessionMap[e.sessionId]?.date < beforeDateISO)
+      .sort((a, b) => {
+        const da = sessionMap[a.sessionId]?.date || '';
+        const db2 = sessionMap[b.sessionId]?.date || '';
+        return db2.localeCompare(da);
+      });
+    result[exerciseId] = relevant[0] || null;
+  }
+  return result;
+}
+
 // ── Clear all ──────────────────────────────────────────────────────────────────
 
 export async function clearAllData() {
