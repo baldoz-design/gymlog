@@ -1,12 +1,22 @@
-import { signInWithRedirect } from 'firebase/auth';
+import { signInWithPopup, signInWithRedirect } from 'firebase/auth';
+import { useState } from 'react';
 import { auth, googleProvider } from '../firebase';
 
-export default function Auth({ error }) {
+export default function Auth({ error: propError }) {
+  const [localError, setLocalError] = useState('');
+  const error = localError || propError;
+
   async function handleSignIn() {
+    setLocalError('');
     try {
-      await signInWithRedirect(auth, googleProvider);
+      // Popup è più affidabile su desktop; se bloccato cade in redirect (PWA/mobile)
+      await signInWithPopup(auth, googleProvider);
     } catch (e) {
-      console.error('Sign-in error:', e);
+      if (e.code === 'auth/popup-blocked' || e.code === 'auth/popup-closed-by-user') {
+        try { await signInWithRedirect(auth, googleProvider); } catch {}
+      } else if (e.code !== 'auth/cancelled-popup-request') {
+        setLocalError('Accesso fallito: ' + (e.message || e.code));
+      }
     }
   }
 
