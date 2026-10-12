@@ -11,6 +11,7 @@ import {
 import ExerciseCard from '../components/ExerciseCard';
 import ExerciseHistory from '../components/ExerciseHistory';
 import CalendarPicker from '../components/CalendarPicker';
+import RpePicker from '../components/RpePicker';
 import styles from './Session.module.css';
 
 const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
@@ -37,6 +38,7 @@ export default function Session({ params, onBack }) {
   const [recording,     setRecording]     = useState(false);
   const [showDelConf,   setShowDelConf]   = useState(false);
   const [activeBlock,   setActiveBlock]   = useState(0);
+  const [rpeTarget,     setRpeTarget]     = useState(null); // { exerciseId }
 
   const blockRefs = useRef([]);
   const snapRef   = useRef(null);
@@ -135,9 +137,26 @@ export default function Session({ params, onBack }) {
       exerciseId,
       ...entryData,
       isIncrease,
+      perceivedEffort: entries[exerciseId]?.perceivedEffort ?? null,
     };
     await saveSessionEntry(entry);
     setEntries(prev => ({ ...prev, [exerciseId]: entry }));
+    setRpeTarget({ exerciseId });
+  }
+
+  async function handleRpeConfirm(perceivedEffort) {
+    if (!rpeTarget) return;
+    const { exerciseId } = rpeTarget;
+    const entry = entries[exerciseId];
+    if (!entry) { setRpeTarget(null); return; }
+    const updated = { ...entry, perceivedEffort };
+    await saveSessionEntry(updated);
+    setEntries(prev => ({ ...prev, [exerciseId]: updated }));
+    setRpeTarget(null);
+  }
+
+  function handleRpeCancel() {
+    setRpeTarget(null);
   }
 
   function handleDateSelect(newDate) {
@@ -268,6 +287,13 @@ export default function Session({ params, onBack }) {
             exercise={historyEx}
             onClose={() => setHistoryEx(null)}
             onRenamed={upd => { setExercises(p => ({ ...p, [upd.id]: upd })); setHistoryEx(null); }}
+          />
+        )}
+        {rpeTarget && (
+          <RpePicker
+            initialValue={entries[rpeTarget.exerciseId]?.perceivedEffort ?? null}
+            onConfirm={handleRpeConfirm}
+            onCancel={handleRpeCancel}
           />
         )}
       </div>

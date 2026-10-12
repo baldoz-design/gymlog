@@ -1,0 +1,128 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: env(safe-area-inset-top, 0px) 24px env(safe-area-inset-bottom, 0px);
+  padding-top: calc(env(safe-area-inset-top, 0px) + 16px);
+  transition: background 0.3s ease;
+}
+
+.closeBtn {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 20px);
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmBtn {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 20px);
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  border: none;
+  color: rgba(255,255,255,0.3);
+  font-size: 20px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmActive {
+  color: #fff;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin: 76px 0 52px;
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+}
+
+.barsWrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  padding: 24px 8px 0;
+}
+
+.bar {
+  width: 28px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 12px;
+  transition: background 0.12s, transform 0.12s;
+  flex-shrink: 0;
+}
+
+.barSel {
+  background: #fff;
+  transform: scaleY(1.04);
+  transform-origin: bottom;
+}
+
+.labelWrap {
+  margin-top: 28px;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+.labelPill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 13px 20px;
+  width: 100%;
+}
+
+.labelNum {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.labelTxt {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.labelHint {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
