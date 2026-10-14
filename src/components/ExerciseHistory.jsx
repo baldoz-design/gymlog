@@ -7,6 +7,8 @@ const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','n
 const DAYS_S   = ['dom','lun','mar','mer','gio','ven','sab'];
 const EL_CSS   = { blue: 'var(--azzurro)', yellow: 'var(--giallo)', orange: 'var(--arancione)' };
 
+const RPE_ZONE_COLOR = (v) => v <= 3 ? '#5BA3FF' : v <= 6 ? '#D9F24B' : v <= 8 ? '#E0762C' : '#E05252';
+
 function sessionDateLabel(iso) {
   const d = new Date(iso + 'T00:00:00');
   const day  = DAYS_S[d.getDay()];
@@ -202,6 +204,12 @@ export default function ExerciseHistory({ exercise, onClose, onRenamed }) {
               {history.slice(0, 20).map(entry => (
                 <li key={entry.id} className={styles.row}>
                   <span className={styles.rowDate}>{sessionDateLabel(entry.date)}</span>
+                  {entry.perceivedEffort && (
+                    <span className={styles.rowRpe}>
+                      <span className={styles.rowRpeDot} style={{ background: RPE_ZONE_COLOR(entry.perceivedEffort) }} />
+                      {entry.perceivedEffort}
+                    </span>
+                  )}
                   <span className={[styles.rowVal, entry.isIncrease ? styles.rowValPeak : ''].join(' ')}>
                     {entry.valueType === 'elastic' ? (
                       <span className={styles.rowElDot} style={{ color: EL_CSS[entry.elasticColor] }}>●</span>
