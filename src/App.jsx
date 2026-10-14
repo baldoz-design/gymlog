@@ -5,14 +5,15 @@ import {
   getAllCycles, getAllExercises, getAllSessions, getAllSessionEntries,
   clearAllData, importFromJSON, migrateFromIndexedDB,
 } from './db';
-import Auth     from './screens/Auth';
-import Home     from './screens/Home';
-import Session  from './screens/Session';
-import Stats    from './screens/Stats';
-import Program  from './screens/Program';
-import Calendar from './screens/Calendar';
-import Splash   from './screens/Splash';
-import Settings from './screens/Settings';
+import Auth         from './screens/Auth';
+import Home         from './screens/Home';
+import Session      from './screens/Session';
+import Stats        from './screens/Stats';
+import Program      from './screens/Program';
+import Calendar     from './screens/Calendar';
+import Splash       from './screens/Splash';
+import Settings     from './screens/Settings';
+import UpdateBanner from './components/UpdateBanner';
 
 const NAV_KEY = 'gymlog_nav';
 
@@ -167,19 +168,14 @@ export default function App() {
 
   // ── Schermate app ─────────────────────────────────────────────────────────────
 
-  if (!splashDone) return <Splash onDone={() => setSplashDone(true)} />;
+  const screenContent = !splashDone
+    ? <Splash onDone={() => setSplashDone(true)} />
+    : screen === 'session'  ? <Session  params={sessionParams} onBack={goHome} />
+    : screen === 'stats'    ? <Stats    onBack={goHome} />
+    : screen === 'program'  ? <Program  onBack={goHome} />
+    : screen === 'calendar' ? <Calendar onBack={goHome} onNavigate={navigate} />
+    : screen === 'settings' ? <Settings onBack={goHome} exportAllData={exportAllData} importAllData={importAllData} />
+    : <Home onNavigate={navigate} />;
 
-  if (screen === 'session')  return <Session  params={sessionParams} onBack={goHome} />;
-  if (screen === 'stats')    return <Stats    onBack={goHome} />;
-  if (screen === 'program')  return <Program  onBack={goHome} />;
-  if (screen === 'calendar') return <Calendar onBack={goHome} onNavigate={navigate} />;
-  if (screen === 'settings') return (
-    <Settings
-      onBack={goHome}
-      exportAllData={exportAllData}
-      importAllData={importAllData}
-    />
-  );
-
-  return <Home onNavigate={navigate} />;
+  return <>{screenContent}<UpdateBanner /></>;
 }
