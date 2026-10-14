@@ -241,3 +241,42 @@
   letter-spacing: 0.5px;
   text-align: right;
 }
+
+/* ── RPE pill ── */
+.rpePill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 5px 10px 5px 8px;
+  border-radius: 100px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+}
+.rpePill:active { opacity: 0.6; }
+
+.rpeZoneDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.rpeVal {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.rpeZoneLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.rpeAdd {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}

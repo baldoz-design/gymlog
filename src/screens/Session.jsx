@@ -128,7 +128,7 @@ export default function Session({ params, onBack }) {
     });
   }
 
-  async function handleSaveEntry(exerciseId, entryData) {
+  async function handleSaveEntry(exerciseId, entryData, opts = {}) {
     if (!session) return;
     const isIncrease = calculateIsIncrease(entryData, lastEntries[exerciseId] || null);
     const entry = {
@@ -141,7 +141,10 @@ export default function Session({ params, onBack }) {
     };
     await saveSessionEntry(entry);
     setEntries(prev => ({ ...prev, [exerciseId]: entry }));
-    setRpeTarget({ exerciseId });
+    // Apre il picker RPE solo su FATTO esplicito e se RPE non è ancora stato impostato
+    if (opts.explicit && !(entries[exerciseId]?.perceivedEffort)) {
+      setRpeTarget({ exerciseId });
+    }
   }
 
   async function handleRpeConfirm(perceivedEffort) {
@@ -250,8 +253,10 @@ export default function Session({ params, onBack }) {
                     lastEntry={lastEntries[be.exerciseId] || null}
                     isHistorical={isHistorical}
                     readonly={false}
-                    onSave={data => handleSaveEntry(be.exerciseId, data)}
+                    onSave={(data, opts) => handleSaveEntry(be.exerciseId, data, opts)}
                     onNameTap={() => setHistoryEx(ex)}
+                    perceivedEffort={entries[be.exerciseId]?.perceivedEffort ?? null}
+                    onRpeEdit={() => setRpeTarget({ exerciseId: be.exerciseId })}
                   />
                 );
               })}

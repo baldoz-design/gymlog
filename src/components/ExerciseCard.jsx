@@ -9,9 +9,13 @@ const ELASTIC_CSS     = { blue: 'var(--azzurro)', yellow: 'var(--giallo)', orang
 const TYPE_SIGLA      = { weight: 'KG', elastic: 'EL', bodyweight: 'BW' };
 const TYPE_LABEL      = { weight: 'Peso', elastic: 'Elastico', bodyweight: 'Corpo libero' };
 
+const RPE_ZONE_COLOR = (v) => v <= 3 ? '#5BA3FF' : v <= 6 ? '#D9F24B' : v <= 8 ? '#E0762C' : '#E05252';
+const RPE_ZONE_LABEL = (v) => v <= 3 ? 'Leggero' : v <= 6 ? 'Moderato' : v <= 8 ? 'Intenso' : 'Massimo';
+
 export default function ExerciseCard({
   label, exercise, currentEntry, lastEntry,
   isHistorical, readonly, onSave, onNameTap,
+  perceivedEffort = null, onRpeEdit = null,
 }) {
   const defaultType  = currentEntry?.valueType ?? lastEntry?.valueType ?? null;
   const defaultColor = currentEntry?.elasticColor
@@ -37,13 +41,13 @@ export default function ExerciseCard({
     }
   }, [currentEntry]);
 
-  const schedSave = useCallback((type, kg, color) => {
+  const schedSave = useCallback((type, kg, color, explicit = false) => {
     clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
       const base = { valueType: type, weightKg: null, elasticColor: null };
-      if      (type === 'weight')     { if (kg < 0) return; onSave({ ...base, weightKg: kg }); }
-      else if (type === 'elastic')    { if (!color) return;  onSave({ ...base, elasticColor: color }); }
-      else if (type === 'bodyweight') { onSave(base); }
+      if      (type === 'weight')     { if (kg < 0) return; onSave({ ...base, weightKg: kg }, { explicit }); }
+      else if (type === 'elastic')    { if (!color) return;  onSave({ ...base, elasticColor: color }, { explicit }); }
+      else if (type === 'bodyweight') { onSave(base, { explicit }); }
     }, 300);
   }, [onSave]);
 
@@ -185,7 +189,7 @@ export default function ExerciseCard({
           </div>
           <button
             className={`${styles.doneBtn} ${isSaved ? styles.doneBtnSaved : ''}`}
-            onClick={() => schedSave('weight', weightKg, null)}
+            onClick={() => schedSave('weight', weightKg, null, true)}
           >
             {isSaved ? '✓' : 'FATTO'}
           </button>
@@ -211,7 +215,7 @@ export default function ExerciseCard({
           </div>
           <button
             className={`${styles.doneBtn} ${isSaved ? styles.doneBtnSaved : ''}`}
-            onClick={() => elasticColor && schedSave('elastic', null, elasticColor)}
+            onClick={() => elasticColor && schedSave('elastic', null, elasticColor, true)}
           >
             {isSaved ? '✓' : 'FATTO'}
           </button>
@@ -223,11 +227,25 @@ export default function ExerciseCard({
           <div className={styles.bwLabel}>Corpo libero</div>
           <button
             className={`${styles.doneBtn} ${isSaved ? styles.doneBtnSaved : ''}`}
-            onClick={() => schedSave('bodyweight', null, null)}
+            onClick={() => schedSave('bodyweight', null, null, true)}
           >
             {isSaved ? '✓' : 'FATTO'}
           </button>
         </div>
+      )}
+
+      {isSaved && onRpeEdit && (
+        <button className={styles.rpePill} onClick={onRpeEdit}>
+          {perceivedEffort != null ? (
+            <>
+              <span className={styles.rpeZoneDot} style={{ background: RPE_ZONE_COLOR(perceivedEffort) }} />
+              <span className={styles.rpeVal}>{perceivedEffort}</span>
+              <span className={styles.rpeZoneLabel}>{RPE_ZONE_LABEL(perceivedEffort)}</span>
+            </>
+          ) : (
+            <span className={styles.rpeAdd}>+ RPE</span>
+          )}
+        </button>
       )}
 
     </div>
