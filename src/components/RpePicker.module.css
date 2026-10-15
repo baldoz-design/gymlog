@@ -62,26 +62,51 @@
 .barsWrap {
   display: flex;
   align-items: flex-end;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
   user-select: none;
   touch-action: none;
-  padding: 24px 8px 0;
+  padding: 24px 0 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.groupBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
 }
 
 .bar {
-  width: 28px;
-  background: rgba(255,255,255,0.18);
+  width: 26px;
   border-radius: 12px;
-  transition: background 0.12s, transform 0.12s;
+  opacity: 0.22;
+  transition: opacity 0.12s, transform 0.12s;
   flex-shrink: 0;
 }
 
 .barSel {
-  background: #fff;
+  opacity: 1;
   transform: scaleY(1.04);
   transform-origin: bottom;
 }
+
+.groupLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255,255,255,0.28);
+  transition: color 0.2s;
+}
+
+.groupLabelActive { color: rgba(255,255,255,0.75); }
 
 .labelWrap {
   margin-top: 28px;
@@ -104,11 +129,9 @@
 .labelNum {
   width: 28px;
   height: 28px;
-  background: rgba(255,255,255,0.2);
   border-radius: 50%;
   font-size: 13px;
   font-weight: 900;
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

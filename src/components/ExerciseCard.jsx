@@ -28,10 +28,8 @@ export default function ExerciseCard({
   const [weightKg,     setWeightKg]     = useState(defaultKg);
   const [elasticColor, setElasticColor] = useState(defaultColor);
   const [typeOpen,     setTypeOpen]     = useState(false);
-  const [editingKg,    setEditingKg]    = useState(false);
 
   const saveTimer  = useRef(null);
-  const kgInputRef = useRef(null);
 
   useEffect(() => {
     if (currentEntry) {
@@ -75,13 +73,13 @@ export default function ExerciseCard({
     schedSave('weight', next, null);
   }
 
-  function handleKgTap() {
-    setEditingKg(true);
-    setTimeout(() => { kgInputRef.current?.select(); }, 30);
+  // iOS ignora select() chiamato dentro onFocus: la selezione va rimandata di un tick
+  function handleKgFocus(e) {
+    const el = e.target;
+    setTimeout(() => el.setSelectionRange(0, el.value.length), 0);
   }
 
   function handleKgBlur() {
-    setEditingKg(false);
     const parsed = parseFloat(String(weightKg).replace(',', '.'));
     const val = isNaN(parsed) ? 0 : Math.max(0, Math.round(parsed * 10) / 10);
     setWeightKg(val);
@@ -164,27 +162,23 @@ export default function ExerciseCard({
         <div className={styles.controlRow}>
           <div className={styles.stepper}>
             <button className={styles.stepBtn} onClick={handleStepDown} aria-label="-0.5 kg">−</button>
-            <div className={styles.stepCenter}>
-              {editingKg ? (
-                <input
-                  ref={kgInputRef}
-                  className={styles.stepInput}
-                  type="number"
-                  inputMode="decimal"
-                  step="0.5"
-                  min="0"
-                  value={weightKg}
-                  onChange={handleKgChange}
-                  onBlur={handleKgBlur}
-                  onKeyDown={handleKgKey}
-                />
-              ) : (
-                <button className={styles.stepValBtn} onClick={handleKgTap}>
-                  <span className={styles.stepVal}>{weightKg}</span>
-                  <span className={styles.stepUnit}>kg</span>
-                </button>
-              )}
-            </div>
+            <label className={styles.stepCenter}>
+              <input
+                className={styles.stepInput}
+                type="text"
+                inputMode="decimal"
+                enterKeyHint="done"
+                autoComplete="off"
+                value={weightKg}
+                style={{ width: `${Math.max(1, String(weightKg).length)}ch` }}
+                onFocus={handleKgFocus}
+                onChange={handleKgChange}
+                onBlur={handleKgBlur}
+                onKeyDown={handleKgKey}
+                aria-label="Peso in kg"
+              />
+              <span className={styles.stepUnit}>kg</span>
+            </label>
             <button className={styles.stepBtn} onClick={handleStepUp} aria-label="+0.5 kg">+</button>
           </div>
           <button

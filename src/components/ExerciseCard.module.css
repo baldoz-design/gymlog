@@ -142,21 +142,6 @@
   gap: 4px;
 }
 
-.stepValBtn {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  background: transparent;
-}
-.stepValBtn:active { opacity: 0.6; }
-
-.stepVal {
-  font-size: 38px;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -1px;
-}
-
 .stepUnit {
   font-size: 14px;
   font-weight: 600;
@@ -171,12 +156,12 @@
   background: transparent;
   border: none;
   outline: none;
-  width: 100%;
+  padding: 0;
+  min-width: 1ch;
   text-align: center;
-  -moz-appearance: textfield;
+  caret-color: var(--accent);
 }
-.stepInput::-webkit-outer-spin-button,
-.stepInput::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.stepInput::selection { background: var(--accent-soft); }
 
 /* ── Done button ── */
 .doneBtn {

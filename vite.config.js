@@ -6,9 +6,8 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'RPE pill sulla card: tocca per modificare lo sforzo',
-  'RPE nello storico esercizi con colore per zona',
-  'Bug fix: +/- stepper non apre più il picker sforzo',
+  'Peso modificabile con un solo tap sul valore',
+  'Sforzo percepito con barre raggruppate in quattro zone colorate',
 ]
 
 function versionPlugin() {

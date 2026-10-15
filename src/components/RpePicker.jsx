@@ -16,6 +16,15 @@ const RPE_LABELS = {
   10: 'Limite assoluto',
 };
 
+const ZONES = [
+  { range: [1, 3],  label: 'Leggero',  color: '#5BA3FF' },
+  { range: [4, 6],  label: 'Moderato', color: '#D9F24B' },
+  { range: [7, 8],  label: 'Intenso',  color: '#E0762C' },
+  { range: [9, 10], label: 'Massimo',  color: '#E05252' },
+];
+
+const zoneIndex = v => ZONES.findIndex(z => v >= z.range[0] && v <= z.range[1]);
+
 function getBg(value) {
   if (!value) return 'linear-gradient(180deg,#1C1A17 0%,#121110 100%)';
   if (value <= 3) return 'linear-gradient(180deg,#0D1F38 0%,#121110 75%)';
@@ -29,10 +38,15 @@ export default function RpePicker({ initialValue = null, onConfirm, onCancel }) 
   const barsRef  = useRef(null);
   const dragging = useRef(false);
 
+  // Le zone hanno spaziature diverse: si prende la barra col centro più vicino
   function valueFromX(clientX) {
-    const rect = barsRef.current.getBoundingClientRect();
-    const pct  = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    return Math.max(1, Math.min(10, Math.floor(pct * 10) + 1));
+    let best = 1, bestDist = Infinity;
+    for (const bar of barsRef.current.querySelectorAll('[data-value]')) {
+      const r = bar.getBoundingClientRect();
+      const d = Math.abs(clientX - (r.left + r.width / 2));
+      if (d < bestDist) { bestDist = d; best = Number(bar.dataset.value); }
+    }
+    return best;
   }
 
   function onPointerDown(e) {
@@ -54,6 +68,8 @@ export default function RpePicker({ initialValue = null, onConfirm, onCancel }) 
     if (value) onConfirm(value);
   }
 
+  const activeZone = value ? zoneIndex(value) : -1;
+
   return (
     <div className={styles.overlay} style={{ background: getBg(value) }}>
       <button className={styles.closeBtn} onClick={onCancel} aria-label="Annulla">✕</button>
@@ -74,19 +90,29 @@ export default function RpePicker({ initialValue = null, onConfirm, onCancel }) 
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
       >
-        {[1,2,3,4,5,6,7,8,9,10].map(v => (
-          <div
-            key={v}
-            className={`${styles.bar} ${v === value ? styles.barSel : ''}`}
-            style={{ height: BAR_HEIGHTS[v - 1] }}
-          />
+        {ZONES.map((zone, zi) => (
+          <div key={zone.label} className={styles.group}>
+            <div className={styles.groupBars}>
+              {Array.from({ length: zone.range[1] - zone.range[0] + 1 }, (_, k) => zone.range[0] + k).map(v => (
+                <div
+                  key={v}
+                  data-value={v}
+                  className={`${styles.bar} ${value && v <= value ? styles.barSel : ''}`}
+                  style={{ height: BAR_HEIGHTS[v - 1], background: zone.color }}
+                />
+              ))}
+            </div>
+            <span className={`${styles.groupLabel} ${zi === activeZone ? styles.groupLabelActive : ''}`}>
+              {zone.label}
+            </span>
+          </div>
         ))}
       </div>
 
       <div className={styles.labelWrap}>
         {value ? (
-          <div className={styles.labelPill}>
-            <span className={styles.labelNum}>{value}</span>
+          <div className={styles.labelPill} style={{ boxShadow: `inset 0 0 0 1px ${ZONES[activeZone].color}55` }}>
+            <span className={styles.labelNum} style={{ background: `${ZONES[activeZone].color}30`, color: ZONES[activeZone].color }}>{value}</span>
             <span className={styles.labelTxt}>{RPE_LABELS[value]}</span>
           </div>
         ) : (
