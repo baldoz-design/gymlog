@@ -1,0 +1,71 @@
+.overlay { position:fixed; inset:0; z-index:300; display:flex; justify-content:center; overflow:hidden; user-select:none; -webkit-user-select:none; cursor:pointer; }
+.inner { width:100%; max-width:480px; display:flex; flex-direction:column; padding:calc(env(safe-area-inset-top, 0px) + 10px) 22px calc(env(safe-area-inset-bottom, 0px) + 34px); }
+.t_lime { background:var(--accent); color:var(--accent-ink); }
+.t_dark { background:radial-gradient(120% 70% at 85% 0%, #2A2724 0%, #121110 62%); color:var(--text); }
+.t_orange { background:#E0762C; color:var(--accent-ink); }
+.t_blue { background:#5BA3FF; color:var(--accent-ink); }
+.t_rpe { color:#fff; }
+.top { display:flex; flex-direction:column; gap:10px; flex-shrink:0; }
+.segs { display:flex; gap:4px; }
+.seg { flex:1; height:3px; border-radius:2px; background:color-mix(in srgb, currentColor 25%, transparent); overflow:hidden; }
+.fill { display:block; height:100%; width:0; background:currentColor; }
+.fillDone { width:100%; }
+.fillNow { animation-name:wrapFill; animation-timing-function:linear; animation-fill-mode:forwards; }
+@keyframes wrapFill { from { width:0; } to { width:100%; } }
+.bar { display:flex; align-items:center; justify-content:space-between; }
+.brand { font-size:11px; font-weight:900; letter-spacing:2px; opacity:.7; }
+.close { width:36px; height:36px; border-radius:50%; background:color-mix(in srgb, currentColor 14%, transparent); color:inherit; font-size:20px; display:flex; align-items:center; justify-content:center; }
+.slide { flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+.slide > * { animation:wrapRise .55s cubic-bezier(.2,.8,.2,1) both; }
+.slide > :nth-child(2) { animation-delay:.06s; }
+.slide > :nth-child(3) { animation-delay:.12s; }
+.slide > :nth-child(4) { animation-delay:.18s; }
+.slide > :nth-child(5) { animation-delay:.24s; }
+.slide > :nth-child(n+6) { animation-delay:.3s; }
+@keyframes wrapRise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+.eyebrow { font-size:12px; font-weight:900; letter-spacing:2px; margin-bottom:14px; opacity:.75; }
+.range { font-size:22px; font-weight:800; letter-spacing:-.4px; margin-bottom:30px; }
+.h { font-size:34px; font-weight:900; letter-spacing:-1.2px; line-height:1.05; margin-bottom:24px; text-wrap:balance; }
+.mega { font-size:150px; font-weight:900; letter-spacing:-8px; line-height:.85; font-variant-numeric:tabular-nums; }
+.megaAcc { color:var(--accent); }
+.megaLbl { font-size:30px; font-weight:900; letter-spacing:-1px; margin-top:8px; }
+.megaLbl2 { font-size:16px; font-weight:600; opacity:.75; margin-top:12px; }
+.foot { font-size:15px; font-weight:600; line-height:1.45; margin-top:26px; opacity:.8; max-width:30ch; }
+.tally { display:flex; gap:12px; height:64px; margin-bottom:22px; }
+.tally i { width:12px; border-radius:6px; background:currentColor; display:block; }
+.tally i:nth-child(odd) { transform:rotate(-4deg); }
+.tally i:nth-child(even) { transform:rotate(5deg); }
+.slots { display:flex; flex-direction:column; gap:8px; }
+.slotRow { display:flex; align-items:center; gap:12px; padding:13px 16px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid var(--border-dark); }
+.slotName { font-size:24px; font-weight:900; letter-spacing:-.6px; color:var(--muted); }
+.slotOn .slotName { color:var(--text); }
+.slotDate { flex:1; font-size:13px; color:var(--muted); }
+.slotCheck { width:30px; height:30px; border-radius:50%; border:2px solid var(--border-dark); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; flex-shrink:0; }
+.slotOn .slotCheck { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+.streak { display:flex; align-items:center; gap:14px; margin-top:28px; }
+.streakNum { font-size:64px; font-weight:900; letter-spacing:-3px; color:var(--accent); line-height:1; }
+.streakTxt { font-size:16px; font-weight:700; line-height:1.3; max-width:17ch; }
+.weeks { display:flex; gap:6px; margin-top:14px; }
+.weeks i { flex:1; height:8px; border-radius:4px; background:var(--surface-3); display:block; }
+.weeks i.weekOn { background:var(--accent); }
+.list { display:flex; flex-direction:column; }
+.upRow { display:grid; grid-template-columns:1fr auto; column-gap:12px; row-gap:2px; padding:14px 0; border-top:2px solid color-mix(in srgb, currentColor 18%, transparent); }
+.upRow .upName, .upRow .upVals { grid-column:1; }
+.upName { font-size:20px; font-weight:900; letter-spacing:-.4px; line-height:1.15; }
+.upVals { font-size:14px; font-weight:700; opacity:.7; }
+.upDelta { grid-column:2; grid-row:1 / span 2; align-self:center; font-size:40px; font-weight:900; letter-spacing:-1.5px; font-variant-numeric:tabular-nums; }
+.pushRow { display:flex; align-items:center; gap:12px; padding:14px 0; border-top:2px solid color-mix(in srgb, currentColor 18%, transparent); }
+.pushMain { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.pushRpe { width:44px; height:44px; border-radius:50%; background:var(--accent-ink); color:#5BA3FF; font-size:20px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.zonePill { align-self:flex-start; border:2px solid; border-radius:100px; padding:4px 14px; font-size:15px; font-weight:800; margin-top:16px; }
+.zoneBar { display:flex; gap:3px; height:16px; border-radius:8px; overflow:hidden; margin-top:28px; }
+.zoneLegend { display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:12px; font-size:13px; font-weight:700; }
+.zoneLegend span { display:flex; align-items:center; gap:6px; }
+.zoneLegend i { width:8px; height:8px; border-radius:50%; display:block; }
+.cta { margin-top:30px; height:54px; border-radius:14px; background:var(--accent); color:var(--accent-ink); font-size:14px; font-weight:900; letter-spacing:1.2px; width:100%; }
+.cta:active { opacity:.85; }
+.hint { font-size:11px; font-weight:700; letter-spacing:1px; opacity:.5; text-align:center; text-transform:uppercase; min-height:14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide > * { animation:none; }
+}

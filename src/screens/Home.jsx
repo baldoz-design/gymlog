@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
-import { getActiveCycle, getAllSessions, getAllExercises, getLastEntriesMap } from '../db';
+import { getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap } from '../db';
 import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
+import { buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
+import { rpeZone } from '../rpe';
+import WeeklyWrap from '../components/WeeklyWrap';
 import styles from './Home.module.css';
+
+const WRAP_SEEN_KEY = 'gymlog_wrap_seen';
+const readWrapSeen = () => { try { return localStorage.getItem(WRAP_SEEN_KEY); } catch { return null; } };
 
 const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
 const DAYS_S   = ['dom','lun','mar','mer','gio','ven','sab'];
@@ -9,9 +15,10 @@ const DAYS_S   = ['dom','lun','mar','mer','gio','ven','sab'];
 export default function Home({ onNavigate }) {
   const [cycle,        setCycle]        = useState(undefined);
   const [preview,      setPreview]      = useState([]);
-  const [weekBars,     setWeekBars]     = useState([0,0,0,0,0,0]);
-  const [sessionCount, setSessionCount] = useState(0);
+  const [index,        setIndex]        = useState(null);
   const [expanded,     setExpanded]     = useState(false);
+  const [wrapOpen,     setWrapOpen]     = useState(false);
+  const [wrapSeen,     setWrapSeen]     = useState(readWrapSeen);
 
   const today   = todayISO();
   const now     = new Date();
@@ -26,24 +33,8 @@ export default function Home({ onNavigate }) {
   useEffect(() => {
     if (cycle === undefined) return;
 
-    // Bar chart: last 6 Mon-based calendar weeks
-    getAllSessions().then(sessions => {
-      setSessionCount(sessions.length);
-      const bars = [];
-      for (let i = 5; i >= 0; i--) {
-        const d = new Date(now);
-        const dow = (d.getDay() + 6) % 7;
-        d.setDate(d.getDate() - dow - i * 7);
-        d.setHours(0, 0, 0, 0);
-        const end = new Date(d);
-        end.setDate(d.getDate() + 7);
-        bars.push(sessions.filter(s => {
-          const sd = new Date(s.date + 'T00:00:00');
-          return sd >= d && sd < end;
-        }).length);
-      }
-      setWeekBars(bars);
-    });
+    Promise.all([getAllSessions(), getAllSessionEntries(), getAllExercises()])
+      .then(([sessions, entries, exercises]) => setIndex(buildIndex(sessions, entries, exercises)));
 
     if (!cycle || !slot) return;
     const slotBlocks = cycle.slots[slot] || [];
@@ -65,9 +56,20 @@ export default function Home({ onNavigate }) {
   }, [cycle, slot, today]); // eslint-disable-line
 
   const dayLabel   = `${DAYS_S[now.getDay()].toUpperCase()} ${now.getDate()} ${MONTHS_S[now.getMonth()].toUpperCase()}`;
-  const maxBar     = Math.max(...weekBars, 1);
+  const period     = index ? periodStats(index, now, 1, 4) : null;
+  const wrap       = index ? computeWrap(index, now) : null;
+  const hasWrap    = wrap && wrap.sessions.length > 0;
+  const isWrapSeen = hasWrap && wrapSeen === wrap.start;
+  const exWithHistory = index ? new Set(index.entries.map(e => e.exerciseId)).size : 0;
+  const avgZone    = period?.rpe.avg != null ? rpeZone(period.rpe.avg) : null;
   const shownPrev  = expanded ? preview : preview.slice(0, 3);
   const remaining  = preview.length - 3;
+
+  function closeWrap() {
+    setWrapOpen(false);
+    setWrapSeen(wrap.start);
+    try { localStorage.setItem(WRAP_SEEN_KEY, wrap.start); } catch { /* storage non disponibile */ }
+  }
 
   function handleWorkoutTap() {
     if (!cycle) { onNavigate('program'); return; }
@@ -99,6 +101,22 @@ export default function Home({ onNavigate }) {
       </header>
 
       <main className={styles.main}>
+        {/* ── Wrap settimanale ── */}
+        {hasWrap && (
+          <button className={`${styles.wrapCard} ${isWrapSeen ? styles.wrapSeen : ''}`} onClick={() => setWrapOpen(true)}>
+            <span className={styles.wrapRing}>
+              <span className={styles.wrapRingIn}>{wrap.sessions.slice(0, 5).map(s => <i key={s.id} />)}</span>
+            </span>
+            <span className={styles.wrapTxt}>
+              <span className={styles.wrapTitle}>{isWrapSeen ? 'Wrap della settimana' : 'Il tuo wrap è pronto'}</span>
+              <span className={styles.wrapSub}>
+                {new Date(wrap.start + 'T00:00:00').getDate()} → {new Date(wrap.end + 'T00:00:00').getDate()} {MONTHS_S[new Date(wrap.end + 'T00:00:00').getMonth()]} · {wrap.sessions.length} allenamenti
+              </span>
+            </span>
+            <span className={styles.wrapArrow}>→</span>
+          </button>
+        )}
+
         {/* ── Hero card ── */}
         <div className={styles.heroCard}>
           {noCycle ? (
@@ -160,19 +178,24 @@ export default function Home({ onNavigate }) {
         {/* ── Stats card ── */}
         <button className={styles.statsCard} onClick={() => onNavigate('stats')}>
           <div className={styles.statsTop}>
-            <div>
-              <span className={styles.statsTitle}>Statistiche</span>
-              <span className={styles.statsSub}>Sessioni per settimana</span>
-            </div>
-            <span className={styles.statsMeta}>{sessionCount} SESSIONI</span>
+            <span className={styles.statsTitle}>Statistiche</span>
+            <span className={styles.statsMeta}>ULTIME 4 SETT.</span>
           </div>
-          <div className={styles.barsWrap}>
-            {weekBars.map((v, i) => (
-              <div key={i}
-                className={[styles.bar, i === 5 ? styles.barCurrent : ''].join(' ')}
-                style={{ height: `${Math.max(10, (v / maxBar) * 100)}%` }}
-              />
-            ))}
+          <div className={styles.kpiRow}>
+            <div className={styles.kpi}>
+              <span className={styles.kpiVal}>{period ? period.sessions : '—'}</span>
+              <span className={styles.kpiLbl}>SESSIONI</span>
+            </div>
+            <div className={styles.kpi}>
+              <span className={styles.kpiVal}>{period ? <>{period.consistency}<small>%</small></> : '—'}</span>
+              <span className={styles.kpiLbl}>COSTANZA</span>
+            </div>
+            <div className={styles.kpi}>
+              <span className={styles.kpiVal}>
+                {avgZone ? <><i className={styles.kpiDot} style={{ background: avgZone.color }} />{fmtNum(period.rpe.avg)}</> : '—'}
+              </span>
+              <span className={styles.kpiLbl}>SFORZO MEDIO</span>
+            </div>
           </div>
         </button>
 
@@ -186,8 +209,24 @@ export default function Home({ onNavigate }) {
             <span className={styles.halfTitle}>Programma</span>
             <span className={styles.halfSub}>{noCycle ? 'Nessuno attivo' : cycleSub(cycle.name)}</span>
           </button>
+          <button className={styles.halfCard} onClick={() => onNavigate('exercises')}>
+            <span className={styles.halfTitle}>Esercizi</span>
+            <span className={styles.halfSub}>{exWithHistory} con storico</span>
+          </button>
         </div>
       </main>
+
+      {wrapOpen && (
+        <WeeklyWrap
+          wrap={wrap}
+          weekNum={weekNum}
+          reps={reps}
+          todaySlot={slot}
+          todayBlocks={cycle && slot ? (cycle.slots[slot] || []) : []}
+          onClose={closeWrap}
+          onStart={() => { closeWrap(); handleWorkoutTap(); }}
+        />
+      )}
     </div>
   );
 }

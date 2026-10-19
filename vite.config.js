@@ -6,8 +6,9 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'Peso modificabile con un solo tap sul valore',
-  'Sforzo percepito con barre raggruppate in quattro zone colorate',
+  'Wrap settimanale: il lunedì in home trovi il riepilogo della settimana',
+  'Nuova sezione Statistiche con costanza, sforzo e progressi delle ultime 4 settimane',
+  'La vecchia Statistiche ora si chiama Esercizi, con il filtro Ultima sessione',
 ]
 
 function versionPlugin() {

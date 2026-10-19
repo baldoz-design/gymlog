@@ -9,6 +9,7 @@ import Auth         from './screens/Auth';
 import Home         from './screens/Home';
 import Session      from './screens/Session';
 import Stats        from './screens/Stats';
+import Exercises    from './screens/Exercises';
 import Program      from './screens/Program';
 import Calendar     from './screens/Calendar';
 import Splash       from './screens/Splash';
@@ -172,6 +173,7 @@ export default function App() {
     ? <Splash onDone={() => setSplashDone(true)} />
     : screen === 'session'  ? <Session  params={sessionParams} onBack={goHome} />
     : screen === 'stats'    ? <Stats    onBack={goHome} />
+    : screen === 'exercises' ? <Exercises onBack={goHome} />
     : screen === 'program'  ? <Program  onBack={goHome} />
     : screen === 'calendar' ? <Calendar onBack={goHome} onNavigate={navigate} />
     : screen === 'settings' ? <Settings onBack={goHome} exportAllData={exportAllData} importAllData={importAllData} />

@@ -1,136 +1,39 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
-import { formatEntryValue } from '../logic';
+import { slotLabel } from '../logic';
+import { SLOTS, buildIndex, fmtNum, periodStats, slotsDoneInWeek, weekWindow } from '../analytics';
+import { ZONES, rpeZone } from '../rpe';
 import ExerciseHistory from '../components/ExerciseHistory';
 import styles from './Stats.module.css';
 
-const FILTERS = [
-  { id: 'all',        label: 'Ultimi 8' },
-  { id: 'weight',     label: 'Con peso' },
-  { id: 'elastic',    label: 'Con elastico' },
-  { id: 'bodyweight', label: 'Corpo lib.' },
-];
-
-const EL_CSS = { blue: 'var(--azzurro)', yellow: 'var(--giallo)', orange: 'var(--arancione)' };
-
-function getType(history) {
-  if (!history.length) return 'none';
-  const types = new Set(history.map(e => e.valueType));
-  if (types.size > 1) return 'mixed';
-  return [...types][0];
-}
-
-function MiniBarChart({ history }) {
-  const vals = history.filter(e => e.valueType === 'weight').map(e => e.weightKg).slice(-6);
-  if (vals.length < 2) return null;
-  const max     = Math.max(...vals);
-  const peakIdx = vals.lastIndexOf(max);
-  return (
-    <div className={styles.miniChart}>
-      {vals.map((v, i) => (
-        <div key={i}
-          className={[styles.miniBar, i === peakIdx ? styles.miniBarPeak : ''].join(' ')}
-          style={{ height: `${Math.max(20, (v / max) * 100)}%` }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ElasticDots({ history }) {
-  const entries = history.filter(e => e.valueType === 'elastic').slice(-6);
-  return (
-    <div className={styles.dotRow}>
-      {entries.map((e, i) => (
-        <span key={i} className={styles.colorDot} style={{ color: EL_CSS[e.elasticColor] }}>●</span>
-      ))}
-    </div>
-  );
-}
-
-function MixedChart({ history }) {
-  const entries = history.slice(-6);
-  return (
-    <div className={styles.dotRow}>
-      {entries.map((e, i) =>
-        e.valueType === 'bodyweight'
-          ? <span key={i} className={styles.dash}>-</span>
-          : <span key={i} className={styles.colorDot} style={{ color: EL_CSS[e.elasticColor] }}>●</span>
-      )}
-    </div>
-  );
-}
+const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const DAYS_S   = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+const shortDate = iso => { const d = new Date(iso + 'T00:00:00'); return `${d.getDate()} ${MONTHS_S[d.getMonth()]}`; };
+const dayLabel  = iso => { const d = new Date(iso + 'T00:00:00'); return `${DAYS_S[d.getDay()]} ${d.getDate()} ${MONTHS_S[d.getMonth()]}`; };
 
 export default function Stats({ onBack }) {
-  const [exercises,    setExercises]    = useState([]);
-  const [data,         setData]         = useState({});
-  const [filter,       setFilter]       = useState('all');
-  const [selected,     setSelected]     = useState(null);
-  const [lastSessionIds, setLastSessionIds] = useState(new Set());
-  const [search,       setSearch]       = useState('');
+  const [data,     setData]     = useState(null);
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    async function load() {
-      // 3 query parallele invece di N*2: molto più veloce su Firestore
-      const [exs, sessions, allEntries] = await Promise.all([
-        getAllExercises(),
-        getAllSessions(),
-        getAllSessionEntries(),
-      ]);
-
-      // Mappa sessionId → date
-      const sessionMap = Object.fromEntries(sessions.map(s => [s.id, s]));
-
-      // Trova l'ultima sessione con almeno un entry
-      const sortedSessions = [...sessions].sort(
-        (a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id)
-      );
-      for (const sess of sortedSessions) {
-        const entries = allEntries.filter(e => e.sessionId === sess.id);
-        if (entries.length > 0) {
-          setLastSessionIds(new Set(entries.map(e => e.exerciseId)));
-          break;
-        }
-      }
-
-      // Raggruppa entries per exerciseId
-      const entriesByEx = {};
-      for (const entry of allEntries) {
-        const sess = sessionMap[entry.sessionId];
-        if (!sess) continue;
-        if (!entriesByEx[entry.exerciseId]) entriesByEx[entry.exerciseId] = [];
-        entriesByEx[entry.exerciseId].push({ ...entry, date: sess.date });
-      }
-
-      exs.sort((a, b) => a.canonicalName.localeCompare(b.canonicalName));
-      setExercises(exs);
-
-      const map = {};
-      for (const ex of exs) {
-        const h = (entriesByEx[ex.id] || []).sort((a, b) => b.date.localeCompare(a.date)); // newest first
-        map[ex.id] = {
-          count:   h.length,
-          last:    h[0] || null,
-          history: [...h].reverse(), // oldest first for charts
-          type:    getType(h),
-        };
-      }
-      setData(map);
-    }
-    load();
+    Promise.all([getAllSessions(), getAllSessionEntries(), getAllExercises()]).then(([sessions, entries, exercises]) => {
+      setData({ ix: buildIndex(sessions, entries, exercises), exercises: Object.fromEntries(exercises.map(e => [e.id, e])) });
+    });
   }, []);
 
-  const searchLower = search.trim().toLowerCase();
-  const filtered = exercises.filter(ex => {
-    const d = data[ex.id];
-    if (!d || d.count === 0) return false;
-    if (filter === 'all')        { if (!lastSessionIds.has(ex.id)) return false; }
-    else if (filter === 'weight')     { if (!d.history.some(e => e.valueType === 'weight'))     return false; }
-    else if (filter === 'elastic')    { if (!d.history.some(e => e.valueType === 'elastic'))    return false; }
-    else if (filter === 'bodyweight') { if (!d.history.some(e => e.valueType === 'bodyweight')) return false; }
-    if (searchLower && !ex.canonicalName.toLowerCase().includes(searchLower)) return false;
-    return true;
-  });
+  if (!data) return <div className={styles.container} />;
+
+  const now  = new Date();
+  const p    = periodStats(data.ix, now, 1, 4);
+  const prev = periodStats(data.ix, now, 5, 4);
+  const diff = p.sessions - prev.sessions;
+  const zone = p.rpe.avg != null ? rpeZone(p.rpe.avg) : null;
+
+  const weeks   = Array.from({ length: 12 }, (_, k) => weekWindow(now, 12 - k));
+  const grid    = weeks.map(w => slotsDoneInWeek(data.ix, w));
+  const perSlot = SLOTS.map((_, si) => grid.filter(g => g[si]).length);
+  const minSlot = Math.min(...perSlot);
+  const maxSlot = Math.max(...perSlot);
 
   return (
     <div className={styles.container}>
@@ -139,85 +42,113 @@ export default function Stats({ onBack }) {
       </header>
 
       <h1 className={styles.pageTitle}>Statistiche</h1>
+      <p className={styles.period}>Ultime 4 settimane · {shortDate(p.start)} → {shortDate(p.end)}</p>
 
-      <div className={styles.searchWrap}>
-        <span className={styles.searchIcon}>⌕</span>
-        <input
-          className={styles.searchInput}
-          type="search"
-          placeholder="Cerca esercizio…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-        {search && (
-          <button className={styles.searchClear} onClick={() => setSearch('')}>×</button>
-        )}
-      </div>
+      <div className={styles.body}>
+        <div className={styles.tiles}>
+          <div className={styles.tile}>
+            <span className={styles.tileLbl}>SESSIONI</span>
+            <span className={styles.tileVal}>{p.sessions}</span>
+            <span className={`${styles.tileNote} ${diff > 0 ? styles.tileNoteUp : ''}`}>
+              {diff === 0 ? 'come le 4 precedenti' : `${diff > 0 ? '+' : '−'}${Math.abs(diff)} sulle 4 precedenti`}
+            </span>
+          </div>
+          <div className={styles.tile}>
+            <span className={styles.tileLbl}>COSTANZA</span>
+            <span className={styles.tileVal}>{p.consistency}<small>%</small></span>
+            <span className={styles.tileNote}>{p.slotsDone} slot su {p.slotsTotal}</span>
+          </div>
+          <div className={styles.tile}>
+            <span className={styles.tileLbl}>IN AUMENTO</span>
+            <span className={`${styles.tileVal} ${styles.tileValAcc}`}>{p.progress.length}</span>
+            <span className={styles.tileNote}>esercizi con più carico</span>
+          </div>
+          <div className={styles.tile}>
+            <span className={styles.tileLbl}>SFORZO MEDIO</span>
+            <span className={styles.tileVal}>
+              {zone ? <><i className={styles.dot} style={{ background: zone.color }} />{fmtNum(p.rpe.avg)}</> : '—'}
+            </span>
+            <span className={styles.tileNote}>{zone ? zone.label : 'nessun dato'}</span>
+          </div>
+        </div>
 
-      <div className={styles.filterRow}>
-        {FILTERS.map(f => (
-          <button
-            key={f.id}
-            className={[styles.filterPill, filter === f.id ? styles.filterActive : ''].join(' ')}
-            onClick={() => setFilter(f.id)}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
+        <section className={styles.card}>
+          <div className={styles.cardHead}>
+            <span className={styles.cardTitle}>Costanza per slot</span>
+            <span className={styles.cardMeta}>12 SETTIMANE</span>
+          </div>
+          <div className={styles.heat}>
+            {SLOTS.map((slot, si) => (
+              <Fragment key={slot}>
+                <span className={styles.heatLbl}>{slotLabel(slot)}</span>
+                {grid.map((g, wi) => (
+                  <span key={wi} className={`${styles.cell} ${g[si] ? styles.cellOn : ''}`} title={g[si] ? dayLabel(g[si].date) : ''} />
+                ))}
+              </Fragment>
+            ))}
+            <span />
+            {weeks.map((w, wi) => {
+              const m = w.monday.getMonth();
+              const show = wi === 0 || weeks[wi - 1].monday.getMonth() !== m;
+              return <span key={'m' + wi} className={styles.heatMonth}>{show ? MONTHS_S[m].toUpperCase() : ''}</span>;
+            })}
+          </div>
+          <p className={styles.caption}>
+            {maxSlot - minSlot >= 2
+              ? `${slotLabel(SLOTS[perSlot.indexOf(minSlot)])} è lo slot che salti più spesso: ${minSlot} volte su 12.`
+              : 'Allenamenti ben distribuiti tra i tre slot.'}
+          </p>
+        </section>
 
-      <div className={styles.list}>
-        {filtered.map(ex => {
-          const d    = data[ex.id];
-          const last = d?.last;
-          const lastVal = last ? formatEntryValue(last) : '—';
-          const history = d?.history || [];
-          const type    = d?.type    || 'none';
-
-          const max = type === 'weight'
-            ? Math.max(...history.filter(e => e.valueType === 'weight').map(e => e.weightKg), 0)
-            : null;
-
-          let meta = `${d?.count} SESSIONI`;
-          if (type === 'weight' && max)   meta += ` · MAX ${max} KG`;
-          else if (type === 'elastic')    meta += ' · ELASTICO';
-          else if (type === 'bodyweight') meta += ' · CORPO LIBERO';
-          else if (type === 'mixed')      meta += ' · MISTO';
-
-          return (
-            <button key={ex.id} className={styles.exRow} onClick={() => setSelected(ex)}>
-              <div className={styles.exMain}>
-                <span className={styles.exName}>{ex.canonicalName}</span>
-                <span className={styles.exMeta}>{meta}</span>
+        <section className={styles.card}>
+          <div className={styles.cardHead}>
+            <span className={styles.cardTitle}>Sforzo per zona</span>
+            <span className={styles.cardMeta}>{p.rpe.count} ESERCIZI</span>
+          </div>
+          {p.rpe.count > 0 ? (
+            <>
+              <div className={styles.zoneBar}>
+                {ZONES.map((z, zi) => p.rpe.dist[zi] > 0 && <span key={z.label} style={{ flex: p.rpe.dist[zi], background: z.color }} />)}
               </div>
-              <div className={styles.exChart}>
-                {(type === 'weight' || type === 'bodyweight') && <MiniBarChart history={history} />}
-                {type === 'elastic' && <ElasticDots history={history} />}
-                {type === 'mixed'   && <MixedChart  history={history} />}
+              <div className={styles.zoneLegend}>
+                {ZONES.map((z, zi) => (
+                  <span key={z.label} className={styles.zoneItem}>
+                    <i className={styles.dot} style={{ background: z.color }} />
+                    {z.label}
+                    <b>{Math.round(p.rpe.dist[zi] / p.rpe.count * 100)}%</b>
+                  </span>
+                ))}
               </div>
-              <span className={styles.exValue}>
-                {last?.valueType === 'elastic'
-                  ? <span style={{ color: EL_CSS[last.elasticColor], fontSize: 18 }}>●</span>
-                  : lastVal}
-              </span>
-            </button>
-          );
-        })}
-        {filtered.length === 0 && (
-          <div className={styles.empty}>Nessun esercizio con dati</div>
-        )}
+            </>
+          ) : (
+            <p className={styles.caption}>Registra lo sforzo dopo FATTO per vedere la distribuzione.</p>
+          )}
+        </section>
+
+        <section className={styles.card}>
+          <div className={styles.cardHead}>
+            <span className={styles.cardTitle}>Progressi di carico</span>
+            <span className={styles.cardMeta}>{p.progress.length} ESERCIZI</span>
+          </div>
+          {p.progress.length > 0 ? (
+            <div>
+              {p.progress.map(x => (
+                <button key={x.exerciseId} className={styles.progRow} onClick={() => setSelected(data.exercises[x.exerciseId])}>
+                  <span className={styles.progMain}>
+                    <span className={styles.progName}>{x.name}</span>
+                    <span className={styles.progSub}>{x.from} → {x.to} kg</span>
+                  </span>
+                  <span className={styles.progDelta}>+{x.delta} kg</span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.caption}>Nessun aumento di carico nel periodo.</p>
+          )}
+        </section>
       </div>
 
-      {selected && (
-        <ExerciseHistory
-          exercise={selected}
-          onClose={() => setSelected(null)}
-          onRenamed={upd => {
-            setExercises(prev => prev.map(e => e.id === upd.id ? upd : e));
-            setSelected(null);
-          }}
-        />
-      )}
+      {selected && <ExerciseHistory exercise={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 }
