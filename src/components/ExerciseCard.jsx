@@ -16,6 +16,7 @@ export default function ExerciseCard({
   label, exercise, currentEntry, lastEntry,
   isHistorical, readonly, onSave, onNameTap,
   perceivedEffort = null, onRpeEdit = null,
+  onSwap = null, swapNote = null,
 }) {
   const defaultType  = currentEntry?.valueType ?? lastEntry?.valueType ?? null;
   const defaultColor = currentEntry?.elasticColor
@@ -121,7 +122,10 @@ export default function ExerciseCard({
       {/* ── Top row: label + name + type pill ── */}
       <div className={styles.topRow}>
         <span className={styles.lbl}>{label}</span>
-        <button className={styles.exName} onClick={onNameTap}>{exercise.canonicalName}</button>
+        <button className={styles.exName} onClick={onNameTap}>
+          {exercise.canonicalName}
+          {swapNote && <span className={styles.swapNote}>al posto di {swapNote}</span>}
+        </button>
         <button className={styles.typePill} onClick={() => setTypeOpen(o => !o)}>
           {valueType
             ? <>
@@ -133,6 +137,9 @@ export default function ExerciseCard({
             : <span className={styles.tPlaceholder}>Tipo ▾</span>
           }
         </button>
+        {onSwap && (
+          <button className={styles.swapBtn} onClick={onSwap} aria-label="Cambia esercizio" title="Cambia esercizio">⇄</button>
+        )}
       </div>
 
       {/* ── Type selector ── */}

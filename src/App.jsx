@@ -67,6 +67,7 @@ export default function App() {
   const [splashDone, setSplashDone] = useState(() => !!readNav());
   const [screen,     setScreen]     = useState(() => readNav()?.screen || 'home');
   const [sessionParams, setSessionParams] = useState(() => readNav()?.params || null);
+  const [navDir,     setNavDir]     = useState('fwd');
 
   // ── Auth listener ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -109,12 +110,14 @@ export default function App() {
   // ── Navigazione ──────────────────────────────────────────────────────────────
   function navigate(target, params = null) {
     writeNav(target, params);
+    setNavDir('fwd');
     setSessionParams(params);
     setScreen(target);
   }
 
   function goHome() {
     writeNav('home', null);
+    setNavDir('back');
     setSessionParams(null);
     setScreen('home');
   }
@@ -179,5 +182,12 @@ export default function App() {
     : screen === 'settings' ? <Settings onBack={goHome} exportAllData={exportAllData} importAllData={importAllData} />
     : <Home onNavigate={navigate} />;
 
-  return <>{screenContent}<UpdateBanner /></>;
+  return (
+    <>
+      <div key={splashDone ? screen : 'splash'} className={navDir === 'back' ? 'screen-in-back' : 'screen-in-fwd'}>
+        {screenContent}
+      </div>
+      <UpdateBanner />
+    </>
+  );
 }

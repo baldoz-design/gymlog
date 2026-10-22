@@ -42,7 +42,11 @@ function WeightChart({ history }) {
             <div
               className={[styles.bar, i === peakI ? styles.barPeak : ''].join(' ')}
               style={{ height: `${Math.max(20, (v / max) * 100)}%` }}
-            />
+            >
+              {i > 0 && v > vals[i - 1] && (
+                <span className={styles.barDelta}>+{Math.round((v - vals[i - 1]) * 10) / 10}</span>
+              )}
+            </div>
           </div>
         ))}
       </div>

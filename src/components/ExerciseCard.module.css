@@ -35,6 +35,9 @@
   flex: 1;
   text-align: left;
   line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .exName:active { opacity: 0.6; }
 
@@ -264,4 +267,48 @@
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 0.3px;
+}
+
+/* ── Cambia esercizio ── */
+.swapBtn {
+  width: 32px;
+  height: 30px;
+  border-radius: 100px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  color: var(--text-2);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.swapNote {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.2px;
+}
+
+/* ── Interazioni ── */
+.doneBtn, .typePill, .rpePill, .swapBtn {
+  transition: transform 0.16s cubic-bezier(.2,.8,.2,1), opacity 0.16s;
+}
+.doneBtn:active, .typePill:active, .rpePill:active, .swapBtn:active { transform: scale(0.94); }
+
+.doneBtnSaved { animation: donePop 0.5s cubic-bezier(.2,.9,.3,1.4); }
+.cardSaved    { animation: cardGlow 0.7s ease-out; }
+
+@keyframes donePop {
+  0%   { transform: scale(0.8); }
+  55%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+@keyframes cardGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(217,242,75,0.45); }
+  100% { box-shadow: 0 0 0 12px rgba(217,242,75,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doneBtnSaved, .cardSaved { animation: none; }
 }

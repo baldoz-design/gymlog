@@ -423,3 +423,14 @@
   font-size: 16px;
   font-weight: 700;
 }
+
+/* ── Interazioni ── */
+.overlay  { animation: fadeIn 0.22s ease both; }
+.sheet    { animation: sheetUp 0.34s cubic-bezier(.2,.8,.2,1) both; }
+.savedRow { animation: fadeIn 0.3s ease both; }
+.progressFill { box-shadow: 0 0 10px rgba(217,242,75,0.55); }
+.startBtn, .saveCloseBtn, .delBtn { transition: transform 0.16s cubic-bezier(.2,.8,.2,1), opacity 0.16s; }
+.startBtn:active, .saveCloseBtn:active, .delBtn:active { transform: scale(0.96); }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .overlay, .sheet, .savedRow { animation: none; } }

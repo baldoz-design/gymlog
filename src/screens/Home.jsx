@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap } from '../db';
+import { getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap, getSessionByDateAndSlot } from '../db';
 import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
 import { buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
 import { rpeZone } from '../rpe';
+import { resolveBlocks } from '../swaps';
+import CountUp from '../components/CountUp';
 import WeeklyWrap from '../components/WeeklyWrap';
 import styles from './Home.module.css';
 
@@ -37,15 +39,11 @@ export default function Home({ onNavigate }) {
       .then(([sessions, entries, exercises]) => setIndex(buildIndex(sessions, entries, exercises)));
 
     if (!cycle || !slot) return;
-    const slotBlocks = cycle.slots[slot] || [];
-    // Load ALL exercises for the slot (all blocks)
-    const allBEs = slotBlocks.flatMap(b => b.exercises.map(be => ({ ...be, blockLabel: b.label })));
-
-    const exerciseIds = allBEs.map(be => be.exerciseId);
-    Promise.all([
-      getAllExercises(),
-      getLastEntriesMap(exerciseIds, today),
-    ]).then(([exercises, lastMap]) => {
+    Promise.all([getAllExercises(), getSessionByDateAndSlot(today, slot)]).then(async ([exercises, todaySession]) => {
+      // Tutti gli esercizi dello slot, con eventuali cambi di oggi o del programma
+      const allBEs = resolveBlocks(cycle, slot, today, todaySession)
+        .flatMap(b => b.exercises.map(be => ({ ...be, blockLabel: b.label })));
+      const lastMap = await getLastEntriesMap(allBEs.map(be => be.exerciseId), today);
       const exMap = Object.fromEntries(exercises.map(e => [e.id, e]));
       setPreview(allBEs.map(be => ({
         label: `${be.blockLabel}${be.position}`,
@@ -61,7 +59,9 @@ export default function Home({ onNavigate }) {
   const hasWrap    = wrap && wrap.sessions.length > 0;
   const isWrapSeen = hasWrap && wrapSeen === wrap.start;
   const exWithHistory = index ? new Set(index.entries.map(e => e.exerciseId)).size : 0;
-  const avgZone    = period?.rpe.avg != null ? rpeZone(period.rpe.avg) : null;
+  const monthSessions = index ? index.sessions.filter(s => s.date.startsWith(today.slice(0, 7))).length : null;
+  const GAUGE_C    = 2 * Math.PI * 33;
+  const avgRounded = period?.rpe.avg != null ? Math.round(period.rpe.avg) : null;
   const shownPrev  = expanded ? preview : preview.slice(0, 3);
   const remaining  = preview.length - 3;
 
@@ -179,31 +179,46 @@ export default function Home({ onNavigate }) {
         <button className={styles.statsCard} onClick={() => onNavigate('stats')}>
           <div className={styles.statsTop}>
             <span className={styles.statsTitle}>Statistiche</span>
-            <span className={styles.statsMeta}>ULTIME 4 SETT.</span>
+            <span className={styles.statsMeta}>ULTIME 4 SETT. →</span>
           </div>
-          <div className={styles.kpiRow}>
-            <div className={styles.kpi}>
-              <span className={styles.kpiVal}>{period ? period.sessions : '—'}</span>
-              <span className={styles.kpiLbl}>SESSIONI</span>
+          {period && (
+            <div className={styles.info}>
+              <div className={styles.gauge}>
+                <svg viewBox="0 0 80 80" aria-hidden="true">
+                  <circle cx="40" cy="40" r="33" className={styles.gaugeTrack} />
+                  <circle cx="40" cy="40" r="33" className={styles.gaugeFill}
+                    style={{ strokeDasharray: GAUGE_C, '--off': GAUGE_C * (1 - period.consistency / 100), '--full': GAUGE_C }} />
+                </svg>
+                <span className={styles.gaugeIn}>
+                  <b><CountUp value={period.consistency} /><small>%</small></b>
+                  <span>costanza</span>
+                </span>
+              </div>
+              <div className={styles.infoRight}>
+                <div className={styles.infoLine}>
+                  <span className={styles.infoBig}><CountUp value={period.sessions} /></span>
+                  <span className={styles.infoTxt}>sessioni<br />{period.slotsDone} slot su {period.slotsTotal}</span>
+                </div>
+                <div className={styles.meter} aria-label={avgRounded ? `Sforzo medio ${fmtNum(period.rpe.avg)}` : 'Sforzo non registrato'}>
+                  {Array.from({ length: 10 }, (_, k) => k + 1).map(v => (
+                    <i key={v} style={{ background: rpeZone(v).color, opacity: avgRounded && v <= avgRounded ? 1 : 0.16, animationDelay: `${v * 40}ms` }} />
+                  ))}
+                </div>
+                <span className={styles.meterLbl}>
+                  {avgRounded
+                    ? <>sforzo medio <b>{fmtNum(period.rpe.avg)}</b> · {rpeZone(period.rpe.avg).label}</>
+                    : 'sforzo non ancora registrato'}
+                </span>
+              </div>
             </div>
-            <div className={styles.kpi}>
-              <span className={styles.kpiVal}>{period ? <>{period.consistency}<small>%</small></> : '—'}</span>
-              <span className={styles.kpiLbl}>COSTANZA</span>
-            </div>
-            <div className={styles.kpi}>
-              <span className={styles.kpiVal}>
-                {avgZone ? <><i className={styles.kpiDot} style={{ background: avgZone.color }} />{fmtNum(period.rpe.avg)}</> : '—'}
-              </span>
-              <span className={styles.kpiLbl}>SFORZO MEDIO</span>
-            </div>
-          </div>
+          )}
         </button>
 
         {/* ── Bottom row ── */}
         <div className={styles.row}>
           <button className={styles.halfCard} onClick={() => onNavigate('calendar')}>
             <span className={styles.halfTitle}>Calendario</span>
-            <span className={styles.halfSub}>Sessioni passate</span>
+            <span className={styles.halfSub}>{monthSessions != null ? `${monthSessions} questo mese` : 'Sessioni passate'}</span>
           </button>
           <button className={styles.halfCard} onClick={() => onNavigate('program')}>
             <span className={styles.halfTitle}>Programma</span>

@@ -1,9 +1,10 @@
 import { Fragment, useEffect, useState } from 'react';
 import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
 import { slotLabel } from '../logic';
-import { SLOTS, buildIndex, fmtNum, periodStats, slotsDoneInWeek, weekWindow } from '../analytics';
+import { SLOTS, buildIndex, periodStats, slotsDoneInWeek, weekWindow } from '../analytics';
 import { ZONES, rpeZone } from '../rpe';
 import ExerciseHistory from '../components/ExerciseHistory';
+import CountUp from '../components/CountUp';
 import styles from './Stats.module.css';
 
 const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
@@ -48,25 +49,25 @@ export default function Stats({ onBack }) {
         <div className={styles.tiles}>
           <div className={styles.tile}>
             <span className={styles.tileLbl}>SESSIONI</span>
-            <span className={styles.tileVal}>{p.sessions}</span>
+            <span className={styles.tileVal}><CountUp value={p.sessions} /></span>
             <span className={`${styles.tileNote} ${diff > 0 ? styles.tileNoteUp : ''}`}>
               {diff === 0 ? 'come le 4 precedenti' : `${diff > 0 ? '+' : '−'}${Math.abs(diff)} sulle 4 precedenti`}
             </span>
           </div>
           <div className={styles.tile}>
             <span className={styles.tileLbl}>COSTANZA</span>
-            <span className={styles.tileVal}>{p.consistency}<small>%</small></span>
+            <span className={styles.tileVal}><CountUp value={p.consistency} /><small>%</small></span>
             <span className={styles.tileNote}>{p.slotsDone} slot su {p.slotsTotal}</span>
           </div>
           <div className={styles.tile}>
             <span className={styles.tileLbl}>IN AUMENTO</span>
-            <span className={`${styles.tileVal} ${styles.tileValAcc}`}>{p.progress.length}</span>
+            <span className={`${styles.tileVal} ${styles.tileValAcc}`}><CountUp value={p.progress.length} /></span>
             <span className={styles.tileNote}>esercizi con più carico</span>
           </div>
           <div className={styles.tile}>
             <span className={styles.tileLbl}>SFORZO MEDIO</span>
             <span className={styles.tileVal}>
-              {zone ? <><i className={styles.dot} style={{ background: zone.color }} />{fmtNum(p.rpe.avg)}</> : '—'}
+              {zone ? <><i className={styles.dot} style={{ background: zone.color }} /><CountUp value={p.rpe.avg} decimals={1} /></> : '—'}
             </span>
             <span className={styles.tileNote}>{zone ? zone.label : 'nessun dato'}</span>
           </div>

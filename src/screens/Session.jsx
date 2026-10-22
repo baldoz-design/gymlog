@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   getSessionByDateAndSlot, saveSession, deleteSession, getEntriesBySession,
-  saveSessionEntry, deleteSessionEntry, getAllExercises, getLastEntryForExercise, getCycleById,
+  saveSessionEntry, deleteSessionEntry, getAllExercises, getLastEntryForExercise, getCycleById, saveCycle,
 } from '../db';
 import {
   getSlotFromDate, getWeekNumberInCycle, calculateIsIncrease,
@@ -12,6 +12,9 @@ import ExerciseCard from '../components/ExerciseCard';
 import ExerciseHistory from '../components/ExerciseHistory';
 import CalendarPicker from '../components/CalendarPicker';
 import RpePicker from '../components/RpePicker';
+import SwapSheet, { SwapToast } from '../components/SwapSheet';
+import WorkoutWrapUp from '../components/WorkoutWrapUp';
+import { resolveBlocks } from '../swaps';
 import styles from './Session.module.css';
 
 const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
@@ -39,6 +42,10 @@ export default function Session({ params, onBack }) {
   const [showDelConf,   setShowDelConf]   = useState(false);
   const [activeBlock,   setActiveBlock]   = useState(0);
   const [rpeTarget,     setRpeTarget]     = useState(null); // { exerciseId }
+  const [swapTarget,    setSwapTarget]    = useState(null); // { exerciseId, label }
+  const [toast,         setToast]         = useState(null);
+  const [showWrapUp,    setShowWrapUp]    = useState(false);
+  const toastTimer = useRef(null);
 
   const blockRefs = useRef([]);
   const snapRef   = useRef(null);
@@ -47,7 +54,7 @@ export default function Session({ params, onBack }) {
   const isHistorical = date < today;
   const weekNumber   = cycle ? getWeekNumberInCycle(date, cycle.startDate) : 1;
   const reps         = cycle ? (cycle.weeks[weekNumber - 1]?.reps ?? '?') : '?';
-  const blocks       = (slot && cycle) ? (cycle.slots[slot] || []) : [];
+  const blocks       = (slot && cycle) ? resolveBlocks(cycle, slot, date, session) : [];
   const allBlockExs  = blocks.flatMap(b => b.exercises);
 
   const loadSession = useCallback(async () => {
@@ -162,6 +169,43 @@ export default function Session({ params, onBack }) {
     setRpeTarget(null);
   }
 
+  async function handleSwap(target, ex, scope) {
+    const removed = entries[target.exerciseId] || null;
+    const prevSession = session;
+    const prevCycle = cycle;
+    if (removed) {
+      await deleteSessionEntry(removed.id);
+      setEntries(prev => { const next = { ...prev }; delete next[target.exerciseId]; return next; });
+    }
+    if (scope === 'today') {
+      const next = { ...session, swaps: { ...(session.swaps || {}), [target.exerciseId]: ex.id } };
+      await saveSession(next);
+      setSession(next);
+    } else {
+      const next = { ...cycle, swaps: [...(cycle.swaps || []), { slot, from: target.exerciseId, to: ex.id, since: date }] };
+      await saveCycle(next);
+      setCycle(next);
+    }
+    setExercises(prev => ({ ...prev, [ex.id]: ex }));
+    getLastEntryForExercise(ex.id, date).then(last => setLastEntries(prev => ({ ...prev, [ex.id]: last })));
+    setSwapTarget(null);
+
+    clearTimeout(toastTimer.current);
+    setToast({
+      text: `${exercises[target.exerciseId]?.canonicalName} → ${ex.canonicalName} · ${scope === 'today' ? 'solo oggi' : 'da oggi nel programma'}`,
+      undo: async () => {
+        setToast(null);
+        if (scope === 'today') { await saveSession(prevSession); setSession(prevSession); }
+        else { await saveCycle(prevCycle); setCycle(prevCycle); }
+        if (removed) {
+          await saveSessionEntry(removed);
+          setEntries(prev => ({ ...prev, [removed.exerciseId]: removed }));
+        }
+      },
+    });
+    toastTimer.current = setTimeout(() => setToast(null), 4500);
+  }
+
   function handleDateSelect(newDate) {
     setDate(newDate);
     const autoSlot = getSlotFromDate(new Date(newDate + 'T00:00:00'));
@@ -257,6 +301,8 @@ export default function Session({ params, onBack }) {
                     onNameTap={() => setHistoryEx(ex)}
                     perceivedEffort={entries[be.exerciseId]?.perceivedEffort ?? null}
                     onRpeEdit={() => setRpeTarget({ exerciseId: be.exerciseId })}
+                    onSwap={() => setSwapTarget({ exerciseId: be.exerciseId, label: `${block.label}${be.position}` })}
+                    swapNote={be.swap ? exercises[be.swap.from]?.canonicalName : null}
                   />
                 );
               })}
@@ -264,7 +310,7 @@ export default function Session({ params, onBack }) {
               {i === blocks.length - 1 && (
                 <div className={styles.bottomBar}>
                   <button className={styles.delBtn} onClick={() => setShowDelConf(true)}>× Elimina</button>
-                  <button className={styles.saveCloseBtn} onClick={() => setRecording(false)}>SALVA E CHIUDI</button>
+                  <button className={styles.saveCloseBtn} onClick={() => { setRecording(false); if (savedCount > 0) setShowWrapUp(true); }}>SALVA E CHIUDI</button>
                 </div>
               )}
             </div>
@@ -301,6 +347,18 @@ export default function Session({ params, onBack }) {
             onCancel={handleRpeCancel}
           />
         )}
+        {swapTarget && exercises[swapTarget.exerciseId] && (
+          <SwapSheet
+            current={exercises[swapTarget.exerciseId]}
+            label={swapTarget.label}
+            slot={slot}
+            hasEntry={!!entries[swapTarget.exerciseId]}
+            excludeIds={allBlockExs.map(be => be.exerciseId)}
+            onPick={(ex, scope) => handleSwap(swapTarget, ex, scope)}
+            onClose={() => setSwapTarget(null)}
+          />
+        )}
+        {toast && <SwapToast text={toast.text} onUndo={toast.undo} />}
       </div>
     );
   }
@@ -370,6 +428,9 @@ export default function Session({ params, onBack }) {
 
       {showCalendar && (
         <CalendarPicker selectedDate={date} onSelect={handleDateSelect} onClose={() => setShowCalendar(false)} />
+      )}
+      {showWrapUp && session && (
+        <WorkoutWrapUp session={session} sessionEntries={Object.values(entries)} onClose={() => setShowWrapUp(false)} />
       )}
     </div>
   );

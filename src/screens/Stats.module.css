@@ -35,3 +35,6 @@
 .progName { font-size:15px; font-weight:700; color:var(--text); }
 .progSub { font-size:12px; color:var(--muted); }
 .progDelta { font-size:15px; font-weight:800; color:var(--accent); white-space:nowrap; }
+
+.progRow { transition:transform .16s cubic-bezier(.2,.8,.2,1); }
+.progRow:active { transform:scale(.985); }

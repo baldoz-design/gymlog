@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { getAllCycles, getAllExercises, seedTestData } from '../db';
 import { slotLabel, todayISO, getWeekNumberInCycle } from '../logic';
+import { resolveBlocks } from '../swaps';
 import ProgramImport from './ProgramImport';
 import styles from './Program.module.css';
 
@@ -93,7 +94,7 @@ export default function Program({ onBack }) {
 
             <div className={styles.slotsList}>
               {['MON_TUE', 'WED_THU', 'FRI_SAT'].map(slot => {
-                const blocks = active.slots[slot] || [];
+                const blocks = resolveBlocks(active, slot, today);
                 return (
                   <div key={slot} className={styles.slotGroup}>
                     <div className={styles.slotSep} />

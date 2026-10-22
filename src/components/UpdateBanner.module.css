@@ -1,76 +1,22 @@
-.banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 480px;
-  margin: 0 auto;
-  background: var(--surface-alt);
-  border-top: 2px solid var(--accent);
-  z-index: 300;
-  padding: 0 16px;
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 52px;
-  cursor: pointer;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-.label {
-  flex: 1;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-2);
-  letter-spacing: 0.1px;
-}
-
-.chevron {
-  font-size: 10px;
-  color: var(--muted);
-  flex-shrink: 0;
-}
-
-.btn {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border-radius: 8px;
-  padding: 7px 14px;
-  flex-shrink: 0;
-  letter-spacing: 0.2px;
-}
-.btn:active { opacity: 0.8; }
-
-.notes {
-  list-style: none;
-  padding: 2px 0 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.notes li {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-3);
-  position: relative;
-}
-.notes li::before {
-  content: '·';
-  position: absolute;
-  left: -12px;
-  color: var(--muted);
-  font-weight: 800;
-}
+.card { animation:popIn .34s cubic-bezier(.2,.9,.3,1.2) both; }
+.overlay { position:fixed; inset:0; z-index:400; background:rgba(8,7,6,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:0 20px; }
+.card { width:100%; max-width:440px; background:var(--surface-alt); border:1px solid var(--border-dark); border-radius:22px; padding:22px 20px 20px; display:flex; flex-direction:column; }
+.eyebrow { display:flex; align-items:center; gap:7px; margin-bottom:12px; }
+.dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
+.eyebrowTxt { font-size:11px; font-weight:800; letter-spacing:1px; color:var(--accent); }
+.title { font-size:26px; font-weight:900; letter-spacing:-.8px; line-height:1.1; color:var(--text); margin-bottom:6px; text-wrap:balance; }
+.sub { font-size:14px; line-height:1.45; color:var(--muted); margin-bottom:16px; }
+.accBtn { display:flex; align-items:center; gap:8px; width:100%; padding:13px 0; border-top:1px solid var(--hairline-strong); text-align:left; }
+.accLbl { flex:1; font-size:14px; font-weight:700; color:var(--text-2); }
+.accCount { font-size:11px; font-weight:800; letter-spacing:.5px; color:var(--muted); }
+.accChev { font-size:10px; color:var(--muted); transition:transform .2s; }
+.accChevOpen { transform:rotate(180deg); }
+.notes { list-style:none; display:flex; flex-direction:column; gap:10px; padding:2px 0 14px; }
+.note { display:flex; gap:10px; align-items:baseline; font-size:14px; line-height:1.4; color:var(--text-2); }
+.noteDot { width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; transform:translateY(-2px); }
+.cta { margin-top:6px; height:54px; border-radius:14px; background:var(--accent); color:var(--accent-ink); font-size:14px; font-weight:900; letter-spacing:1.5px; width:100%; }
+.cta:active { opacity:.85; }
+.overlay { animation:fadeIn .22s ease both; }
+.card { animation:popIn .34s cubic-bezier(.2,.9,.3,1.2) both; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes popIn { from { opacity:0; transform:scale(.92); } to { opacity:1; transform:none; } }

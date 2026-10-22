@@ -7,7 +7,7 @@ const POLL_MS = 5 * 60 * 1000;
 export default function UpdateBanner() {
   const [available, setAvailable] = useState(false);
   const [notes,     setNotes]     = useState([]);
-  const [expanded,  setExpanded]  = useState(false);
+  const [open,      setOpen]      = useState(false);
 
   useEffect(() => {
     if (import.meta.env.DEV) return;
@@ -32,26 +32,32 @@ export default function UpdateBanner() {
   if (!available) return null;
 
   return (
-    <div className={styles.banner}>
-      <div className={styles.row} onClick={notes.length ? () => setExpanded(e => !e) : undefined}>
-        <span className={styles.dot} />
-        <span className={styles.label}>Aggiornamento disponibile</span>
-        {notes.length > 0 && (
-          <span className={styles.chevron}>{expanded ? '▾' : '▴'}</span>
-        )}
-        <button
-          className={styles.btn}
-          onClick={e => { e.stopPropagation(); window.location.reload(); }}
-        >
-          Aggiorna
-        </button>
-      </div>
+    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="upd-title">
+      <div className={styles.card}>
+        <div className={styles.eyebrow}>
+          <span className={styles.dot} />
+          <span className={styles.eyebrowTxt}>AGGIORNAMENTO</span>
+        </div>
+        <h2 id="upd-title" className={styles.title}>Nuova versione disponibile</h2>
+        <p className={styles.sub}>Aggiorna per continuare con l'ultima versione di GymLog.</p>
 
-      {expanded && notes.length > 0 && (
-        <ul className={styles.notes}>
-          {notes.map((n, i) => <li key={i}>{n}</li>)}
-        </ul>
-      )}
+        {notes.length > 0 && (
+          <>
+            <button className={styles.accBtn} onClick={() => setOpen(o => !o)} aria-expanded={open}>
+              <span className={styles.accLbl}>Cosa cambia</span>
+              <span className={styles.accCount}>{notes.length} NOVITÀ</span>
+              <span className={`${styles.accChev} ${open ? styles.accChevOpen : ''}`}>▾</span>
+            </button>
+            {open && (
+              <ul className={styles.notes}>
+                {notes.map((n, i) => <li key={i} className={styles.note}><span className={styles.noteDot} />{n}</li>)}
+              </ul>
+            )}
+          </>
+        )}
+
+        <button className={styles.cta} onClick={() => window.location.reload()}>AGGIORNA</button>
+      </div>
     </div>
   );
 }

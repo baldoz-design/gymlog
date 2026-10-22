@@ -6,9 +6,10 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'Wrap settimanale: il lunedì in home trovi il riepilogo della settimana',
-  'Nuova sezione Statistiche con costanza, sforzo e progressi delle ultime 4 settimane',
-  'La vecchia Statistiche ora si chiama Esercizi, con il filtro Ultima sessione',
+  'Riepilogo di fine allenamento con i miglioramenti rispetto alla volta scorsa',
+  'Cambia esercizio: solo per oggi o da oggi nel programma',
+  'Statistiche in home come infografica e animazioni più fluide',
+  'Esercizi: filtro Tutti e salti di carico evidenziati nello storico',
 ]
 
 function versionPlugin() {

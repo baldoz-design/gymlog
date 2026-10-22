@@ -165,13 +165,15 @@
 .miniChart {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   gap: 3px;
   height: 30px;
   width: 68px;
 }
 
+/* Larghezza fissa: quella di un grafico pieno a 6 barre, anche con meno dati */
 .miniBar {
-  flex: 1;
+  flex: 0 0 calc((68px - 15px) / 6);
   background: var(--surface-3);
   border-radius: 3px 3px 1px 1px;
 }
@@ -208,3 +210,8 @@
   padding: 40px 20px;
   font-size: 15px;
 }
+
+/* ── Interazioni ── */
+.exRow, .filterPill { transition: transform 0.16s cubic-bezier(.2,.8,.2,1); }
+.exRow:active { transform: scale(0.985); }
+.filterPill:active { transform: scale(0.95); }

@@ -5,7 +5,8 @@ import ExerciseHistory from '../components/ExerciseHistory';
 import styles from './Exercises.module.css';
 
 const FILTERS = [
-  { id: 'all',        label: 'Ultima sessione' },
+  { id: 'all',        label: 'Tutti' },
+  { id: 'last',       label: 'Ultima sessione' },
   { id: 'weight',     label: 'Con peso' },
   { id: 'elastic',    label: 'Con elastico' },
   { id: 'bodyweight', label: 'Corpo lib.' },
@@ -124,7 +125,7 @@ export default function Exercises({ onBack }) {
   const filtered = exercises.filter(ex => {
     const d = data[ex.id];
     if (!d || d.count === 0) return false;
-    if (filter === 'all')        { if (!lastSessionIds.has(ex.id)) return false; }
+    if (filter === 'last')       { if (!lastSessionIds.has(ex.id)) return false; }
     else if (filter === 'weight')     { if (!d.history.some(e => e.valueType === 'weight'))     return false; }
     else if (filter === 'elastic')    { if (!d.history.some(e => e.valueType === 'elastic'))    return false; }
     else if (filter === 'bodyweight') { if (!d.history.some(e => e.valueType === 'bodyweight')) return false; }

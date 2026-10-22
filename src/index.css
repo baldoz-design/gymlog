@@ -81,3 +81,22 @@ input {
 }
 
 a { color: inherit; text-decoration: none; }
+
+/* ─── Transizioni tra schermate ─────────────────────────── */
+/* l'ingresso laterale non deve allargare la pagina */
+#root { overflow-x: clip; }
+
+.screen-in-fwd  { animation: screen-in-fwd  0.32s cubic-bezier(.2,.8,.2,1) both; }
+.screen-in-back { animation: screen-in-back 0.32s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes screen-in-fwd {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes screen-in-back {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-in-fwd, .screen-in-back { animation: none; }
+}
