@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap, getSessionByDateAndSlot } from '../db';
 import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
-import { buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
+import { WEEK_TARGET, buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
 import { rpeZone } from '../rpe';
 import { resolveBlocks } from '../swaps';
 import CountUp from '../components/CountUp';
@@ -187,17 +187,17 @@ export default function Home({ onNavigate }) {
                 <svg viewBox="0 0 80 80" aria-hidden="true">
                   <circle cx="40" cy="40" r="33" className={styles.gaugeTrack} />
                   <circle cx="40" cy="40" r="33" className={styles.gaugeFill}
-                    style={{ strokeDasharray: GAUGE_C, '--off': GAUGE_C * (1 - period.consistency / 100), '--full': GAUGE_C }} />
+                    style={{ strokeDasharray: GAUGE_C, '--off': GAUGE_C * (1 - period.weeksOnTarget / period.nWeeks), '--full': GAUGE_C }} />
                 </svg>
                 <span className={styles.gaugeIn}>
-                  <b><CountUp value={period.consistency} /><small>%</small></b>
-                  <span>costanza</span>
+                  <b><CountUp value={period.perWeek} decimals={1} /></b>
+                  <span>a sett.</span>
                 </span>
               </div>
               <div className={styles.infoRight}>
                 <div className={styles.infoLine}>
                   <span className={styles.infoBig}><CountUp value={period.sessions} /></span>
-                  <span className={styles.infoTxt}>sessioni<br />{period.slotsDone} slot su {period.slotsTotal}</span>
+                  <span className={styles.infoTxt}>sessioni<br />{period.weeksOnTarget} sett. su {period.nWeeks} con almeno {WEEK_TARGET}</span>
                 </div>
                 <div className={styles.meter} aria-label={avgRounded ? `Sforzo medio ${fmtNum(period.rpe.avg)}` : 'Sforzo non registrato'}>
                   {Array.from({ length: 10 }, (_, k) => k + 1).map(v => (

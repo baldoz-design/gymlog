@@ -72,18 +72,23 @@ function progressBetween(ix, a, b) {
   return out.sort((x, y) => y.delta - x.delta);
 }
 
+// Riferimento di costanza: le sessioni abituali a settimana, non i tre slot
+export const WEEK_TARGET = 2;
+
+export const sessionsInWeek = (ix, w) => sessionsBetween(ix, w.start, w.end).length;
+
 export function periodStats(ix, now, fromAgo, nWeeks) {
   const first = weekWindow(now, fromAgo + nWeeks - 1);
   const last  = weekWindow(now, fromAgo);
-  let slotsDone = 0;
-  for (let k = 0; k < nWeeks; k++) slotsDone += slotsDoneInWeek(ix, weekWindow(now, fromAgo + k)).filter(Boolean).length;
+  const counts = Array.from({ length: nWeeks }, (_, k) => sessionsInWeek(ix, weekWindow(now, fromAgo + k)));
+  const sessions = sessionsBetween(ix, first.start, last.end).length;
   return {
     start: first.start,
     end: last.end,
-    sessions: sessionsBetween(ix, first.start, last.end).length,
-    consistency: Math.round(slotsDone / (nWeeks * 3) * 100),
-    slotsDone,
-    slotsTotal: nWeeks * 3,
+    nWeeks,
+    sessions,
+    perWeek: sessions / nWeeks,
+    weeksOnTarget: counts.filter(c => c >= WEEK_TARGET).length,
     progress: progressBetween(ix, first.start, last.end),
     rpe: rpeSummary(entriesBetween(ix, first.start, last.end)),
   };

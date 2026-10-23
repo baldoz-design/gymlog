@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SLOTS, fmtNum } from '../analytics';
+import { SLOTS, WEEK_TARGET, fmtNum } from '../analytics';
 import { ZONES, rpeZone, rpeBackground } from '../rpe';
 import { slotLabel, formatEntryValue } from '../logic';
 import styles from './WeeklyWrap.module.css';
@@ -11,6 +11,11 @@ const DAYS_S    = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
 const EL_NAME   = { blue: 'elastico azzurro', yellow: 'elastico giallo', orange: 'elastico arancione' };
 
 const dayLabel = iso => { const d = new Date(iso + 'T00:00:00'); return `${DAYS_S[d.getDay()]} ${d.getDate()} ${MONTHS_S[d.getMonth()]}`; };
+function sessionsHeadline(n) {
+  if (n > WEEK_TARGET) return `${n} sessioni, ${n - WEEK_TARGET === 1 ? 'una' : n - WEEK_TARGET} in più del solito`;
+  if (n === WEEK_TARGET) return `${n} sessioni, come al solito`;
+  return `${n} ${n === 1 ? 'sessione' : 'sessioni'} questa settimana`;
+}
 const valueText = e => e.valueType === 'elastic' ? EL_NAME[e.elasticColor] : formatEntryValue(e);
 
 export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlocks, onClose, onStart }) {
@@ -20,7 +25,6 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
   const d1 = new Date(w.start + 'T00:00:00');
   const d2 = new Date(w.end + 'T00:00:00');
   const range = `${d1.getDate()} → ${d2.getDate()} ${MONTHS_IT[d2.getMonth()]}`;
-  const done = w.slots.filter(Boolean).length;
   const zone = w.rpe.avg != null ? rpeZone(w.rpe.avg) : null;
   const todayCount = todayBlocks.reduce((t, b) => t + b.exercises.length, 0);
 
@@ -41,12 +45,12 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
     { key: 'slots', tone: 'dark', body: (
       <>
         <p className={styles.eyebrow}>COSTANZA</p>
-        <h2 className={styles.h}>{done === 3 ? 'Tutti e tre gli slot, nessuno saltato' : `${done} slot su 3`}</h2>
+        <h2 className={styles.h}>{sessionsHeadline(w.sessions.length)}</h2>
         <div className={styles.slots}>
           {SLOTS.map((slot, k) => (
             <div key={slot} className={`${styles.slotRow} ${w.slots[k] ? styles.slotOn : ''}`}>
               <span className={styles.slotName}>{slotLabel(slot)}</span>
-              <span className={styles.slotDate}>{w.slots[k] ? dayLabel(w.slots[k].date) : 'saltato'}</span>
+              <span className={styles.slotDate}>{w.slots[k] ? dayLabel(w.slots[k].date) : 'libero'}</span>
               <span className={styles.slotCheck}>{w.slots[k] ? '✓' : ''}</span>
             </div>
           ))}

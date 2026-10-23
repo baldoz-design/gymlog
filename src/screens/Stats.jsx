@@ -1,16 +1,14 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
 import { slotLabel } from '../logic';
-import { SLOTS, buildIndex, periodStats, slotsDoneInWeek, weekWindow } from '../analytics';
+import { SLOTS, WEEK_TARGET, buildIndex, periodStats, sessionsInWeek, weekWindow } from '../analytics';
 import { ZONES, rpeZone } from '../rpe';
 import ExerciseHistory from '../components/ExerciseHistory';
 import CountUp from '../components/CountUp';
 import styles from './Stats.module.css';
 
 const MONTHS_S = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
-const DAYS_S   = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
 const shortDate = iso => { const d = new Date(iso + 'T00:00:00'); return `${d.getDate()} ${MONTHS_S[d.getMonth()]}`; };
-const dayLabel  = iso => { const d = new Date(iso + 'T00:00:00'); return `${DAYS_S[d.getDay()]} ${d.getDate()} ${MONTHS_S[d.getMonth()]}`; };
 
 export default function Stats({ onBack }) {
   const [data,     setData]     = useState(null);
@@ -31,10 +29,10 @@ export default function Stats({ onBack }) {
   const zone = p.rpe.avg != null ? rpeZone(p.rpe.avg) : null;
 
   const weeks   = Array.from({ length: 12 }, (_, k) => weekWindow(now, 12 - k));
-  const grid    = weeks.map(w => slotsDoneInWeek(data.ix, w));
-  const perSlot = SLOTS.map((_, si) => grid.filter(g => g[si]).length);
-  const minSlot = Math.min(...perSlot);
-  const maxSlot = Math.max(...perSlot);
+  const counts   = weeks.map(w => sessionsInWeek(data.ix, w));
+  const maxCount = Math.max(3, ...counts);
+  const onTarget = counts.filter(c => c >= WEEK_TARGET).length;
+  const perSlot  = SLOTS.map(slot => data.ix.sessions.filter(x => x.slot === slot && x.date >= weeks[0].start && x.date <= weeks[11].end).length);
 
   return (
     <div className={styles.container}>
@@ -55,9 +53,9 @@ export default function Stats({ onBack }) {
             </span>
           </div>
           <div className={styles.tile}>
-            <span className={styles.tileLbl}>COSTANZA</span>
-            <span className={styles.tileVal}><CountUp value={p.consistency} /><small>%</small></span>
-            <span className={styles.tileNote}>{p.slotsDone} slot su {p.slotsTotal}</span>
+            <span className={styles.tileLbl}>A SETTIMANA</span>
+            <span className={styles.tileVal}><CountUp value={p.perWeek} decimals={1} /></span>
+            <span className={styles.tileNote}>{p.weeksOnTarget} settimane su {p.nWeeks} con almeno {WEEK_TARGET}</span>
           </div>
           <div className={styles.tile}>
             <span className={styles.tileLbl}>IN AUMENTO</span>
@@ -75,30 +73,29 @@ export default function Stats({ onBack }) {
 
         <section className={styles.card}>
           <div className={styles.cardHead}>
-            <span className={styles.cardTitle}>Costanza per slot</span>
-            <span className={styles.cardMeta}>12 SETTIMANE</span>
+            <span className={styles.cardTitle}>Sessioni per settimana</span>
+            <span className={`${styles.cardMeta} ${styles.wkLegend}`}><i />{WEEK_TARGET} A SETT.</span>
           </div>
-          <div className={styles.heat}>
-            {SLOTS.map((slot, si) => (
-              <Fragment key={slot}>
-                <span className={styles.heatLbl}>{slotLabel(slot)}</span>
-                {grid.map((g, wi) => (
-                  <span key={wi} className={`${styles.cell} ${g[si] ? styles.cellOn : ''}`} title={g[si] ? dayLabel(g[si].date) : ''} />
-                ))}
-              </Fragment>
+          <div className={styles.wk}>
+            <span className={styles.wkTarget} style={{ bottom: `${WEEK_TARGET / maxCount * 100}%` }} />
+            {counts.map((n, wi) => (
+              <span key={wi} className={styles.wkCol} title={`${n} ${n === 1 ? 'sessione' : 'sessioni'}`}>
+                <i
+                  className={`${styles.wkBar} ${n >= WEEK_TARGET ? styles.wkOn : n ? styles.wkLow : ''}`}
+                  style={{ height: n ? `${n / maxCount * 100}%` : '3px', animationDelay: `${wi * 30}ms` }}
+                />
+              </span>
             ))}
-            <span />
+          </div>
+          <div className={styles.wkMonths}>
             {weeks.map((w, wi) => {
               const m = w.monday.getMonth();
               const show = wi === 0 || weeks[wi - 1].monday.getMonth() !== m;
               return <span key={'m' + wi} className={styles.heatMonth}>{show ? MONTHS_S[m].toUpperCase() : ''}</span>;
             })}
           </div>
-          <p className={styles.caption}>
-            {maxSlot - minSlot >= 2
-              ? `${slotLabel(SLOTS[perSlot.indexOf(minSlot)])} è lo slot che salti più spesso: ${minSlot} volte su 12.`
-              : 'Allenamenti ben distribuiti tra i tre slot.'}
-          </p>
+          <p className={styles.caption}>{onTarget} settimane su 12 con almeno {WEEK_TARGET} sessioni.</p>
+          <p className={styles.slotLine}>Per slot: {SLOTS.map((slot, k) => `${slotLabel(slot)} ${perSlot[k]}`).join(' · ')}</p>
         </section>
 
         <section className={styles.card}>

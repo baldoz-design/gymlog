@@ -6,10 +6,8 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'Riepilogo di fine allenamento con i miglioramenti rispetto alla volta scorsa',
-  'Cambia esercizio: solo per oggi o da oggi nel programma',
-  'Statistiche in home come infografica e animazioni più fluide',
-  'Esercizi: filtro Tutti e salti di carico evidenziati nello storico',
+  'Costanza in sessioni a settimana, con 2 come riferimento abituale',
+  'Statistiche: grafico delle sessioni per settimana al posto della griglia per slot',
 ]
 
 function versionPlugin() {

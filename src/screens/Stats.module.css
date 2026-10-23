@@ -17,10 +17,16 @@
 .cardHead { display:flex; justify-content:space-between; align-items:center; gap:8px; }
 .cardTitle { font-size:17px; font-weight:700; color:var(--text); }
 .cardMeta { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:.8px; white-space:nowrap; }
-.heat { display:grid; grid-template-columns:54px repeat(12, minmax(0, 1fr)); gap:4px; align-items:center; }
-.heatLbl { font-size:10px; font-weight:800; color:var(--text-3); letter-spacing:.5px; }
-.cell { aspect-ratio:1; border-radius:5px; background:var(--surface-3); }
-.cellOn { background:var(--accent); }
+.wk { position:relative; display:grid; grid-template-columns:repeat(12, minmax(0, 1fr)); grid-template-rows:1fr; gap:5px; align-items:end; height:62px; margin-top:4px; }
+.wkCol { height:100%; display:flex; align-items:flex-end; }
+.wkBar { display:block; width:100%; border-radius:4px 4px 2px 2px; background:var(--surface-3); transform-origin:bottom; animation:segIn .5s cubic-bezier(.2,.8,.2,1) both; }
+.wkLow { background:rgba(217,242,75,.35); }
+.wkOn { background:var(--accent); }
+.wkTarget { position:absolute; left:0; right:0; border-top:1.5px dashed rgba(245,242,234,.3); pointer-events:none; z-index:1; }
+.wkLegend { display:inline-flex; align-items:center; gap:6px; }
+.wkLegend i { display:block; width:14px; border-top:1.5px dashed rgba(245,242,234,.45); }
+.wkMonths { display:grid; grid-template-columns:repeat(12, minmax(0, 1fr)); gap:5px; margin-top:-8px; }
+.slotLine { font-size:12px; color:var(--muted); margin-top:-8px; }
 .heatMonth { font-size:9px; font-weight:700; color:var(--muted); letter-spacing:.5px; white-space:nowrap; overflow:visible; }
 .caption { font-size:13px; line-height:1.45; color:var(--text-3); }
 .zoneBar { display:flex; gap:2px; height:14px; border-radius:7px; overflow:hidden; }
@@ -38,3 +44,5 @@
 
 .progRow { transition:transform .16s cubic-bezier(.2,.8,.2,1); }
 .progRow:active { transform:scale(.985); }
+@keyframes segIn { from { transform:scaleY(0); } to { transform:none; } }
+@media (prefers-reduced-motion: reduce) { .wkBar { animation:none; } }
