@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getAllCycles, getAllExercises, seedTestData } from '../db';
 import { slotLabel, todayISO, getWeekNumberInCycle } from '../logic';
 import { resolveBlocks } from '../swaps';
+import { getCircuit, fmtSec, stationSec, timingLabel } from '../hybrid';
 import ProgramImport from './ProgramImport';
 import styles from './Program.module.css';
 
@@ -63,6 +64,7 @@ export default function Program({ onBack }) {
   const active   = cycles.find(c => c.status === 'active');
   const archived = cycles.filter(c => c.status !== 'active');
   const weekNum  = active ? getWeekNumberInCycle(today, active.startDate) : 0;
+  const circuit  = getCircuit();
 
   return (
     <div className={styles.container}>
@@ -116,6 +118,23 @@ export default function Program({ onBack }) {
             </div>
           </div>
         )}
+
+        {/* ── Circuito Hybrid ── */}
+        <div className={styles.hybridCard}>
+          <div className={styles.cycleTop}>
+            <span className={styles.hybridBadge}>CIRCUITO</span>
+            <span className={styles.cycleWeek}>{circuit.stations.length} STAZIONI</span>
+          </div>
+          <h2 className={`${styles.cycleName} ${styles.hybridTitle}`}>{circuit.name}</h2>
+          <p className={styles.cycleDates}>{timingLabel(circuit)} · {fmtSec(stationSec(circuit))} a stazione</p>
+          <div className={styles.slotSep} />
+          {circuit.stations.map(st => (
+            <div key={st.n} className={styles.hybridRow}>
+              <span className={styles.hybridNum}>{st.n}</span>
+              <span className={styles.hybridTxt}><b>{st.cardio}</b> poi {st.options.join(' / ')}</span>
+            </div>
+          ))}
+        </div>
 
         {cycles.length === 0 && (
           <p className={styles.empty}>Nessun programma caricato.</p>

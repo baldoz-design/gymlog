@@ -208,3 +208,7 @@
 .day, .sessRow { transition: transform 0.16s cubic-bezier(.2,.8,.2,1); }
 .day:active { transform: scale(0.94); }
 .sessRow:active { transform: scale(0.985); }
+
+/* ── Lezioni Hybrid ── */
+.dotHybrid { background: var(--hybrid); }
+.sessMetaHybrid { color: var(--hybrid); }

@@ -45,4 +45,27 @@
 .progRow { transition:transform .16s cubic-bezier(.2,.8,.2,1); }
 .progRow:active { transform:scale(.985); }
 @keyframes segIn { from { transform:scaleY(0); } to { transform:none; } }
-@media (prefers-reduced-motion: reduce) { .wkBar { animation:none; } }
+/* ── Strength e Hybrid ── */
+.wkBar { overflow:hidden; display:flex; flex-direction:column; }
+.wkHybrid { display:block; width:100%; flex-shrink:0; background:var(--hybrid); }
+.wkLow .wkHybrid { opacity:.55; }
+.legend { display:flex; gap:16px; font-size:12px; color:var(--text-3); margin-top:-6px; }
+.legend span { display:flex; align-items:center; gap:6px; }
+.legend i { width:8px; height:8px; border-radius:2px; display:block; }
+.legend b { color:var(--text); font-weight:800; }
+.hyCard { border:1.5px solid rgba(185,162,255,.22); }
+.hyMeta { color:var(--hybrid); }
+.hyRow { display:grid; grid-template-columns:repeat(3, 1fr); }
+.hyStat { display:flex; flex-direction:column; gap:5px; }
+.hyStat + .hyStat { border-left:1px solid var(--hairline-strong); padding-left:14px; }
+.hyLbl { font-size:10px; font-weight:800; color:var(--muted); letter-spacing:1px; }
+.hyVal { display:flex; align-items:center; font-size:30px; font-weight:900; letter-spacing:-1px; color:var(--text); line-height:1; font-variant-numeric:tabular-nums; }
+.hyVal small { font-size:13px; font-weight:800; color:var(--muted); letter-spacing:0; margin-left:2px; align-self:flex-end; margin-bottom:2px; }
+.hyBars { display:flex; align-items:flex-end; gap:8px; height:96px; }
+.hyCol { flex:0 0 36px; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:4px; height:100%; }
+.hyN { font-size:12px; font-weight:800; color:var(--text); font-variant-numeric:tabular-nums; }
+.hyBar { display:block; width:100%; border-radius:6px 6px 2px 2px; background:var(--hybrid); transform-origin:bottom; animation:segIn .5s cubic-bezier(.2,.8,.2,1) both; }
+.hyBarPast { opacity:.45; }
+.hyD { font-size:9px; font-weight:700; color:var(--muted); letter-spacing:.3px; white-space:nowrap; }
+
+@media (prefers-reduced-motion: reduce) { .wkBar, .hyBar { animation:none; } }

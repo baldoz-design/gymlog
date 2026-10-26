@@ -31,6 +31,11 @@
   --giallo:   #E8C33D;
   --arancione:#E0762C;
 
+  /* Lezioni Hybrid */
+  --hybrid:     #B9A2FF;
+  --hybrid-ink: #121110;
+  --hybrid-bg:  #1E1A2B;
+
   /* ─── Token legacy → rimappati al dark (tutte le schermate) ─ */
   --bg-primary:   #121110;
   --bg-card:      #1B1917;

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { SLOTS, WEEK_TARGET, fmtNum } from '../analytics';
 import { ZONES, rpeZone, rpeBackground } from '../rpe';
 import { slotLabel, formatEntryValue } from '../logic';
+import { lapsText } from '../hybrid';
+import Laps from './Laps';
 import styles from './WeeklyWrap.module.css';
 
 const SLIDE_MS = 6500;
@@ -18,7 +20,7 @@ function sessionsHeadline(n) {
 }
 const valueText = e => e.valueType === 'elastic' ? EL_NAME[e.elasticColor] : formatEntryValue(e);
 
-export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlocks, onClose, onStart }) {
+export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlocks, todayHybrid = false, onClose, onStart }) {
   const [index,  setIndex]  = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -27,6 +29,11 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
   const range = `${d1.getDate()} → ${d2.getDate()} ${MONTHS_IT[d2.getMonth()]}`;
   const zone = w.rpe.avg != null ? rpeZone(w.rpe.avg) : null;
   const todayCount = todayBlocks.reduce((t, b) => t + b.exercises.length, 0);
+  const lastHy = w.hybrid[w.hybrid.length - 1] || null;
+  const coverFoot = [
+    w.entries.length > 0 && `${w.entries.length} esercizi Strength${w.increases.length > 0 ? `, ${w.increases.length} con più carico della volta prima` : ''}`,
+    w.stations > 0 && `${w.stations} stazioni Hybrid`,
+  ].filter(Boolean).join(' e ');
 
   const slides = [
     { key: 'cover', tone: 'lime', body: (
@@ -36,10 +43,7 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
         <div className={styles.tally}>{w.sessions.map(s => <i key={s.id} />)}</div>
         <p className={styles.mega}>{w.sessions.length}</p>
         <p className={styles.megaLbl}>allenamenti</p>
-        <p className={styles.foot}>
-          {w.entries.length} esercizi completati
-          {w.increases.length > 0 && `, ${w.increases.length} con più carico della volta prima`}.
-        </p>
+        {coverFoot && <p className={styles.foot}>{coverFoot}.</p>}
       </>
     ) },
     { key: 'slots', tone: 'dark', body: (
@@ -54,6 +58,13 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
               <span className={styles.slotCheck}>{w.slots[k] ? '✓' : ''}</span>
             </div>
           ))}
+          {w.hybrid.map(s => (
+            <div key={s.id} className={`${styles.slotRow} ${styles.slotOn} ${styles.slotHybrid}`}>
+              <span className={styles.slotName}>HYBRID</span>
+              <span className={styles.slotDate}>{dayLabel(s.date)}</span>
+              <span className={styles.slotCheck}>✓</span>
+            </div>
+          ))}
         </div>
         {w.streak >= 2 && (
           <div className={styles.streak}>
@@ -64,6 +75,20 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
         <div className={styles.weeks}>
           {w.streakWeeks.map((n, k) => <i key={k} className={n >= 2 ? styles.weekOn : ''} />)}
         </div>
+      </>
+    ) },
+    lastHy && w.stations > 0 && { key: 'hybrid', tone: 'hybrid', body: (
+      <>
+        <p className={styles.eyebrow}>HYBRID</p>
+        <p className={styles.mega}>{w.stations}</p>
+        <p className={styles.megaLbl}>stazioni{w.hybrid.length > 1 ? ` in ${w.hybrid.length} lezioni` : ''}</p>
+        <Laps n={lastHy.stations.length} variant="wrap" />
+        <p className={styles.foot}>
+          {lapsText(lastHy.stations.length)}
+          {lastHy.perceivedEffort ? `, sforzo ${lastHy.perceivedEffort} (${rpeZone(lastHy.perceivedEffort).label.toLowerCase()})` : ''}.
+          {lastHy.stations.length >= w.hybridBest
+            ? ` La prossima volta punta a ${lastHy.stations.length + 1}.` : ''}
+        </p>
       </>
     ) },
     w.increases.length > 0 && { key: 'up', tone: 'orange', body: (
@@ -122,7 +147,9 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
         <h2 className={styles.h}>Settimana {weekNum} di 5</h2>
         <p className={`${styles.mega} ${styles.megaAcc}`}>×{reps}</p>
         <p className={styles.megaLbl}>ripetizioni</p>
-        {todaySlot && (
+        {todayHybrid ? (
+          <p className={styles.foot}>Oggi in home è selezionato Hybrid: il circuito a 4 stazioni.</p>
+        ) : todaySlot && (
           <p className={styles.foot}>Oggi tocca a {slotLabel(todaySlot)}: {todayCount} esercizi in {todayBlocks.length} blocchi.</p>
         )}
         <button className={styles.cta} onClick={e => { e.stopPropagation(); onStart(); }}>

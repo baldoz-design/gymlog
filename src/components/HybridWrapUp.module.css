@@ -1,0 +1,9 @@
+/* Varianti lilla del riepilogo di fine allenamento (WorkoutWrapUp.module.css): classe ripetuta per vincere sull'ordine dei fogli */
+.overlay.overlay { background:radial-gradient(110% 55% at 50% 0%, #2A2440 0%, #121110 60%); }
+.eyebrow.eyebrow { color:var(--hybrid); }
+.big { text-align:center; font-size:128px; font-weight:900; letter-spacing:-7px; line-height:.85; color:var(--text); font-variant-numeric:tabular-nums; margin-top:8px; }
+.bigLbl { text-align:center; font-size:15px; font-weight:700; color:var(--muted); margin:8px 0 18px; }
+.laps { display:flex; justify-content:center; margin-bottom:22px; }
+.good.good { color:var(--hybrid); }
+.badge.badge { color:var(--hybrid); border-color:var(--hybrid); }
+.cta.cta { background:var(--hybrid); color:var(--hybrid-ink); }

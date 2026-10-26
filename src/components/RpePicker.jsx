@@ -17,7 +17,7 @@ const RPE_LABELS = {
   10: 'Limite assoluto',
 };
 
-export default function RpePicker({ initialValue = null, onConfirm, onCancel }) {
+export default function RpePicker({ initialValue = null, onConfirm, onCancel, title = 'Valuta il tuo sforzo' }) {
   const [value, setValue] = useState(initialValue);
   const barsRef  = useRef(null);
   const dragging = useRef(false);
@@ -64,7 +64,7 @@ export default function RpePicker({ initialValue = null, onConfirm, onCancel }) 
         disabled={!value}
       >✓</button>
 
-      <h1 className={styles.title}>Valuta il tuo sforzo</h1>
+      <h1 className={styles.title}>{title}</h1>
 
       <div
         ref={barsRef}

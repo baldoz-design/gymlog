@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
 import { slotLabel } from '../logic';
-import { SLOTS, WEEK_TARGET, buildIndex, periodStats, sessionsInWeek, weekWindow } from '../analytics';
+import { SLOTS, WEEK_TARGET, buildIndex, fmtNum, periodStats, sessionsInWeek, weekWindow } from '../analytics';
 import { ZONES, rpeZone } from '../rpe';
+import { isHybrid, getCircuit, fmtSec, stationSec } from '../hybrid';
 import ExerciseHistory from '../components/ExerciseHistory';
 import CountUp from '../components/CountUp';
 import styles from './Stats.module.css';
@@ -30,6 +31,16 @@ export default function Stats({ onBack }) {
 
   const weeks   = Array.from({ length: 12 }, (_, k) => weekWindow(now, 12 - k));
   const counts   = weeks.map(w => sessionsInWeek(data.ix, w));
+  const hyCounts = weeks.map(w => data.ix.sessions.filter(s => isHybrid(s) && s.date >= w.start && s.date <= w.end).length);
+  const hyTotal  = hyCounts.reduce((t, x) => t + x, 0);
+  const stTotal  = counts.reduce((t, x) => t + x, 0) - hyTotal;
+  // Card Hybrid: tutte le lezioni con almeno una stazione, non solo il periodo
+  const hys      = data.ix.sessions.filter(s => isHybrid(s) && s.stations?.length).sort((a, b) => a.date.localeCompare(b.date));
+  const hyShown  = hys.slice(-8);
+  const hyRecord = hys.length ? Math.max(...hys.map(s => s.stations.length)) : null;
+  const hyRated  = hys.filter(s => s.perceivedEffort);
+  const hyRpe    = hyRated.length ? hyRated.reduce((t, s) => t + s.perceivedEffort, 0) / hyRated.length : null;
+  const hyMax    = Math.max(8, hyRecord || 0);
   const maxCount = Math.max(3, ...counts);
   const onTarget = counts.filter(c => c >= WEEK_TARGET).length;
   const perSlot  = SLOTS.map(slot => data.ix.sessions.filter(x => x.slot === slot && x.date >= weeks[0].start && x.date <= weeks[11].end).length);
@@ -83,7 +94,9 @@ export default function Stats({ onBack }) {
                 <i
                   className={`${styles.wkBar} ${n >= WEEK_TARGET ? styles.wkOn : n ? styles.wkLow : ''}`}
                   style={{ height: n ? `${n / maxCount * 100}%` : '3px', animationDelay: `${wi * 30}ms` }}
-                />
+                >
+                  {hyCounts[wi] > 0 && <b className={styles.wkHybrid} style={{ height: `${hyCounts[wi] / n * 100}%` }} />}
+                </i>
               </span>
             ))}
           </div>
@@ -94,9 +107,55 @@ export default function Stats({ onBack }) {
               return <span key={'m' + wi} className={styles.heatMonth}>{show ? MONTHS_S[m].toUpperCase() : ''}</span>;
             })}
           </div>
-          <p className={styles.caption}>{onTarget} settimane su 12 con almeno {WEEK_TARGET} sessioni.</p>
-          <p className={styles.slotLine}>Per slot: {SLOTS.map((slot, k) => `${slotLabel(slot)} ${perSlot[k]}`).join(' · ')}</p>
+          <p className={styles.legend}>
+            <span><i style={{ background: 'var(--accent)' }} />Strength <b>{stTotal}</b></span>
+            <span><i style={{ background: 'var(--hybrid)' }} />Hybrid <b>{hyTotal}</b></span>
+          </p>
+          <p className={styles.caption}>{onTarget} settimane su 12 con almeno {WEEK_TARGET} sessioni, Strength e Hybrid insieme.</p>
+          <p className={styles.slotLine}>Strength per slot: {SLOTS.map((slot, k) => `${slotLabel(slot)} ${perSlot[k]}`).join(' · ')}</p>
         </section>
+
+        {hys.length > 0 && (
+          <section className={`${styles.card} ${styles.hyCard}`}>
+            <div className={styles.cardHead}>
+              <span className={styles.cardTitle}>Hybrid</span>
+              <span className={`${styles.cardMeta} ${styles.hyMeta}`}>{hys.length} {hys.length === 1 ? 'LEZIONE' : 'LEZIONI'}</span>
+            </div>
+            <div className={styles.hyRow}>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>RECORD</span>
+                <span className={styles.hyVal}>{hyRecord}<small>staz.</small></span>
+              </div>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>ULTIMA</span>
+                <span className={styles.hyVal}>{hys[hys.length - 1].stations.length}<small>staz.</small></span>
+              </div>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>SFORZO</span>
+                <span className={styles.hyVal}>
+                  {hyRpe != null ? <><i className={styles.dot} style={{ background: rpeZone(hyRpe).color }} />{fmtNum(hyRpe)}</> : '—'}
+                </span>
+              </div>
+            </div>
+            <div className={styles.hyBars}>
+              {hyShown.map((s, k) => (
+                <span key={s.id} className={styles.hyCol}>
+                  <span className={styles.hyN}>{s.stations.length}</span>
+                  <i
+                    className={`${styles.hyBar} ${k < hyShown.length - 1 ? styles.hyBarPast : ''}`}
+                    style={{ height: `${s.stations.length / hyMax * 100}%`, animationDelay: `${k * 50}ms` }}
+                  />
+                  <span className={styles.hyD}>{shortDate(s.date).toUpperCase()}</span>
+                </span>
+              ))}
+            </div>
+            <p className={styles.caption}>
+              {hys.length === 1
+                ? "Stazioni per lezione. Dalla prossima vedi l'andamento: l'obiettivo è aggiungerne una."
+                : `Stazioni per lezione, ultime ${hyShown.length}. Ogni stazione dura ${fmtSec(stationSec(getCircuit()))} con il cambio.`}
+            </p>
+          </section>
+        )}
 
         <section className={styles.card}>
           <div className={styles.cardHead}>

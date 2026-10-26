@@ -4,6 +4,7 @@ import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntry
 import { WEEK_TARGET, buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
 import { rpeZone } from '../rpe';
 import { resolveBlocks } from '../swaps';
+import { getCircuit, hybridBefore, lastChoices, suggestedType, timingLabel } from '../hybrid';
 import CountUp from '../components/CountUp';
 import WeeklyWrap from '../components/WeeklyWrap';
 import styles from './Home.module.css';
@@ -21,6 +22,7 @@ export default function Home({ onNavigate }) {
   const [expanded,     setExpanded]     = useState(false);
   const [wrapOpen,     setWrapOpen]     = useState(false);
   const [wrapSeen,     setWrapSeen]     = useState(readWrapSeen);
+  const [typeChoice,   setTypeChoice]   = useState(null); // null = quello proposto
 
   const today   = todayISO();
   const now     = new Date();
@@ -62,6 +64,11 @@ export default function Home({ onNavigate }) {
   const monthSessions = index ? index.sessions.filter(s => s.date.startsWith(today.slice(0, 7))).length : null;
   const GAUGE_C    = 2 * Math.PI * 33;
   const avgRounded = period?.rpe.avg != null ? Math.round(period.rpe.avg) : null;
+  const type       = typeChoice ?? (index ? suggestedType(index.sessions, today) : 'strength');
+  const hybrid     = type === 'hybrid';
+  const circuit    = getCircuit();
+  const lastHy     = index ? hybridBefore(index.sessions, today).pop() || null : null;
+  const choices    = index ? lastChoices(index.sessions, today) : {};
   const shownPrev  = expanded ? preview : preview.slice(0, 3);
   const remaining  = preview.length - 3;
 
@@ -72,6 +79,7 @@ export default function Home({ onNavigate }) {
   }
 
   function handleWorkoutTap() {
+    if (hybrid) { onNavigate('hybrid', { date: today }); return; }
     if (!cycle) { onNavigate('program'); return; }
     onNavigate('session', { date: today, slot, cycle });
   }
@@ -117,11 +125,45 @@ export default function Home({ onNavigate }) {
           </button>
         )}
 
-        {/* ── Hero card ── */}
-        <div className={styles.heroCard}>
-          {noCycle ? (
+        {/* ── Hero card: Strength (programma della lavagna) o Hybrid (circuito a stazioni) ── */}
+        <div className={`${styles.heroCard} ${hybrid ? styles.heroHybrid : ''}`}>
+          <div className={styles.heroMeta}>
+            <div className={styles.typeSwitch} role="tablist" aria-label="Tipo di lezione">
+              {[['strength', 'STRENGTH'], ['hybrid', 'HYBRID']].map(([t, label]) => (
+                <button
+                  key={t}
+                  role="tab"
+                  aria-selected={type === t}
+                  className={`${styles.typeBtn} ${type === t ? styles.typeOn : ''}`}
+                  onClick={() => { setTypeChoice(t); setExpanded(false); }}
+                >{label}</button>
+              ))}
+            </div>
+            <span className={styles.heroWeek}>
+              {hybrid
+                ? (lastHy ? `ULTIMA · ${lastHy.stations.length} STAZ.` : `${circuit.stations.length} STAZIONI`)
+                : noCycle ? '' : `${slot ? slotLabel(slot) : '—'} · SETT. ${weekNum} / 5`}
+            </span>
+          </div>
+
+          {hybrid ? (
+            <div key="hybrid" className={styles.heroBody}>
+              <h1 className={styles.heroTitle}>Hybrid</h1>
+              <div className={styles.repsPill}>{timingLabel(circuit)}</div>
+              <div className={styles.heroSep} />
+              <div className={styles.exPreview}>
+                {circuit.stations.map(st => (
+                  <div key={st.n} className={styles.previewRow}>
+                    <span className={styles.previewLabel}>S{st.n}</span>
+                    <span className={styles.previewName}>{st.cardio} · {choices[st.n] || st.options[0]}</span>
+                  </div>
+                ))}
+              </div>
+              <button className={styles.heroBtn} onClick={handleWorkoutTap}>INIZIA HYBRID →</button>
+            </div>
+          ) : noCycle ? (
             /* Nessun programma: CTA inline */
-            <div className={styles.noProgramBox}>
+            <div key="none" className={`${styles.noProgramBox} ${styles.heroBody}`}>
               <p className={styles.noProgramTitle}>Nessun programma</p>
               <p className={styles.noProgramSub}>Carica il programma della tua palestra per iniziare.</p>
               <button className={styles.heroBtn} onClick={() => onNavigate('program')}>
@@ -130,12 +172,7 @@ export default function Home({ onNavigate }) {
             </div>
           ) : (
             /* Programma attivo: vista normale */
-            <>
-              <div className={styles.heroMeta}>
-                <span className={styles.heroSlot}>OGGI · {slot ? slotLabel(slot) : '—'}</span>
-                <span className={styles.heroWeek}>SETT. {weekNum} / 5</span>
-              </div>
-
+            <div key="strength" className={styles.heroBody}>
               <div className={styles.tacche}>
                 {[1,2,3,4,5].map(w => (
                   <div key={w} className={[
@@ -146,7 +183,7 @@ export default function Home({ onNavigate }) {
                 ))}
               </div>
 
-              <h1 className={styles.heroTitle}>Allenamento</h1>
+              <h1 className={styles.heroTitle}>Strength</h1>
               <div className={styles.repsPill}>×{reps} reps</div>
               <div className={styles.heroSep} />
 
@@ -171,7 +208,7 @@ export default function Home({ onNavigate }) {
               </div>
 
               <button className={styles.heroBtn} onClick={handleWorkoutTap}>INIZIA →</button>
-            </>
+            </div>
           )}
         </div>
 
@@ -238,6 +275,7 @@ export default function Home({ onNavigate }) {
           reps={reps}
           todaySlot={slot}
           todayBlocks={cycle && slot ? (cycle.slots[slot] || []) : []}
+          todayHybrid={hybrid}
           onClose={closeWrap}
           onStart={() => { closeWrap(); handleWorkoutTap(); }}
         />

@@ -222,3 +222,12 @@
 /* ── Interazioni ── */
 .importBtn { transition: transform 0.16s cubic-bezier(.2,.8,.2,1), opacity 0.16s; }
 .importBtn:active { transform: scale(0.96); }
+
+/* ── Circuito Hybrid ── */
+.hybridCard { background: var(--surface); border-radius: 20px; border: 2px solid var(--hybrid); padding: 18px 18px 16px; display: flex; flex-direction: column; }
+.hybridBadge { font-size: 11px; font-weight: 800; color: var(--hybrid); background: var(--hybrid-bg); border-radius: 6px; padding: 4px 10px; letter-spacing: 1px; }
+.hybridTitle { color: var(--hybrid); }
+.hybridRow { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px; }
+.hybridNum { font-size: 12px; font-weight: 800; color: var(--hybrid); min-width: 14px; padding-top: 1px; }
+.hybridTxt { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.hybridTxt b { color: var(--text); font-weight: 700; }

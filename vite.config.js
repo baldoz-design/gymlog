@@ -6,8 +6,10 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'Costanza in sessioni a settimana, con 2 come riferimento abituale',
-  'Statistiche: grafico delle sessioni per settimana al posto della griglia per slot',
+  'Lezioni Hybrid: in home scegli Strength o Hybrid, il giorno della settimana ricorda cosa hai fatto',
+  'Hybrid: conti le stazioni partendo da quella libera, scegli l\'alternativa e togli un clic sbagliato con il meno',
+  'Riepilogo Hybrid con stazioni, giri, sforzo complessivo e record',
+  'Statistiche, wrap, calendario e programma mostrano anche le lezioni Hybrid',
 ]
 
 function versionPlugin() {

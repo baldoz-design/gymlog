@@ -1,0 +1,15 @@
+.laps { --cell-w:16px; --cell-h:16px; --cell-r:5px; --cell-off:var(--surface-3); --cell-on:var(--hybrid); display:flex; flex-direction:column; gap:5px; }
+.lap { display:grid; gap:5px; }
+.cell { display:block; height:var(--cell-h); border-radius:var(--cell-r); background:var(--cell-off); }
+.on { background:var(--cell-on); animation:popIn .3s cubic-bezier(.2,.9,.3,1.2) both; }
+
+/* riepilogo di fine lezione */
+.big { --cell-w:40px; --cell-h:12px; --cell-r:6px; align-items:center; gap:6px; }
+.big .lap { gap:6px; }
+
+/* storia del wrap, su sfondo lilla */
+.wrap { --cell-w:54px; --cell-h:14px; --cell-r:7px; --cell-off:rgba(18,17,16,.15); --cell-on:var(--hybrid-ink); gap:8px; margin-top:24px; }
+.wrap .lap { gap:8px; }
+
+@keyframes popIn { from { opacity:0; transform:scale(.92); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .on { animation:none; } }

@@ -5,7 +5,7 @@ const COLORS = ['#D9F24B', '#5BA3FF', '#E0762C', '#E05252', '#F5F2EA'];
 const FADE_FROM = 4.4;
 const END = 5.6;
 
-export default function Confetti() {
+export default function Confetti({ colors = COLORS }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Confetti() {
       vy: 2.4 + Math.random() * 2, vx: (Math.random() - 0.5) * 0.5,
       sway: Math.random() * 6.28, swaySpd: 0.03 + Math.random() * 0.04, swayAmp: 0.6 + Math.random() * 1.3,
       w: 5 + Math.random() * 5, h: 9 + Math.random() * 8, r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.2,
-      c: COLORS[i % COLORS.length],
+      c: colors[i % colors.length],
     }));
 
     let raf;
@@ -50,7 +50,7 @@ export default function Confetti() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- i colori si leggono una volta, alla partenza
 
   return <canvas ref={ref} className={styles.canvas} aria-hidden="true" />;
 }

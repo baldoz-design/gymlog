@@ -1,4 +1,5 @@
 import { ZONES } from './rpe';
+import { isHybrid } from './hybrid';
 
 export const SLOTS = ['MON_TUE', 'WED_THU', 'FRI_SAT'];
 
@@ -114,8 +115,15 @@ export function computeWrap(ix, now) {
     const x = weekWindow(now, 8 - k);
     return sessionsBetween(ix, x.start, x.end).length;
   });
+  const hybrid = sessions.filter(isHybrid);
+  // Miglior numero di stazioni prima dell'ultima lezione Hybrid della settimana
+  const lastHy = hybrid[hybrid.length - 1];
+  const hybridBest = lastHy
+    ? Math.max(0, ...ix.sessions.filter(s => isHybrid(s) && s.date < lastHy.date).map(s => s.stations?.length || 0))
+    : 0;
   return {
     ...w, sessions, entries, slots: slotsDoneInWeek(ix, w),
     increases, rpe, top, hardest, margin, streak: weekStreak(ix, now, 1), streakWeeks,
+    hybrid, hybridBest, stations: hybrid.reduce((t, s) => t + (s.stations?.length || 0), 0),
   };
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { getAllSessions } from '../db';
 import { slotLabel } from '../logic';
+import { isHybrid } from '../hybrid';
 import styles from './Calendar.module.css';
 
 const MONTHS_IT = [
@@ -71,7 +72,8 @@ export default function Calendar({ onBack, onNavigate }) {
   }
 
   function handleSessionTap(s) {
-    onNavigate('session', { date: s.date, slot: s.slot });
+    if (isHybrid(s)) onNavigate('hybrid', { date: s.date });
+    else onNavigate('session', { date: s.date, slot: s.slot });
   }
 
   const isCurrentMonth = year === now.getFullYear() && month === now.getMonth();
@@ -128,7 +130,7 @@ export default function Calendar({ onBack, onNavigate }) {
                 onClick={() => hasSess && !isToday ? handleSessionTap(sessionMap[iso][0]) : null}
               >
                 <span className={styles.dayNum}>{day}</span>
-                {hasSess && !isToday && <span className={styles.dot} />}
+                {hasSess && !isToday && <span className={`${styles.dot} ${isHybrid(sessionMap[iso][0]) ? styles.dotHybrid : ''}`} />}
               </button>
             );
           })}
@@ -143,9 +145,15 @@ export default function Calendar({ onBack, onNavigate }) {
             <button key={s.id} className={styles.sessRow} onClick={() => handleSessionTap(s)}>
               <div className={styles.sessInfo}>
                 <span className={styles.sessDate}>{sessionDateLabel(s.date)}</span>
-                <span className={styles.sessMeta}>
-                  {slotLabel(s.slot)} · SETT.{s.weekNumber}
-                </span>
+                {isHybrid(s) ? (
+                  <span className={`${styles.sessMeta} ${styles.sessMetaHybrid}`}>
+                    HYBRID · {s.stations?.length || 0} STAZIONI{s.perceivedEffort ? ` · SFORZO ${s.perceivedEffort}` : ''}
+                  </span>
+                ) : (
+                  <span className={styles.sessMeta}>
+                    STRENGTH · {slotLabel(s.slot)} · SETT.{s.weekNumber}
+                  </span>
+                )}
               </div>
               <span className={styles.sessArrow}>→</span>
             </button>

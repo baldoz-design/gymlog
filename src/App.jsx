@@ -8,6 +8,7 @@ import {
 import Auth         from './screens/Auth';
 import Home         from './screens/Home';
 import Session      from './screens/Session';
+import HybridSession from './screens/HybridSession';
 import Stats        from './screens/Stats';
 import Exercises    from './screens/Exercises';
 import Program      from './screens/Program';
@@ -175,6 +176,7 @@ export default function App() {
   const screenContent = !splashDone
     ? <Splash onDone={() => setSplashDone(true)} />
     : screen === 'session'  ? <Session  params={sessionParams} onBack={goHome} />
+    : screen === 'hybrid'   ? <HybridSession params={sessionParams} onBack={goHome} />
     : screen === 'stats'    ? <Stats    onBack={goHome} />
     : screen === 'exercises' ? <Exercises onBack={goHome} />
     : screen === 'program'  ? <Program  onBack={goHome} />

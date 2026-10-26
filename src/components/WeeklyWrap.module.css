@@ -69,3 +69,8 @@
 @media (prefers-reduced-motion: reduce) {
   .slide > * { animation:none; }
 }
+
+/* ── Lezioni Hybrid ── */
+.t_hybrid { background:var(--hybrid); color:var(--hybrid-ink); }
+.slotHybrid .slotName { color:var(--hybrid); }
+.slotHybrid .slotCheck { background:var(--hybrid); border-color:var(--hybrid); color:var(--hybrid-ink); }
