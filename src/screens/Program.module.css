@@ -231,3 +231,8 @@
 .hybridNum { font-size: 12px; font-weight: 800; color: var(--hybrid); min-width: 14px; padding-top: 1px; }
 .hybridTxt { font-size: 13px; color: var(--text-2); line-height: 1.5; }
 .hybridTxt b { color: var(--text); font-weight: 700; }
+
+/* ── Running ── */
+.runCard { border-color: var(--run); }
+.runCard .hybridBadge { color: var(--run); background: var(--run-bg); }
+.runCard .hybridTitle { color: var(--run); }

@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap, getSessionByDateAndSlot } from '../db';
+import { v4 as uuidv4 } from 'uuid';
+import { deleteSession, getActiveCycle, getAllSessions, getAllExercises, getAllSessionEntries, getLastEntriesMap, getSessionByDateAndSlot, saveSession } from '../db';
 import { getSlotFromDate, getWeekNumberInCycle, todayISO, slotLabel, formatEntryValue } from '../logic';
 import { WEEK_TARGET, buildIndex, computeWrap, fmtNum, periodStats } from '../analytics';
 import { rpeZone } from '../rpe';
 import { resolveBlocks } from '../swaps';
 import { getCircuit, hybridBefore, lastChoices, suggestedType, timingLabel } from '../hybrid';
+import { isRunning, runningSessions } from '../running';
 import CountUp from '../components/CountUp';
+import RpePicker from '../components/RpePicker';
+import RunningWrapUp from '../components/RunningWrapUp';
 import WeeklyWrap from '../components/WeeklyWrap';
 import styles from './Home.module.css';
 
@@ -23,12 +27,19 @@ export default function Home({ onNavigate }) {
   const [wrapOpen,     setWrapOpen]     = useState(false);
   const [wrapSeen,     setWrapSeen]     = useState(readWrapSeen);
   const [typeChoice,   setTypeChoice]   = useState(null); // null = quello proposto
+  const [runRpe,       setRunRpe]       = useState(false);
+  const [runWrap,      setRunWrap]      = useState(null);
 
   const today   = todayISO();
   const now     = new Date();
   const slot    = getSlotFromDate(now);
   const weekNum = cycle ? getWeekNumberInCycle(today, cycle.startDate) : 0;
   const reps    = cycle && weekNum ? (cycle.weeks[weekNum - 1]?.reps ?? '?') : '?';
+
+  function loadIndex() {
+    return Promise.all([getAllSessions(), getAllSessionEntries(), getAllExercises()])
+      .then(([sessions, entries, exercises]) => setIndex(buildIndex(sessions, entries, exercises)));
+  }
 
   useEffect(() => {
     getActiveCycle(today).then(c => setCycle(c || null));
@@ -37,8 +48,7 @@ export default function Home({ onNavigate }) {
   useEffect(() => {
     if (cycle === undefined) return;
 
-    Promise.all([getAllSessions(), getAllSessionEntries(), getAllExercises()])
-      .then(([sessions, entries, exercises]) => setIndex(buildIndex(sessions, entries, exercises)));
+    loadIndex();
 
     if (!cycle || !slot) return;
     Promise.all([getAllExercises(), getSessionByDateAndSlot(today, slot)]).then(async ([exercises, todaySession]) => {
@@ -66,6 +76,10 @@ export default function Home({ onNavigate }) {
   const avgRounded = period?.rpe.avg != null ? Math.round(period.rpe.avg) : null;
   const type       = typeChoice ?? (index ? suggestedType(index.sessions, today) : 'strength');
   const hybrid     = type === 'hybrid';
+  const running    = type === 'running';
+  const todayRun   = index ? index.sessions.find(s => s.date === today && isRunning(s)) || null : null;
+  const pastRuns   = index ? runningSessions(index.sessions).filter(s => s.date !== today).reverse() : [];
+  const runCount   = pastRuns.length + (todayRun ? 1 : 0);
   const circuit    = getCircuit();
   const lastHy     = index ? hybridBefore(index.sessions, today).pop() || null : null;
   const choices    = index ? lastChoices(index.sessions, today) : {};
@@ -78,7 +92,29 @@ export default function Home({ onNavigate }) {
     try { localStorage.setItem(WRAP_SEEN_KEY, wrap.start); } catch { /* storage non disponibile */ }
   }
 
+  async function handleRunConfirm(value) {
+    setRunRpe(false);
+    setTypeChoice('running');
+    if (todayRun) {
+      await saveSession({ ...todayRun, perceivedEffort: value });
+      loadIndex();
+      return;
+    }
+    const sess = { id: uuidv4(), date: today, type: 'running', slot: null, perceivedEffort: value };
+    await saveSession(sess);
+    await loadIndex();
+    setRunWrap(sess);
+  }
+
+  async function handleRunDelete() {
+    setRunRpe(false);
+    setTypeChoice('running');
+    await deleteSession(todayRun.id);
+    loadIndex();
+  }
+
   function handleWorkoutTap() {
+    if (running) return; // si segna a fine allenamento, dalla hero
     if (hybrid) { onNavigate('hybrid', { date: today }); return; }
     if (!cycle) { onNavigate('program'); return; }
     onNavigate('session', { date: today, slot, cycle });
@@ -126,10 +162,10 @@ export default function Home({ onNavigate }) {
         )}
 
         {/* ── Hero card: Strength (programma della lavagna) o Hybrid (circuito a stazioni) ── */}
-        <div className={`${styles.heroCard} ${hybrid ? styles.heroHybrid : ''}`}>
+        <div className={`${styles.heroCard} ${hybrid ? styles.heroHybrid : running ? styles.heroRun : ''}`}>
           <div className={styles.heroMeta}>
             <div className={styles.typeSwitch} role="tablist" aria-label="Tipo di lezione">
-              {[['strength', 'STRENGTH'], ['hybrid', 'HYBRID']].map(([t, label]) => (
+              {[['strength', 'STRENGTH'], ['hybrid', 'HYBRID'], ['running', 'RUNNING']].map(([t, label]) => (
                 <button
                   key={t}
                   role="tab"
@@ -139,17 +175,45 @@ export default function Home({ onNavigate }) {
                 >{label}</button>
               ))}
             </div>
-            <span className={styles.heroWeek}>
-              {hybrid
-                ? (lastHy ? `ULTIMA · ${lastHy.stations.length} STAZ.` : `${circuit.stations.length} STAZIONI`)
-                : noCycle ? '' : `${slot ? slotLabel(slot) : '—'} · SETT. ${weekNum} / 5`}
-            </span>
           </div>
 
-          {hybrid ? (
+          {running ? (
+            <div key="running" className={styles.heroBody}>
+              <h1 className={styles.heroTitle}>Running</h1>
+              <div className={styles.pillRow}>
+                <div className={styles.repsPill}>
+                  {todayRun ? `✓ Fatto oggi${todayRun.perceivedEffort ? ` · sforzo ${todayRun.perceivedEffort}` : ''}` : 'Sforzo a fine allenamento'}
+                </div>
+                {runCount > 0 && <span className={styles.heroWeek}>{runCount} {runCount === 1 ? 'VOLTA' : 'VOLTE'}</span>}
+              </div>
+              <div className={styles.heroSep} />
+              {pastRuns.length > 0 ? (
+                <div className={styles.exPreview}>
+                  {pastRuns.slice(0, 3).map(s => {
+                    const d = new Date(s.date + 'T00:00:00');
+                    return (
+                      <div key={s.id} className={styles.previewRow}>
+                        <span className={styles.previewLabel}>{DAYS_S[d.getDay()].toUpperCase()}</span>
+                        <span className={styles.previewName}>{d.getDate()} {MONTHS_S[d.getMonth()]} · {s.perceivedEffort ? rpeZone(s.perceivedEffort).label : 'senza sforzo'}</span>
+                        <span className={styles.previewValue}>{s.perceivedEffort || '—'}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : !todayRun && (
+                <p className={styles.runHint}>Esercizi, ripetute o fartlek: segni che l'hai fatto e quanto è stato duro nel complesso.</p>
+              )}
+              <button className={styles.heroBtn} onClick={() => setRunRpe(true)}>
+                {todayRun ? 'MODIFICA SFORZO' : 'SEGNA RUNNING →'}
+              </button>
+            </div>
+          ) : hybrid ? (
             <div key="hybrid" className={styles.heroBody}>
               <h1 className={styles.heroTitle}>Hybrid</h1>
-              <div className={styles.repsPill}>{timingLabel(circuit)}</div>
+              <div className={styles.pillRow}>
+                <div className={styles.repsPill}>{timingLabel(circuit)}</div>
+                <span className={styles.heroWeek}>{lastHy ? `ULTIMA · ${lastHy.stations.length} STAZ.` : `${circuit.stations.length} STAZIONI`}</span>
+              </div>
               <div className={styles.heroSep} />
               <div className={styles.exPreview}>
                 {circuit.stations.map(st => (
@@ -184,7 +248,10 @@ export default function Home({ onNavigate }) {
               </div>
 
               <h1 className={styles.heroTitle}>Strength</h1>
-              <div className={styles.repsPill}>×{reps} reps</div>
+              <div className={styles.pillRow}>
+                <div className={styles.repsPill}>×{reps} reps</div>
+                <span className={styles.heroWeek}>{slot ? slotLabel(slot) : '—'} · SETT. {weekNum} / 5</span>
+              </div>
               <div className={styles.heroSep} />
 
               <div className={styles.exPreview}>
@@ -275,11 +342,22 @@ export default function Home({ onNavigate }) {
           reps={reps}
           todaySlot={slot}
           todayBlocks={cycle && slot ? (cycle.slots[slot] || []) : []}
-          todayHybrid={hybrid}
+          todayType={type}
           onClose={closeWrap}
           onStart={() => { closeWrap(); handleWorkoutTap(); }}
         />
       )}
+
+      {runRpe && (
+        <RpePicker
+          title="Sforzo del running"
+          initialValue={todayRun?.perceivedEffort ?? null}
+          onConfirm={handleRunConfirm}
+          onCancel={() => setRunRpe(false)}
+          extra={todayRun ? { label: 'Elimina il running di oggi', onClick: handleRunDelete } : null}
+        />
+      )}
+      {runWrap && <RunningWrapUp session={runWrap} sessions={index.sessions} onClose={() => setRunWrap(null)} />}
     </div>
   );
 }

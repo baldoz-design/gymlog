@@ -19,6 +19,26 @@ import UpdateBanner from './components/UpdateBanner';
 
 const NAV_KEY = 'gymlog_nav';
 
+// Ingresso della schermata. A fine animazione la classe si toglie: finché
+// resta un transform, bottom sheet e overlay fixed si agganciano alla pagina
+// e non allo schermo (finivano sotto, fuori vista)
+function ScreenIn({ dir, children }) {
+  const [moving, setMoving] = useState(true);
+  useEffect(() => {
+    // rete di sicurezza se animationend non arriva (app in background)
+    const t = setTimeout(() => setMoving(false), 400);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div
+      className={moving ? (dir === 'back' ? 'screen-in-back' : 'screen-in-fwd') : undefined}
+      onAnimationEnd={e => { if (e.target === e.currentTarget) setMoving(false); }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function readNav() {
   try {
     const raw = localStorage.getItem(NAV_KEY);
@@ -116,6 +136,16 @@ export default function App() {
     setScreen(target);
   }
 
+  // Da una sessione aperta dal calendario si torna al mese da cui si è partiti
+  function goBack() {
+    const from = sessionParams?.from;
+    if (!from) { goHome(); return; }
+    writeNav('calendar', from);
+    setNavDir('back');
+    setSessionParams(from);
+    setScreen('calendar');
+  }
+
   function goHome() {
     writeNav('home', null);
     setNavDir('back');
@@ -173,22 +203,22 @@ export default function App() {
 
   // ── Schermate app ─────────────────────────────────────────────────────────────
 
-  const screenContent = !splashDone
-    ? <Splash onDone={() => setSplashDone(true)} />
-    : screen === 'session'  ? <Session  params={sessionParams} onBack={goHome} />
-    : screen === 'hybrid'   ? <HybridSession params={sessionParams} onBack={goHome} />
+  // Lo splash resta fuori dal contenitore animato: un antenato con transform
+  // fa da riferimento ai position:fixed e su Safari lo schiacciava in alto
+  if (!splashDone) return <><Splash onDone={() => setSplashDone(true)} /><UpdateBanner /></>;
+
+  const screenContent = screen === 'session'  ? <Session  params={sessionParams} onBack={goBack} />
+    : screen === 'hybrid'   ? <HybridSession params={sessionParams} onBack={goBack} />
     : screen === 'stats'    ? <Stats    onBack={goHome} />
     : screen === 'exercises' ? <Exercises onBack={goHome} />
     : screen === 'program'  ? <Program  onBack={goHome} />
-    : screen === 'calendar' ? <Calendar onBack={goHome} onNavigate={navigate} />
+    : screen === 'calendar' ? <Calendar params={sessionParams} onBack={goHome} onNavigate={navigate} />
     : screen === 'settings' ? <Settings onBack={goHome} exportAllData={exportAllData} importAllData={importAllData} />
     : <Home onNavigate={navigate} />;
 
   return (
     <>
-      <div key={splashDone ? screen : 'splash'} className={navDir === 'back' ? 'screen-in-back' : 'screen-in-fwd'}>
-        {screenContent}
-      </div>
+      <ScreenIn key={screen} dir={navDir}>{screenContent}</ScreenIn>
       <UpdateBanner />
     </>
   );

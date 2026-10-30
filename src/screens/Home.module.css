@@ -373,3 +373,13 @@
 @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .heroBody { animation: none; } }
 .heroWeek { white-space: nowrap; }
+
+/* ── Running e interruttore a tre ── */
+.typeSwitch { display: flex; width: 100%; }
+.typeBtn { flex: 1; padding: 0 6px; }
+.pillRow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin-bottom: 14px; }
+.pillRow .repsPill { margin-bottom: 0; }
+.pillRow .heroWeek { color: rgba(18,17,16,0.62); }
+.heroRun { background: var(--run); }
+.heroRun .typeOn, .heroRun .heroBtn { color: var(--run); }
+.runHint { font-size: 13px; line-height: 1.45; color: rgba(18,17,16,0.7); margin-bottom: 14px; }

@@ -1,0 +1,11 @@
+/* Varianti rosa del riepilogo di fine allenamento (WorkoutWrapUp.module.css): classe ripetuta per vincere sull'ordine dei fogli */
+.overlay.overlay { background:radial-gradient(110% 55% at 50% 0%, #3A2030 0%, #121110 60%); }
+.eyebrow.eyebrow { color:var(--run); }
+.big { text-align:center; font-size:128px; font-weight:900; letter-spacing:-7px; line-height:.85; color:var(--text); font-variant-numeric:tabular-nums; margin-top:8px; }
+.bigLbl { text-align:center; font-size:15px; font-weight:700; color:var(--muted); margin:8px 0 18px; }
+.meter { display:flex; justify-content:center; gap:5px; margin:2px 0 22px; }
+.meter i { width:18px; height:8px; border-radius:4px; display:block; animation:segIn .4s cubic-bezier(.2,.8,.2,1) both; }
+.good.good { color:var(--run); }
+.cta.cta { background:var(--run); color:var(--run-ink); }
+@keyframes segIn { from { transform:scaleY(0); } to { transform:none; } }
+@media (prefers-reduced-motion: reduce) { .meter i { animation:none; } }

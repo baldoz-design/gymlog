@@ -36,6 +36,11 @@
   --hybrid-ink: #121110;
   --hybrid-bg:  #1E1A2B;
 
+  /* Running */
+  --run:     #FF8FB1;
+  --run-ink: #121110;
+  --run-bg:  #2B1A21;
+
   /* ─── Token legacy → rimappati al dark (tutte le schermate) ─ */
   --bg-primary:   #121110;
   --bg-card:      #1B1917;
@@ -91,8 +96,8 @@ a { color: inherit; text-decoration: none; }
 /* l'ingresso laterale non deve allargare la pagina */
 #root { overflow-x: clip; }
 
-.screen-in-fwd  { animation: screen-in-fwd  0.32s cubic-bezier(.2,.8,.2,1) both; }
-.screen-in-back { animation: screen-in-back 0.32s cubic-bezier(.2,.8,.2,1) both; }
+.screen-in-fwd  { animation: screen-in-fwd  0.32s cubic-bezier(.2,.8,.2,1) backwards; }
+.screen-in-back { animation: screen-in-back 0.32s cubic-bezier(.2,.8,.2,1) backwards; }
 
 @keyframes screen-in-fwd {
   from { opacity: 0; transform: translateX(28px); }

@@ -1,7 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
-import { getAllSessions } from '../db';
-import { slotLabel } from '../logic';
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { deleteSession, getAllCycles, getAllSessions, saveSession } from '../db';
+import { cycleForDate, slotLabel } from '../logic';
 import { isHybrid } from '../hybrid';
+import { isRunning } from '../running';
+import DaySheet from '../components/DaySheet';
+import RpePicker from '../components/RpePicker';
 import styles from './Calendar.module.css';
 
 const MONTHS_IT = [
@@ -17,18 +21,21 @@ function sessionDateLabel(iso) {
   return `${DAYS_S[d.getDay()].charAt(0).toUpperCase() + DAYS_S[d.getDay()].slice(1)} ${d.getDate()} ${MONTHS_S[d.getMonth()].charAt(0).toUpperCase() + MONTHS_S[d.getMonth()].slice(1)}`;
 }
 
-export default function Calendar({ onBack, onNavigate }) {
+export default function Calendar({ params, onBack, onNavigate }) {
   const now     = new Date();
   const todayISO = now.toISOString().slice(0, 10);
 
-  const [year,        setYear]        = useState(now.getFullYear());
-  const [month,       setMonth]       = useState(now.getMonth());
+  const [year,        setYear]        = useState(params?.year ?? now.getFullYear());
+  const [month,       setMonth]       = useState(params?.month ?? now.getMonth());
   const [sessionMap,  setSessionMap]  = useState({});
   const [lastSessions, setLastSessions] = useState([]);
   const [monthCount,  setMonthCount]  = useState(0);
+  const [cycles,      setCycles]      = useState([]);
+  const [dayOpen,     setDayOpen]     = useState(null);  // data del foglio aperto
+  const [runTarget,   setRunTarget]   = useState(null);  // { date, session } running da aggiungere o modificare
 
-  useEffect(() => {
-    getAllSessions().then(sessions => {
+  function load() {
+    return getAllSessions().then(sessions => {
       const map = {};
       for (const s of sessions) {
         if (!map[s.date]) map[s.date] = [];
@@ -39,13 +46,18 @@ export default function Calendar({ onBack, onNavigate }) {
       const sorted = [...sessions].sort((a, b) => b.date.localeCompare(a.date));
       setLastSessions(sorted.slice(0, 3));
     });
+  }
+
+  useEffect(() => {
+    load();
+    getAllCycles().then(setCycles);
   }, []);
 
   useEffect(() => {
     const prefix = `${year}-${String(month + 1).padStart(2, '0')}`;
     let count = 0;
-    for (const [date] of Object.entries(sessionMap)) {
-      if (date.startsWith(prefix)) count++;
+    for (const [date, list] of Object.entries(sessionMap)) {
+      if (date.startsWith(prefix)) count += list.length;
     }
     setMonthCount(count);
   }, [sessionMap, year, month]);
@@ -71,12 +83,32 @@ export default function Calendar({ onBack, onNavigate }) {
     return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   }
 
+  // Da qui si torna a questo mese, non alla home
+  const from = { year, month };
+
   function handleSessionTap(s) {
-    if (isHybrid(s)) onNavigate('hybrid', { date: s.date });
-    else onNavigate('session', { date: s.date, slot: s.slot });
+    if (isRunning(s)) { setDayOpen(null); setRunTarget({ date: s.date, session: s }); }
+    else if (isHybrid(s)) onNavigate('hybrid', { date: s.date, from });
+    else onNavigate('session', { date: s.date, slot: s.slot, from });
   }
 
-  const isCurrentMonth = year === now.getFullYear() && month === now.getMonth();
+  async function handleRunConfirm(value) {
+    const { date, session } = runTarget;
+    setRunTarget(null);
+    await saveSession(session
+      ? { ...session, perceivedEffort: value }
+      : { id: uuidv4(), date, type: 'running', slot: null, perceivedEffort: value });
+    load();
+  }
+
+  async function handleRunDelete() {
+    const { session } = runTarget;
+    setRunTarget(null);
+    await deleteSession(session.id);
+    load();
+  }
+
+  const dot = s => `${styles.dot} ${isHybrid(s) ? styles.dotHybrid : isRunning(s) ? styles.dotRun : ''}`;
 
   return (
     <div className={styles.screen}>
@@ -127,10 +159,10 @@ export default function Calendar({ onBack, onNavigate }) {
                   hasSess && !isToday ? styles.dayHas : '',
                   isFuture ? styles.dayFuture  : '',
                 ].join(' ')}
-                onClick={() => hasSess && !isToday ? handleSessionTap(sessionMap[iso][0]) : null}
+                onClick={() => { if (!isFuture) setDayOpen(iso); }}
               >
                 <span className={styles.dayNum}>{day}</span>
-                {hasSess && !isToday && <span className={`${styles.dot} ${isHybrid(sessionMap[iso][0]) ? styles.dotHybrid : ''}`} />}
+                {hasSess && !isToday && <span className={styles.dots}>{sessionMap[iso].map(s => <span key={s.id} className={dot(s)} />)}</span>}
               </button>
             );
           })}
@@ -145,7 +177,11 @@ export default function Calendar({ onBack, onNavigate }) {
             <button key={s.id} className={styles.sessRow} onClick={() => handleSessionTap(s)}>
               <div className={styles.sessInfo}>
                 <span className={styles.sessDate}>{sessionDateLabel(s.date)}</span>
-                {isHybrid(s) ? (
+                {isRunning(s) ? (
+                  <span className={`${styles.sessMeta} ${styles.sessMetaRun}`}>
+                    RUNNING{s.perceivedEffort ? ` · SFORZO ${s.perceivedEffort}` : ''}
+                  </span>
+                ) : isHybrid(s) ? (
                   <span className={`${styles.sessMeta} ${styles.sessMetaHybrid}`}>
                     HYBRID · {s.stations?.length || 0} STAZIONI{s.perceivedEffort ? ` · SFORZO ${s.perceivedEffort}` : ''}
                   </span>
@@ -159,6 +195,30 @@ export default function Calendar({ onBack, onNavigate }) {
             </button>
           ))}
         </div>
+      )}
+
+      {dayOpen && (
+        <DaySheet
+          date={dayOpen}
+          sessions={sessionMap[dayOpen] || []}
+          cycle={cycleForDate(cycles, dayOpen)}
+          onOpen={handleSessionTap}
+          onAddStrength={slot => onNavigate('session', { date: dayOpen, slot, cycle: cycleForDate(cycles, dayOpen), from })}
+          onAddHybrid={() => onNavigate('hybrid', { date: dayOpen, from })}
+          onAddRunning={() => { setRunTarget({ date: dayOpen, session: null }); setDayOpen(null); }}
+          onClose={() => setDayOpen(null)}
+        />
+      )}
+      {runTarget && (
+        <RpePicker
+          title={`Running di ${sessionDateLabel(runTarget.date).toLowerCase()}`}
+          initialValue={runTarget.session?.perceivedEffort ?? null}
+          onConfirm={handleRunConfirm}
+          onCancel={() => setRunTarget(null)}
+          extra={runTarget.session
+            ? { label: 'Elimina questo running', onClick: handleRunDelete }
+            : { label: 'Salva senza sforzo', onClick: () => handleRunConfirm(null) }}
+        />
       )}
     </div>
   );

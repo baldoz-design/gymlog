@@ -17,7 +17,8 @@ const RPE_LABELS = {
   10: 'Limite assoluto',
 };
 
-export default function RpePicker({ initialValue = null, onConfirm, onCancel, title = 'Valuta il tuo sforzo' }) {
+// extra: azione secondaria in fondo, { label, onClick }
+export default function RpePicker({ initialValue = null, onConfirm, onCancel, title = 'Valuta il tuo sforzo', extra = null }) {
   const [value, setValue] = useState(initialValue);
   const barsRef  = useRef(null);
   const dragging = useRef(false);
@@ -103,6 +104,8 @@ export default function RpePicker({ initialValue = null, onConfirm, onCancel, ti
           <p className={styles.labelHint}>Trascina o tocca per selezionare</p>
         )}
       </div>
+
+      {extra && <button className={styles.extraBtn} onClick={extra.onClick}>{extra.label}</button>}
     </div>
   );
 }

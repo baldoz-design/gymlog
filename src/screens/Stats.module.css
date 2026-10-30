@@ -68,4 +68,12 @@
 .hyBarPast { opacity:.45; }
 .hyD { font-size:9px; font-weight:700; color:var(--muted); letter-spacing:.3px; white-space:nowrap; }
 
-@media (prefers-reduced-motion: reduce) { .wkBar, .hyBar { animation:none; } }
+/* ── Running ── */
+.wkRun { display:block; width:100%; flex-shrink:0; background:var(--run); }
+.wkLow .wkRun { opacity:.55; }
+.legend { flex-wrap:wrap; gap:8px 16px; }
+.runCard { border:1.5px solid rgba(255,143,177,.22); }
+.runMeta { color:var(--run); }
+.runBar { display:block; width:100%; border-radius:6px 6px 2px 2px; transform-origin:bottom; animation:segIn .5s cubic-bezier(.2,.8,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) { .wkBar, .hyBar, .runBar { animation:none; } }

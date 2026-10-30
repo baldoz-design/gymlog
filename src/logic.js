@@ -41,6 +41,13 @@ export function formatEntryValue(entry) {
   return '—';
 }
 
+// Il programma in vigore quella data: l'ultimo iniziato prima, anche se archiviato
+export function cycleForDate(cycles, dateISO) {
+  return cycles
+    .filter(c => c.startDate <= dateISO)
+    .sort((a, b) => b.startDate.localeCompare(a.startDate))[0] || null;
+}
+
 export function todayISO() {
   const d = new Date();
   return d.toISOString().slice(0, 10);

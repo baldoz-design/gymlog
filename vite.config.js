@@ -6,10 +6,10 @@ const BUILD_VERSION = Date.now().toString()
 
 // Aggiorna qui prima di ogni commit che va in produzione
 const RELEASE_NOTES = [
-  'Lezioni Hybrid: in home scegli Strength o Hybrid, il giorno della settimana ricorda cosa hai fatto',
-  'Hybrid: conti le stazioni partendo da quella libera, scegli l\'alternativa e togli un clic sbagliato con il meno',
-  'Riepilogo Hybrid con stazioni, giri, sforzo complessivo e record',
-  'Statistiche, wrap, calendario e programma mostrano anche le lezioni Hybrid',
+  'Running: terzo tipo di lezione in home, segni la presenza e lo sforzo a fine allenamento',
+  'Calendario: tocca un giorno passato per aggiungere una sessione Strength, Hybrid o Running',
+  'Corretti lo splash iniziale e le schede degli esercizi che non si aprivano',
+  'Statistiche, wrap e programma mostrano anche il Running',
 ]
 
 function versionPlugin() {

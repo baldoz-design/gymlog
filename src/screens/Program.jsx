@@ -136,6 +136,15 @@ export default function Program({ onBack }) {
           ))}
         </div>
 
+        {/* ── Running ── */}
+        <div className={`${styles.hybridCard} ${styles.runCard}`}>
+          <div className={styles.cycleTop}>
+            <span className={styles.hybridBadge}>MERCOLEDÌ</span>
+          </div>
+          <h2 className={`${styles.cycleName} ${styles.hybridTitle}`}>Running</h2>
+          <p className={styles.cycleDates}>Con la società sportiva: esercizi, ripetute, fartlek. Cambia ogni volta, quindi si registra solo la presenza e lo sforzo complessivo.</p>
+        </div>
+
         {cycles.length === 0 && (
           <p className={styles.empty}>Nessun programma caricato.</p>
         )}

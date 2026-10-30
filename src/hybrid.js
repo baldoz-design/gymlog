@@ -1,3 +1,5 @@
+import { isRunning } from './running';
+
 // Lezioni Hybrid: circuito a stazioni, si registrano le stazioni fatte e lo sforzo complessivo.
 //   session.type            = 'hybrid' (assente = Strength); slot, cycleId e weekNumber restano vuoti
 //   session.circuitId       = id del circuito
@@ -54,5 +56,5 @@ export function suggestedType(sessions, todayIso) {
   d.setDate(d.getDate() - 7);
   const weekAgo = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const s = sessions.find(x => x.date === todayIso) || sessions.find(x => x.date === weekAgo);
-  return isHybrid(s) ? 'hybrid' : 'strength';
+  return isHybrid(s) ? 'hybrid' : isRunning(s) ? 'running' : 'strength';
 }

@@ -1,5 +1,6 @@
 import { ZONES } from './rpe';
 import { isHybrid } from './hybrid';
+import { isRunning } from './running';
 
 export const SLOTS = ['MON_TUE', 'WED_THU', 'FRI_SAT'];
 
@@ -125,5 +126,6 @@ export function computeWrap(ix, now) {
     ...w, sessions, entries, slots: slotsDoneInWeek(ix, w),
     increases, rpe, top, hardest, margin, streak: weekStreak(ix, now, 1), streakWeeks,
     hybrid, hybridBest, stations: hybrid.reduce((t, s) => t + (s.stations?.length || 0), 0),
+    running: sessions.filter(isRunning),
   };
 }

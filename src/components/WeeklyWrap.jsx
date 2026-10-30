@@ -20,7 +20,9 @@ function sessionsHeadline(n) {
 }
 const valueText = e => e.valueType === 'elastic' ? EL_NAME[e.elasticColor] : formatEntryValue(e);
 
-export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlocks, todayHybrid = false, onClose, onStart }) {
+const joinIt = xs => xs.length < 2 ? (xs[0] || '') : `${xs.slice(0, -1).join(', ')} e ${xs[xs.length - 1]}`;
+
+export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlocks, todayType = 'strength', onClose, onStart }) {
   const [index,  setIndex]  = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -30,10 +32,11 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
   const zone = w.rpe.avg != null ? rpeZone(w.rpe.avg) : null;
   const todayCount = todayBlocks.reduce((t, b) => t + b.exercises.length, 0);
   const lastHy = w.hybrid[w.hybrid.length - 1] || null;
-  const coverFoot = [
-    w.entries.length > 0 && `${w.entries.length} esercizi Strength${w.increases.length > 0 ? `, ${w.increases.length} con più carico della volta prima` : ''}`,
+  const coverFoot = joinIt([
+    w.entries.length > 0 && `${w.entries.length} esercizi Strength${w.increases.length > 0 ? ` (${w.increases.length} con più carico)` : ''}`,
     w.stations > 0 && `${w.stations} stazioni Hybrid`,
-  ].filter(Boolean).join(' e ');
+    w.running.length > 0 && (w.running.length === 1 ? 'un running' : `${w.running.length} running`),
+  ].filter(Boolean));
 
   const slides = [
     { key: 'cover', tone: 'lime', body: (
@@ -62,6 +65,13 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
             <div key={s.id} className={`${styles.slotRow} ${styles.slotOn} ${styles.slotHybrid}`}>
               <span className={styles.slotName}>HYBRID</span>
               <span className={styles.slotDate}>{dayLabel(s.date)}</span>
+              <span className={styles.slotCheck}>✓</span>
+            </div>
+          ))}
+          {w.running.map(s => (
+            <div key={s.id} className={`${styles.slotRow} ${styles.slotOn} ${styles.slotRun}`}>
+              <span className={styles.slotName}>RUNNING</span>
+              <span className={styles.slotDate}>{dayLabel(s.date)}{s.perceivedEffort ? ` · sforzo ${s.perceivedEffort}` : ''}</span>
               <span className={styles.slotCheck}>✓</span>
             </div>
           ))}
@@ -147,13 +157,15 @@ export default function WeeklyWrap({ wrap: w, weekNum, reps, todaySlot, todayBlo
         <h2 className={styles.h}>Settimana {weekNum} di 5</h2>
         <p className={`${styles.mega} ${styles.megaAcc}`}>×{reps}</p>
         <p className={styles.megaLbl}>ripetizioni</p>
-        {todayHybrid ? (
+        {todayType === 'hybrid' ? (
           <p className={styles.foot}>Oggi in home è selezionato Hybrid: il circuito a 4 stazioni.</p>
+        ) : todayType === 'running' ? (
+          <p className={styles.foot}>Oggi in home è selezionato Running: a fine allenamento segni lo sforzo.</p>
         ) : todaySlot && (
           <p className={styles.foot}>Oggi tocca a {slotLabel(todaySlot)}: {todayCount} esercizi in {todayBlocks.length} blocchi.</p>
         )}
         <button className={styles.cta} onClick={e => { e.stopPropagation(); onStart(); }}>
-          INIZIA L'ALLENAMENTO →
+          {todayType === 'running' ? 'TORNA ALLA HOME →' : "INIZIA L'ALLENAMENTO →"}
         </button>
       </>
     ) },

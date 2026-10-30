@@ -74,3 +74,7 @@
 .t_hybrid { background:var(--hybrid); color:var(--hybrid-ink); }
 .slotHybrid .slotName { color:var(--hybrid); }
 .slotHybrid .slotCheck { background:var(--hybrid); border-color:var(--hybrid); color:var(--hybrid-ink); }
+
+/* ── Running ── */
+.slotRun .slotName { color:var(--run); }
+.slotRun .slotCheck { background:var(--run); border-color:var(--run); color:var(--run-ink); }

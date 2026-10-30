@@ -212,3 +212,8 @@
 /* ── Lezioni Hybrid ── */
 .dotHybrid { background: var(--hybrid); }
 .sessMetaHybrid { color: var(--hybrid); }
+
+/* ── Running e più sessioni nello stesso giorno ── */
+.dots { display: flex; gap: 2px; }
+.dotRun { background: var(--run); }
+.sessMetaRun { color: var(--run); }

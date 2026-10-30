@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getAllExercises, getAllSessions, getAllSessionEntries } from '../db';
 import { slotLabel } from '../logic';
-import { SLOTS, WEEK_TARGET, buildIndex, fmtNum, periodStats, sessionsInWeek, weekWindow } from '../analytics';
+import { SLOTS, WEEK_TARGET, buildIndex, fmtNum, isoOf, periodStats, sessionsInWeek, weekWindow } from '../analytics';
 import { ZONES, rpeZone } from '../rpe';
 import { isHybrid, getCircuit, fmtSec, stationSec } from '../hybrid';
+import { isRunning, runningSessions, runWeekStreak } from '../running';
 import ExerciseHistory from '../components/ExerciseHistory';
 import CountUp from '../components/CountUp';
 import styles from './Stats.module.css';
@@ -32,8 +33,10 @@ export default function Stats({ onBack }) {
   const weeks   = Array.from({ length: 12 }, (_, k) => weekWindow(now, 12 - k));
   const counts   = weeks.map(w => sessionsInWeek(data.ix, w));
   const hyCounts = weeks.map(w => data.ix.sessions.filter(s => isHybrid(s) && s.date >= w.start && s.date <= w.end).length);
+  const runCounts = weeks.map(w => data.ix.sessions.filter(s => isRunning(s) && s.date >= w.start && s.date <= w.end).length);
   const hyTotal  = hyCounts.reduce((t, x) => t + x, 0);
-  const stTotal  = counts.reduce((t, x) => t + x, 0) - hyTotal;
+  const runTotal = runCounts.reduce((t, x) => t + x, 0);
+  const stTotal  = counts.reduce((t, x) => t + x, 0) - hyTotal - runTotal;
   // Card Hybrid: tutte le lezioni con almeno una stazione, non solo il periodo
   const hys      = data.ix.sessions.filter(s => isHybrid(s) && s.stations?.length).sort((a, b) => a.date.localeCompare(b.date));
   const hyShown  = hys.slice(-8);
@@ -41,6 +44,14 @@ export default function Stats({ onBack }) {
   const hyRated  = hys.filter(s => s.perceivedEffort);
   const hyRpe    = hyRated.length ? hyRated.reduce((t, s) => t + s.perceivedEffort, 0) / hyRated.length : null;
   const hyMax    = Math.max(8, hyRecord || 0);
+  // Card Running: tutte le volte, non solo il periodo
+  const runs      = runningSessions(data.ix.sessions);
+  const runShown  = runs.slice(-8);
+  const runLast   = runs[runs.length - 1]?.perceivedEffort;
+  const runRated  = runs.filter(s => s.perceivedEffort);
+  const runRpe    = runRated.length ? runRated.reduce((t, s) => t + s.perceivedEffort, 0) / runRated.length : null;
+  // La settimana in corso può non avere ancora il running: non azzera la serie
+  const runStreak = runWeekStreak(data.ix.sessions, isoOf(now)) || runWeekStreak(data.ix.sessions, weeks[11].end);
   const maxCount = Math.max(3, ...counts);
   const onTarget = counts.filter(c => c >= WEEK_TARGET).length;
   const perSlot  = SLOTS.map(slot => data.ix.sessions.filter(x => x.slot === slot && x.date >= weeks[0].start && x.date <= weeks[11].end).length);
@@ -95,6 +106,7 @@ export default function Stats({ onBack }) {
                   className={`${styles.wkBar} ${n >= WEEK_TARGET ? styles.wkOn : n ? styles.wkLow : ''}`}
                   style={{ height: n ? `${n / maxCount * 100}%` : '3px', animationDelay: `${wi * 30}ms` }}
                 >
+                  {runCounts[wi] > 0 && <b className={styles.wkRun} style={{ height: `${runCounts[wi] / n * 100}%` }} />}
                   {hyCounts[wi] > 0 && <b className={styles.wkHybrid} style={{ height: `${hyCounts[wi] / n * 100}%` }} />}
                 </i>
               </span>
@@ -110,8 +122,9 @@ export default function Stats({ onBack }) {
           <p className={styles.legend}>
             <span><i style={{ background: 'var(--accent)' }} />Strength <b>{stTotal}</b></span>
             <span><i style={{ background: 'var(--hybrid)' }} />Hybrid <b>{hyTotal}</b></span>
+            <span><i style={{ background: 'var(--run)' }} />Running <b>{runTotal}</b></span>
           </p>
-          <p className={styles.caption}>{onTarget} settimane su 12 con almeno {WEEK_TARGET} sessioni, Strength e Hybrid insieme.</p>
+          <p className={styles.caption}>{onTarget} settimane su 12 con almeno {WEEK_TARGET} sessioni, contando tutte le lezioni.</p>
           <p className={styles.slotLine}>Strength per slot: {SLOTS.map((slot, k) => `${slotLabel(slot)} ${perSlot[k]}`).join(' · ')}</p>
         </section>
 
@@ -154,6 +167,46 @@ export default function Stats({ onBack }) {
                 ? "Stazioni per lezione. Dalla prossima vedi l'andamento: l'obiettivo è aggiungerne una."
                 : `Stazioni per lezione, ultime ${hyShown.length}. Ogni stazione dura ${fmtSec(stationSec(getCircuit()))} con il cambio.`}
             </p>
+          </section>
+        )}
+
+        {runs.length > 0 && (
+          <section className={`${styles.card} ${styles.runCard}`}>
+            <div className={styles.cardHead}>
+              <span className={styles.cardTitle}>Running</span>
+              <span className={`${styles.cardMeta} ${styles.runMeta}`}>{runs.length} {runs.length === 1 ? 'VOLTA' : 'VOLTE'}</span>
+            </div>
+            <div className={styles.hyRow}>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>ULTIMO</span>
+                <span className={styles.hyVal}>
+                  {runLast ? <><i className={styles.dot} style={{ background: rpeZone(runLast).color }} />{runLast}</> : '—'}
+                </span>
+              </div>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>MEDIA</span>
+                <span className={styles.hyVal}>
+                  {runRpe != null ? <><i className={styles.dot} style={{ background: rpeZone(runRpe).color }} />{fmtNum(runRpe)}</> : '—'}
+                </span>
+              </div>
+              <div className={styles.hyStat}>
+                <span className={styles.hyLbl}>DI FILA</span>
+                <span className={styles.hyVal}>{runStreak}<small>sett.</small></span>
+              </div>
+            </div>
+            <div className={styles.hyBars}>
+              {runShown.map((s, k) => (
+                <span key={s.id} className={styles.hyCol}>
+                  <span className={styles.hyN}>{s.perceivedEffort || '—'}</span>
+                  <i
+                    className={styles.runBar}
+                    style={{ height: `${(s.perceivedEffort || 0) * 10}%`, background: s.perceivedEffort ? rpeZone(s.perceivedEffort).color : undefined, animationDelay: `${k * 50}ms` }}
+                  />
+                  <span className={styles.hyD}>{shortDate(s.date).toUpperCase()}</span>
+                </span>
+              ))}
+            </div>
+            <p className={styles.caption}>Sforzo complessivo per volta, ultime {runShown.length}. Il colore è la zona di sforzo.</p>
           </section>
         )}
 
